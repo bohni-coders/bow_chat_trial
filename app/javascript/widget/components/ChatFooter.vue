@@ -1,20 +1,10 @@
 <template>
   <footer
     v-if="!hideReplyBox"
-    class="relative z-50 mb-1"
-    :class="{
-      'rounded-lg': !isWidgetStyleFlat,
-      'pt-2.5 shadow-[0px_-20px_20px_1px_rgba(0,_0,_0,_0.05)] dark:shadow-[0px_-20px_20px_1px_rgba(0,_0,_0,_0.15)] rounded-t-none':
-        hasReplyTo,
-    }"
+    class="shadow-sm bg-white mb-1 z-50 relative"
+    :class="{ 'rounded-lg': !isWidgetStyleFlat }"
   >
-    <footer-reply-to
-      v-if="hasReplyTo"
-      :in-reply-to="inReplyTo"
-      @dismiss="inReplyTo = null"
-    />
     <chat-input-wrap
-      class="shadow-sm"
       :on-send-message="handleSendMessage"
       :on-send-attachment="handleSendAttachment"
     />
@@ -43,20 +33,15 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { getContrastingTextColor } from '@chatwoot/utils';
-import CustomButton from 'shared/components/Button.vue';
-import FooterReplyTo from 'widget/components/FooterReplyTo.vue';
+import CustomButton from 'shared/components/Button';
 import ChatInputWrap from 'widget/components/ChatInputWrap.vue';
 import { BUS_EVENTS } from 'shared/constants/busEvents';
 import { sendEmailTranscript } from 'widget/api/conversation';
 import routerMixin from 'widget/mixins/routerMixin';
-import { IFrameHelper } from '../helpers/utils';
-import { CHATWOOT_ON_START_CONVERSATION } from '../constants/sdkEvents';
-
 export default {
   components: {
     ChatInputWrap,
     CustomButton,
-    FooterReplyTo,
   },
   mixins: [routerMixin],
   props: {
@@ -64,11 +49,6 @@ export default {
       type: String,
       default: '',
     },
-  },
-  data() {
-    return {
-      inReplyTo: null,
-    };
   },
   computed: {
     ...mapGetters({
@@ -89,14 +69,6 @@ export default {
     showEmailTranscriptButton() {
       return this.currentUser && this.currentUser.email;
     },
-    hasReplyTo() {
-      return (
-        this.inReplyTo && (this.inReplyTo.content || this.inReplyTo.attachments)
-      );
-    },
-  },
-  mounted() {
-    bus.$on(BUS_EVENTS.TOGGLE_REPLY_TO_MESSAGE, this.toggleReplyTo);
   },
   methods: {
     ...mapActions('conversation', [
@@ -111,34 +83,19 @@ export default {
     async handleSendMessage(content) {
       await this.sendMessage({
         content,
-        replyTo: this.inReplyTo ? this.inReplyTo.id : null,
       });
-      // reset replyTo message after sending
-      this.inReplyTo = null;
       // Update conversation attributes on new conversation
       if (this.conversationSize === 0) {
         this.getAttributes();
       }
     },
-    async handleSendAttachment(attachment) {
-      await this.sendAttachment({
-        attachment,
-        replyTo: this.inReplyTo ? this.inReplyTo.id : null,
-      });
-      this.inReplyTo = null;
+    handleSendAttachment(attachment) {
+      this.sendAttachment({ attachment });
     },
     startNewConversation() {
       this.clearConversations();
       this.clearConversationAttributes();
       this.replaceRoute('prechat-form');
-      IFrameHelper.sendMessage({
-        event: 'onEvent',
-        eventIdentifier: CHATWOOT_ON_START_CONVERSATION,
-        data: { hasConversation: true },
-      });
-    },
-    toggleReplyTo(message) {
-      this.inReplyTo = message;
     },
     async sendTranscript() {
       const { email } = this.currentUser;

@@ -1,4 +1,4 @@
-import { isActiveElementTypeable, isEscape } from '../helpers/KeyboardHelpers';
+import { isEscape } from '../helpers/KeyboardHelpers';
 
 export default {
   mounted() {
@@ -9,9 +9,13 @@ export default {
   },
   methods: {
     onKeyDownHandler(e) {
-      const isTypeable = isActiveElementTypeable(e);
+      const isEventFromAnInputBox =
+        e.target?.tagName === 'INPUT' || e.target?.tagName === 'TEXTAREA';
+      const isEventFromProseMirror = e.target?.className?.includes(
+        'ProseMirror'
+      );
 
-      if (isTypeable) {
+      if (isEventFromAnInputBox || isEventFromProseMirror) {
         if (isEscape(e)) {
           e.target.blur();
         }

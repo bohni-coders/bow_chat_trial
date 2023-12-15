@@ -1,11 +1,11 @@
 <template>
-  <div class="wizard-body w-[75%] flex-shrink-0 flex-grow-0 max-w-[75%]">
+  <div class="wizard-body small-9 columns">
     <page-header
       :header-title="$t('INBOX_MGMT.ADD.API_CHANNEL.TITLE')"
       :header-content="$t('INBOX_MGMT.ADD.API_CHANNEL.DESC')"
     />
-    <form class="mx-0 flex flex-wrap" @submit.prevent="createChannel()">
-      <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
+    <form class="row" @submit.prevent="createChannel()">
+      <div class="medium-8 columns">
         <label :class="{ error: $v.channelName.$error }">
           {{ $t('INBOX_MGMT.ADD.API_CHANNEL.CHANNEL_NAME.LABEL') }}
           <input
@@ -22,7 +22,7 @@
         </label>
       </div>
 
-      <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
+      <!-- <div class="medium-8 columns">
         <label :class="{ error: $v.webhookUrl.$error }">
           {{ $t('INBOX_MGMT.ADD.API_CHANNEL.WEBHOOK_URL.LABEL') }}
           <input
@@ -37,9 +37,9 @@
         <p class="help-text">
           {{ $t('INBOX_MGMT.ADD.API_CHANNEL.WEBHOOK_URL.SUBTITLE') }}
         </p>
-      </div>
+      </div> -->
 
-      <div class="w-full">
+      <div class="medium-12 columns">
         <woot-submit-button
           :loading="uiFlags.isCreating"
           :button-text="$t('INBOX_MGMT.ADD.API_CHANNEL.SUBMIT_BUTTON')"
@@ -54,7 +54,7 @@ import { mapGetters } from 'vuex';
 import alertMixin from 'shared/mixins/alertMixin';
 import { required } from 'vuelidate/lib/validators';
 import router from '../../../../index';
-import PageHeader from '../../SettingsSubPageHeader.vue';
+import PageHeader from '../../SettingsSubPageHeader';
 
 const shouldBeWebhookUrl = (value = '') =>
   value ? value.startsWith('http') : true;
@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       channelName: '',
-      webhookUrl: '',
+      webhookUrl: 'https://api.bow.chat/webhook/whatsapp', // hardcoded
     };
   },
   computed: {

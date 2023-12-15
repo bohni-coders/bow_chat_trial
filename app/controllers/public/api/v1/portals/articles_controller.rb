@@ -8,21 +8,12 @@ class Public::Api::V1::Portals::ArticlesController < Public::Api::V1::Portals::B
   def index
     @articles = @portal.articles
     @articles = @articles.search(list_params) if list_params.present?
-    order_by_sort_param
-    @articles.page(list_params[:page]) if list_params[:page].present?
+    @articles.order(position: :asc)
   end
 
   def show; end
 
   private
-
-  def order_by_sort_param
-    @articles = if list_params[:sort].present? && list_params[:sort] == 'views'
-                  @articles.order_by_views
-                else
-                  @articles.order_by_position
-                end
-  end
 
   def set_article
     @article = @portal.articles.find_by(slug: permitted_params[:article_slug])
@@ -39,8 +30,12 @@ class Public::Api::V1::Portals::ArticlesController < Public::Api::V1::Portals::B
     )
   end
 
+  def portal
+    @portal ||= Portal.find_by!(slug: permitted_params[:slug], archived: false)
+  end
+
   def list_params
-    params.permit(:query, :locale, :sort, :status)
+    params.permit(:query, :locale)
   end
 
   def permitted_params

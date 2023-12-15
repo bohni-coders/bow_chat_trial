@@ -3,11 +3,11 @@
     "NOT_AVAILABLE": "Niet beschikbaar",
     "EMAIL_ADDRESS": "Uw e-mailadres",
     "PHONE_NUMBER": "Telefoon nummer",
-    "IDENTIFIER": "Identificator",
+    "IDENTIFIER": "Identifier",
     "COPY_SUCCESSFUL": "Succesvol gekopieerd naar klembord",
     "COMPANY": "Bedrijfsnaam",
     "LOCATION": "Locatie",
-    "BROWSER_LANGUAGE": "Web browser Taal",
+    "BROWSER_LANGUAGE": "Browser Taal",
     "CONVERSATION_TITLE": "Gesprekdetails",
     "VIEW_PROFILE": "Profiel Bekijken",
     "BROWSER": "Browser",
@@ -33,8 +33,7 @@
       "LABEL_SELECT": {
         "TITLE": "Labels toevoegen",
         "PLACEHOLDER": "Zoek op labels",
-        "NO_RESULT": "Geen labels gevonden",
-        "CREATE_LABEL": "Nieuw label aanmaken"
+        "NO_RESULT": "Geen labels gevonden"
       }
     },
     "MERGE_CONTACT": "Contact samenvoegen",
@@ -71,14 +70,7 @@
       "SUBMIT": "Importeren",
       "CANCEL": "Annuleren"
     },
-    "SUCCESS_MESSAGE": "U wordt per e-mail geïnformeerd wanneer de import is voltooid.",
-    "ERROR_MESSAGE": "Er is een fout opgetreden, probeer het opnieuw"
-  },
-  "EXPORT_CONTACTS": {
-    "BUTTON_LABEL": "Exporteren",
-    "TITLE": "Contactpersonen exporteren",
-    "DESC": "Exporteer contacten naar een CSV-bestand.",
-    "SUCCESS_MESSAGE": "Export is in progress, You will be notified via email when export file is ready to dowanlod.",
+    "SUCCESS_MESSAGE": "Contacten werden succesvol opgeslagen",
     "ERROR_MESSAGE": "Er is een fout opgetreden, probeer het opnieuw"
   },
   "DELETE_NOTE": {
@@ -130,7 +122,7 @@
         "LABEL": "Telefoonnummer",
         "HELP": "Telefoonnummer moet van het E.164 formaat zijn: +14155555 [+][landcode][gebiedscode][lokaal telefoonnummer]",
         "ERROR": "Telefoonnummer moet leeg of in E.164-formaat zijn",
-        "DIAL_CODE_ERROR": "Selecteer a. u. b. een belcode uit de lijst",
+        "DIAL_CODE_ERROR": "Please select a dial code from the list",
         "DUPLICATE": "Dit telefoonnummer wordt reeds gebruikt voor een ander contactpersoon."
       },
       "LOCATION": {
@@ -142,15 +134,15 @@
         "LABEL": "Bedrijfsnaam"
       },
       "COUNTRY": {
-        "PLACEHOLDER": "Voer de landnaam in",
+        "PLACEHOLDER": "Enter the country name",
         "LABEL": "Land Naam",
-        "SELECT_PLACEHOLDER": "Selecteren",
+        "SELECT_PLACEHOLDER": "Select",
         "REMOVE": "Verwijderen",
-        "SELECT_COUNTRY": "Selecteer land"
+        "SELECT_COUNTRY": "Select Country"
       },
       "CITY": {
-        "PLACEHOLDER": "Voer de plaatsnaam in",
-        "LABEL": "Gemeente"
+        "PLACEHOLDER": "Enter the city name",
+        "LABEL": "City Name"
       },
       "SOCIAL_PROFILES": {
         "FACEBOOK": {
@@ -191,7 +183,7 @@
       },
       "INBOX": {
         "LABEL": "Postvak In",
-        "PLACEHOLDER": "Kies bron postvak",
+        "PLACEHOLDER": "Choose source inbox",
         "ERROR": "Selecteer een inbox"
       },
       "SUBJECT": {
@@ -203,10 +195,6 @@
         "LABEL": "Bericht",
         "PLACEHOLDER": "Schrijf hier je bericht",
         "ERROR": "Bericht mag niet leeg zijn"
-      },
-      "ATTACHMENTS": {
-        "SELECT": "Kies bestanden",
-        "HELP_TEXT": "Sleep bestanden hier naartoe of kies bestanden om toe te voegen"
       },
       "SUBMIT": "Verstuur bericht",
       "CANCEL": "Annuleren",
@@ -223,7 +211,6 @@
     "FILTER_CONTACTS": "Filteren",
     "FILTER_CONTACTS_SAVE": "Filter opslaan",
     "FILTER_CONTACTS_DELETE": "Filter verwijderen",
-    "FILTER_CONTACTS_EDIT": "Segment bewerken",
     "LIST": {
       "LOADING_MESSAGE": "Contacten laden...",
       "404": "Er zijn geen contacten die overeenkomen met je zoekopdracht 🔍",
@@ -245,23 +232,23 @@
   },
   "CONTACT_PROFILE": {
     "BACK_BUTTON": "Contacten",
-    "LOADING": "Contactprofiel laden..."
+    "LOADING": "Loading contact profile..."
   },
   "REMINDER": {
     "ADD_BUTTON": {
       "BUTTON": "Toevoegen",
-      "TITLE": "Shift + Enter om een taak aan te maken"
+      "TITLE": "Shift + Enter to create a task"
     },
     "FOOTER": {
-      "DUE_DATE": "Vervaldatum",
-      "LABEL_TITLE": "Stel type in"
+      "DUE_DATE": "Due date",
+      "LABEL_TITLE": "Set type"
     }
   },
   "NOTES": {
-    "FETCHING_NOTES": "Notities ophalen...",
-    "NOT_AVAILABLE": "Er zijn geen notities gemaakt voor dit contact",
+    "FETCHING_NOTES": "Fetching notes...",
+    "NOT_AVAILABLE": "There are no notes created for this contact",
     "HEADER": {
-      "TITLE": "Notities"
+      "TITLE": "Notes"
     },
     "LIST": {
       "LABEL": "heeft een notitie toegevoegd"
@@ -269,7 +256,7 @@
     "ADD": {
       "BUTTON": "Toevoegen",
       "PLACEHOLDER": "Notitie toevoegen",
-      "TITLE": "Dienst + Enter om een notitie aan te maken"
+      "TITLE": "Shift + Enter to create a note"
     },
     "CONTENT_HEADER": {
       "DELETE": "Notitie verwijderen"
@@ -277,52 +264,52 @@
   },
   "EVENTS": {
     "HEADER": {
-      "TITLE": "Activiteiten"
+      "TITLE": "Activities"
     },
     "BUTTON": {
-      "PILL_BUTTON_NOTES": "notities",
-      "PILL_BUTTON_EVENTS": "gebeurtenissen",
+      "PILL_BUTTON_NOTES": "notes",
+      "PILL_BUTTON_EVENTS": "events",
       "PILL_BUTTON_CONVO": "gesprekken"
     }
   },
   "CUSTOM_ATTRIBUTES": {
-    "ADD_BUTTON_TEXT": "Attributen toevoegen",
-    "BUTTON": "Aangepast attribuut toevoegen",
-    "NOT_AVAILABLE": "Er zijn geen aangepaste attributen beschikbaar voor deze contactpersoon.",
+    "ADD_BUTTON_TEXT": "Add attributes",
+    "BUTTON": "Add custom attribute",
+    "NOT_AVAILABLE": "There are no custom attributes available for this contact.",
     "COPY_SUCCESSFUL": "Succesvol gekopieerd naar klembord",
     "ACTIONS": {
-      "COPY": "Kopieer attribuut",
-      "DELETE": "Attribuut verwijderen",
-      "EDIT": "Attribuut bewerken"
+      "COPY": "Copy attribute",
+      "DELETE": "Delete attribute",
+      "EDIT": "Edit attribute"
     },
     "ADD": {
-      "TITLE": "Aangepast attribuut maken",
-      "DESC": "Aangepaste informatie toevoegen aan dit contact."
+      "TITLE": "Create custom attribute",
+      "DESC": "Add custom information to this contact."
     },
     "FORM": {
-      "CREATE": "Attribuut toevoegen",
+      "CREATE": "Add attribute",
       "CANCEL": "Annuleren",
       "NAME": {
-        "LABEL": "Aangepaste attribuutnaam",
-        "PLACEHOLDER": "Bijvoorbeeld: shopify id",
-        "ERROR": "Ongeldige aangepaste attribuutnaam"
+        "LABEL": "Custom attribute name",
+        "PLACEHOLDER": "Eg: shopify id",
+        "ERROR": "Invalid custom attribute name"
       },
       "VALUE": {
-        "LABEL": "Attribuut waarde",
-        "PLACEHOLDER": "Bijv. 11901 "
+        "LABEL": "Attribute value",
+        "PLACEHOLDER": "Eg: 11901 "
       },
       "ADD": {
-        "TITLE": "Nieuw attribuut aanmaken ",
-        "SUCCESS": "Attribuut succesvol toegevoegd",
-        "ERROR": "Kan het attribuut niet toevoegen. Probeer het later opnieuw"
+        "TITLE": "Create new attribute ",
+        "SUCCESS": "Attribute added successfully",
+        "ERROR": "Unable to add attribute. Please try again later"
       },
       "UPDATE": {
-        "SUCCESS": "Attribuut succesvol toegevoegd",
-        "ERROR": "Kan het attribuut niet bijwerken. Probeer het later opnieuw"
+        "SUCCESS": "Attribute updated successfully",
+        "ERROR": "Unable to update attribute. Please try again later"
       },
       "DELETE": {
-        "SUCCESS": "Attribuut succesvol verwijderd",
-        "ERROR": "Attribuut verwijderen mislukt. Probeer het later opnieuw"
+        "SUCCESS": "Attribute deleted successfully",
+        "ERROR": "Unable to delete attribute. Please try again later"
       },
       "ATTRIBUTE_SELECT": {
         "TITLE": "Attributen toevoegen",
@@ -347,29 +334,29 @@
     "DESCRIPTION": "Merge contacts to combine two profiles into one, including all attributes and conversations. In case of conflict, the Primary contact’ s attributes will take precedence.",
     "PRIMARY": {
       "TITLE": "Primair contact",
-      "HELP_LABEL": "Nog te verwijderen"
+      "HELP_LABEL": "Te behouden"
     },
-    "PARENT": {
+    "CHILD": {
       "TITLE": "Contact om samen te voegen",
       "PLACEHOLDER": "Zoeken naar contacten",
-      "HELP_LABEL": "Te behouden"
+      "HELP_LABEL": "Nog te verwijderen"
     },
     "SUMMARY": {
       "TITLE": "Samenvatting",
-      "DELETE_WARNING": "Contact van <strong>%{primaryContactName}</strong> zal worden verwijderd.",
-      "ATTRIBUTE_WARNING": "Contactgegevens van <strong>%{primaryContactName}</strong> worden gekopieerd naar <strong>%{parentContactName}</strong>."
+      "DELETE_WARNING": "Contact van <strong>%{childContactName}</strong> zal worden verwijderd.",
+      "ATTRIBUTE_WARNING": "Contactgegevens van <strong>%{childContactName}</strong> worden gekopieerd naar <strong>%{primaryContactName}</strong>."
     },
     "SEARCH": {
-      "ERROR": "FOUT_BERICHT"
+      "ERROR": "ERROR_MESSAGE"
     },
     "FORM": {
-      "SUBMIT": " Contacten samenvoegen",
+      "SUBMIT": " Merge contacts",
       "CANCEL": "Annuleren",
       "CHILD_CONTACT": {
-        "ERROR": "Selecteer een sub-contactpersoon om samen te voegen"
+        "ERROR": "Select a child contact to merge"
       },
-      "SUCCESS_MESSAGE": "Contact succesvol samengevoegd",
-      "ERROR_MESSAGE": "Contacten zijn niet samengevoegd, probeer het opnieuw!"
+      "SUCCESS_MESSAGE": "Contact merged successfully",
+      "ERROR_MESSAGE": "Could not merge contacts, try again!"
     }
   }
 }

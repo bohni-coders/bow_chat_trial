@@ -49,15 +49,6 @@ class AccountUser < ApplicationRecord
     ::Agents::DestroyJob.perform_later(account, user)
   end
 
-  def push_event_data
-    {
-      id: id,
-      availability: availability,
-      role: role,
-      user_id: user_id
-    }
-  end
-
   private
 
   def notify_creation
@@ -72,5 +63,3 @@ class AccountUser < ApplicationRecord
     OnlineStatusTracker.set_status(account.id, user.id, availability)
   end
 end
-
-AccountUser.include_mod_with('Audit::AccountUser')

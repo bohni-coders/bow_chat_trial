@@ -12,10 +12,6 @@
     "NO_INBOX_2": " om te beginnen",
     "NO_INBOX_AGENT": "Oh Oh! Het lijkt erop dat u geen deel uitmaakt van een inbox. Neem contact op met uw beheerder",
     "SEARCH_MESSAGES": "Search for messages in conversations",
-    "EMPTY_STATE": {
-      "CMD_BAR": "to open command menu",
-      "KEYBOARD_SHORTCUTS": "to view keyboard shortcuts"
-    },
     "SEARCH": {
       "TITLE": "Search messages",
       "RESULT_TITLE": "Search Results",
@@ -34,6 +30,7 @@
     "ASSIGN_TO_ME": "Assign to me",
     "TWILIO_WHATSAPP_CAN_REPLY": "You can only reply to this conversation using a template message due to",
     "TWILIO_WHATSAPP_24_HOURS_WINDOW": "24 hour message window restriction",
+    "SELECT_A_TWEET_TO_REPLY": "Please select a tweet to reply to.",
     "REPLYING_TO": "You are replying to:",
     "REMOVE_SELECTION": "Remove Selection",
     "DOWNLOAD": "Download",
@@ -46,7 +43,6 @@
     "NO_RESPONSE": "No response",
     "RATING_TITLE": "Rating",
     "FEEDBACK_TITLE": "Feedback",
-    "REPLY_MESSAGE_NOT_FOUND": "Message not available",
     "CARD": {
       "SHOW_LABELS": "Show labels",
       "HIDE_LABELS": "Hide labels"
@@ -58,14 +54,12 @@
       "OPEN": "Meer",
       "CLOSE": "Sluiten",
       "DETAILS": "Details",
-      "SNOOZED_UNTIL": "Snoozed until",
       "SNOOZED_UNTIL_TOMORROW": "Snoozed until tomorrow",
       "SNOOZED_UNTIL_NEXT_WEEK": "Snoozed until next week",
       "SNOOZED_UNTIL_NEXT_REPLY": "Snoozed until next reply"
     },
     "RESOLVE_DROPDOWN": {
       "MARK_PENDING": "Mark as pending",
-      "SNOOZE_UNTIL": "Snooze",
       "SNOOZE": {
         "TITLE": "Snooze until",
         "NEXT_REPLY": "Next reply",
@@ -73,13 +67,8 @@
         "NEXT_WEEK": "Next week"
       }
     },
-    "CUSTOM_SNOOZE": {
-      "TITLE": "Snooze tot",
-      "APPLY": "Snooze",
-      "CANCEL": "Annuleren"
-    },
     "PRIORITY": {
-      "TITLE": "Prioriteit",
+      "TITLE": "Priority",
       "OPTIONS": {
         "NONE": "Geen",
         "URGENT": "Urgent",
@@ -139,8 +128,7 @@
       "PRIVATE_NOTE": "Privénotitie",
       "SEND": "Verzenden",
       "CREATE": "Notitie toevoegen",
-      "DISMISS_REPLY": "Dismiss reply",
-      "REPLYING_TO": "Replying to:",
+      "TWEET": "Tweet",
       "TIP_FORMAT_ICON": "Show rich text editor",
       "TIP_EMOJI_ICON": "Show emoji selector",
       "TIP_ATTACH_ICON": "Attach files",
@@ -152,7 +140,6 @@
       "STOP_AUDIO_RECORDING": "Stop audio recording",
       "": "",
       "EMAIL_HEAD": {
-        "TO": "TO",
         "ADD_BCC": "Add bcc",
         "CC": {
           "LABEL": "CC",
@@ -195,7 +182,6 @@
     },
     "CONTEXT_MENU": {
       "COPY": "Kopiëren",
-      "REPLY_TO": "Reply to this message",
       "DELETE": "Verwijderen",
       "CREATE_A_CANNED_RESPONSE": "Add to canned responses",
       "TRANSLATE": "Translate",
@@ -270,20 +256,20 @@
   "CONVERSATION_CUSTOM_ATTRIBUTES": {
     "ADD_BUTTON_TEXT": "Create attribute",
     "UPDATE": {
-      "SUCCESS": "Attribuut succesvol toegevoegd",
-      "ERROR": "Kan het attribuut niet bijwerken. Probeer het later opnieuw"
+      "SUCCESS": "Attribute updated successfully",
+      "ERROR": "Unable to update attribute. Please try again later"
     },
     "ADD": {
       "TITLE": "Toevoegen",
-      "SUCCESS": "Attribuut succesvol toegevoegd",
-      "ERROR": "Kan het attribuut niet toevoegen. Probeer het later opnieuw"
+      "SUCCESS": "Attribute added successfully",
+      "ERROR": "Unable to add attribute. Please try again later"
     },
     "DELETE": {
-      "SUCCESS": "Attribuut succesvol verwijderd",
-      "ERROR": "Attribuut verwijderen mislukt. Probeer het later opnieuw"
+      "SUCCESS": "Attribute deleted successfully",
+      "ERROR": "Unable to delete attribute. Please try again later"
     },
     "ATTRIBUTE_SELECT": {
-      "TITLE": "Attributen toevoegen",
+      "TITLE": "Add attributes",
       "PLACEHOLDER": "Attributen zoeken",
       "NO_RESULT": "Geen attributen gevonden"
     }

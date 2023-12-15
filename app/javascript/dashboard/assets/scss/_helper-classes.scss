@@ -1,5 +1,5 @@
 .bg-light {
-  @apply bg-slate-25 dark:bg-slate-800;
+  @include background-light;
 }
 
 .flex-center {

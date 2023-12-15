@@ -76,8 +76,8 @@
         },
         "AGENT_AVAILABILITY": {
           "LABEL": "Dostępność",
-          "PLACEHOLDER": "Wybierz status dostępności",
-          "ERROR": "Wymagana jest dostępność"
+          "PLACEHOLDER": "Please select an availability status",
+          "ERROR": "Availability is required"
         },
         "SUBMIT": "Edytuj agenta"
       },
@@ -111,7 +111,7 @@
         "PLACEHOLDER": {
           "AGENT": "Wyszukaj konsultantów",
           "TEAM": "Wyszukaj zespoły",
-          "INPUT": "Wyszukiwanie konsultantów"
+          "INPUT": "Search for agents"
         }
       }
     }

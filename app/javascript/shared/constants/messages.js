@@ -28,10 +28,11 @@ export const CONVERSATION_PRIORITY = {
 };
 
 export const CONVERSATION_PRIORITY_ORDER = {
-  urgent: 4,
-  high: 3,
-  medium: 2,
-  low: 1,
+  urgent: 1,
+  high: 2,
+  medium: 3,
+  low: 4,
+  null: 5,
 };
 
 // Size in mega bytes
@@ -54,8 +55,6 @@ export const ALLOWED_FILE_TYPES_FOR_TWILIO_WHATSAPP =
   'audio/mpeg, audio/opus, audio/ogg, audio/amr,' +
   'video/mp4,' +
   'application/pdf,';
-// https://developers.line.biz/en/reference/messaging-api/#image-message, https://developers.line.biz/en/reference/messaging-api/#video-message
-export const ALLOWED_FILE_TYPES_FOR_LINE = 'image/png, image/jpeg,video/mp4';
 
 export const CSAT_RATINGS = [
   {
@@ -147,12 +146,3 @@ export const MESSAGE_VARIABLES = [
     key: 'agent.email',
   },
 ];
-
-export const ATTACHMENT_ICONS = {
-  image: 'image',
-  audio: 'headphones-sound-wave',
-  video: 'video',
-  file: 'document',
-  location: 'location',
-  fallback: 'link',
-};

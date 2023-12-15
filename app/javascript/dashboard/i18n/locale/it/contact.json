@@ -33,8 +33,7 @@
       "LABEL_SELECT": {
         "TITLE": "Aggiungi etichette",
         "PLACEHOLDER": "Cerca etichette",
-        "NO_RESULT": "Nessuna etichetta trovata",
-        "CREATE_LABEL": "Create new label"
+        "NO_RESULT": "Nessuna etichetta trovata"
       }
     },
     "MERGE_CONTACT": "Unisci contatto",
@@ -71,14 +70,7 @@
       "SUBMIT": "Importa",
       "CANCEL": "Annulla"
     },
-    "SUCCESS_MESSAGE": "You will be notified via email when the import is complete.",
-    "ERROR_MESSAGE": "Si è verificato un errore, riprova"
-  },
-  "EXPORT_CONTACTS": {
-    "BUTTON_LABEL": "Export",
-    "TITLE": "Export Contacts",
-    "DESC": "Export contacts to a CSV file.",
-    "SUCCESS_MESSAGE": "Export is in progress, You will be notified via email when export file is ready to dowanlod.",
+    "SUCCESS_MESSAGE": "Contatti salvati con successo",
     "ERROR_MESSAGE": "Si è verificato un errore, riprova"
   },
   "DELETE_NOTE": {
@@ -204,10 +196,6 @@
         "PLACEHOLDER": "Scrivi qui il tuo messaggio",
         "ERROR": "Il messaggio non può essere vuoto"
       },
-      "ATTACHMENTS": {
-        "SELECT": "Choose files",
-        "HELP_TEXT": "Drag and drop files here or choose files to attach"
-      },
       "SUBMIT": "Invia messaggio",
       "CANCEL": "Annulla",
       "SUCCESS_MESSAGE": "Messaggio inviato!",
@@ -223,7 +211,6 @@
     "FILTER_CONTACTS": "Filtro",
     "FILTER_CONTACTS_SAVE": "Salva filtro",
     "FILTER_CONTACTS_DELETE": "Elimina filtro",
-    "FILTER_CONTACTS_EDIT": "Edit segment",
     "LIST": {
       "LOADING_MESSAGE": "Caricamento contatti...",
       "404": "Nessun contatto corrisponde alla tua ricerca 🔍",
@@ -347,17 +334,17 @@
     "DESCRIPTION": "Unisci i contatti per combinare due profili in uno, inclusi tutti gli attributi e le conversazioni. In caso di conflitto, gli attributi del contatto primario avranno la precedenza.",
     "PRIMARY": {
       "TITLE": "Contatto primario",
-      "HELP_LABEL": "Da eliminare"
+      "HELP_LABEL": "Da mantenere"
     },
-    "PARENT": {
+    "CHILD": {
       "TITLE": "Contatto da unire",
       "PLACEHOLDER": "Cerca un contatto",
-      "HELP_LABEL": "Da mantenere"
+      "HELP_LABEL": "Da eliminare"
     },
     "SUMMARY": {
       "TITLE": "Riepilogo",
-      "DELETE_WARNING": "Il contatto di <strong>%{primaryContactName}</strong> verrà eliminato.",
-      "ATTRIBUTE_WARNING": "I dettagli del contatto di <strong>%{primaryContactName}</strong> verranno copiati in <strong>%{parentContactName}</strong>."
+      "DELETE_WARNING": "Il contatto di <strong>%{childContactName}</strong> verrà eliminato.",
+      "ATTRIBUTE_WARNING": "I dettagli del contatto di <strong>%{childContactName}</strong> verranno copiati in <strong>%{primaryContactName}</strong>."
     },
     "SEARCH": {
       "ERROR": "ERROR_MESSAGE"

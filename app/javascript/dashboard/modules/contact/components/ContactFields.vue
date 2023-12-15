@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import Attribute from './ContactAttribute.vue';
+import Attribute from './ContactAttribute';
 
 export default {
   components: { Attribute },

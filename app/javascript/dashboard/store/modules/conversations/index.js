@@ -90,9 +90,7 @@ export const mutations = {
     { lastActivityAt, conversationId }
   ) {
     const [chat] = _state.allConversations.filter(c => c.id === conversationId);
-    if (chat) {
-      Vue.set(chat, 'last_activity_at', lastActivityAt);
-    }
+    Vue.set(chat, 'last_activity_at', lastActivityAt);
   },
   [types.ASSIGN_PRIORITY](_state, { priority, conversationId }) {
     const [chat] = _state.allConversations.filter(c => c.id === conversationId);
@@ -179,7 +177,6 @@ export const mutations = {
       const { conversation: { unread_count: unreadCount = 0 } = {} } = message;
       chat.unread_count = unreadCount;
       if (selectedChatId === conversationId) {
-        window.bus.$emit(BUS_EVENTS.FETCH_LABEL_SUGGESTIONS);
         window.bus.$emit(BUS_EVENTS.SCROLL_TO_MESSAGE);
       }
     }
@@ -202,7 +199,6 @@ export const mutations = {
       };
       Vue.set(allConversations, currentConversationIndex, currentConversation);
       if (_state.selectedChatId === conversation.id) {
-        window.bus.$emit(BUS_EVENTS.FETCH_LABEL_SUGGESTIONS);
         window.bus.$emit(BUS_EVENTS.SCROLL_TO_MESSAGE);
       }
     } else {

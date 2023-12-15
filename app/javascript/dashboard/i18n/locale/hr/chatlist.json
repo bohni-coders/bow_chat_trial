@@ -35,34 +35,18 @@
         "TEXT": "All"
       }
     },
-    "VIEW_FILTER": "Pregled",
-    "SORT_TOOLTIP_LABEL": "Poredaj razgovore",
+    "VIEW_FILTER": "View",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "Status",
-      "ORDER_BY": "Poredaj po"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Created",
-        "OLDEST": "Kreirano:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Zadnja aktivnost:",
-        "ACTIVE": "Zadnja aktivnost"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Zadnja aktivnost"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
-        "TEXT": "Kreirano"
-      },
-      "sort_on_priority": {
-        "TEXT": "Prioritet"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Pending Response"
+        "TEXT": "Created at"
       }
     },
     "ATTACHMENTS": {
@@ -86,20 +70,20 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Poredaj razgovor",
-      "DROPDOWN_TITLE": "Poredaj po",
+      "TITLE": "Sort conversation",
+      "DROPDOWN_TITLE": "Sort by",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Zadnja aktivnost",
-          "LABEL": "Zadnja aktivnost"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
-          "NAME": "Kreirano",
-          "LABEL": "Kreirano"
+          "NAME": "Created at",
+          "LABEL": "Created at"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Zadnja poruka korisnika",
-          "LABEL": "Zadnja poruka"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },

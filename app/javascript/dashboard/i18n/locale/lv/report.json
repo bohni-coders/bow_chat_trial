@@ -4,19 +4,17 @@
     "LOADING_CHART": "Notiek diagrammas datu ielāde...",
     "NO_ENOUGH_DATA": "Mēs neesam saņēmuši pietiekami daudz datu punktu, lai izveidotu pārskatu. Lūdzu, vēlāk mēģiniet vēlreiz.",
     "DOWNLOAD_AGENT_REPORTS": "Lejupielādēt aģentu pārskatus",
-    "DATA_FETCHING_FAILED": "Neizdevās izgūt datus. Lūdzu, vēlāk mēģiniet vēlreiz.",
-    "SUMMARY_FETCHING_FAILED": "Neizdevās izgūt kopsavilkumu. Lūdzu, vēlāk mēģiniet vēlreiz.",
     "METRICS": {
       "CONVERSATIONS": {
         "NAME": "Sarunas",
         "DESC": "( Kopā )"
       },
       "INCOMING_MESSAGES": {
-        "NAME": "Saņemtās ziņas",
+        "NAME": "Ienākošie ziņojumi",
         "DESC": "( Kopā )"
       },
       "OUTGOING_MESSAGES": {
-        "NAME": "Nosūtītās ziņas",
+        "NAME": "Izejošie ziņojumi",
         "DESC": "( Kopā )"
       },
       "FIRST_RESPONSE_TIME": {
@@ -34,19 +32,7 @@
       "RESOLUTION_COUNT": {
         "NAME": "Atrisināšanas Skaits",
         "DESC": "( Kopā )"
-      },
-      "REPLY_TIME": {
-        "NAME": "Klienta gaidīšanas laiks",
-        "TOOLTIP_TEXT": "Gaidīšanas laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
       }
-    },
-    "DATE_RANGE_OPTIONS": {
-      "LAST_7_DAYS": "Pēdējās 7 dienas",
-      "LAST_30_DAYS": "Pēdējās 30 dienas",
-      "LAST_3_MONTHS": "Pēdējie 3 mēneši",
-      "LAST_6_MONTHS": "Pēdējie 6 mēneši",
-      "LAST_YEAR": "Pagājušais gads",
-      "CUSTOM_DATE_RANGE": "Pielāgots datumu diapazons"
     },
     "DATE_RANGE": [
       {
@@ -80,12 +66,6 @@
     },
     "GROUP_BY_FILTER_DROPDOWN_LABEL": "Grupēt Pēc",
     "DURATION_FILTER_LABEL": "Ilgums",
-    "GROUPING_OPTIONS": {
-      "DAY": "Diena",
-      "WEEK": "Nedēļa",
-      "MONTH": "Mēnesis",
-      "YEAR": "Gads"
-    },
     "GROUP_BY_DAY_OPTIONS": [
       {
         "id": 1,
@@ -118,6 +98,10 @@
     ],
     "GROUP_BY_YEAR_OPTIONS": [
       {
+        "id": 1,
+        "groupBy": "Diena"
+      },
+      {
         "id": 2,
         "groupBy": "Nedēļa"
       },
@@ -127,7 +111,7 @@
       },
       {
         "id": 4,
-        "groupBy": "Mēnesis"
+        "groupBy": "Gads"
       }
     ],
     "BUSINESS_HOURS": "Darba Laiks"
@@ -155,13 +139,13 @@
         "NAME": "Pirmās Atbildes Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Atrisināšanas Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Atrisināšanas Skaits",
@@ -222,13 +206,13 @@
         "NAME": "Pirmās Atbildes Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Atrisināšanas Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Atrisināšanas Skaits",
@@ -289,13 +273,13 @@
         "NAME": "Pirmās Atbildes Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Atrisināšanas Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Atrisināšanas Skaits",
@@ -356,13 +340,13 @@
         "NAME": "Pirmās Atbildes Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Pirmās Atbildes Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Atrisināšanas Laiks",
         "DESC": "( Vidēji )",
         "INFO_TEXT": "Kopējais aprēķiniem izmantoto sarunu skaits:",
-        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (pamatojoties uz %{conversationCount} sarunām)"
+        "TOOLTIP_TEXT": "Atrisināšanas Laiks ir %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Atrisināšanas Skaits",
@@ -404,7 +388,6 @@
     "HEADER": "CSAT Pārskati",
     "NO_RECORDS": "CSAT aptaujas atbildes nav pieejamas.",
     "DOWNLOAD": "Lejupielādēt CSAT Pārskatus",
-    "DOWNLOAD_FAILED": "Neizdevās lejupielādēt CSAT Pārskatus",
     "FILTERS": {
       "AGENTS": {
         "PLACEHOLDER": "Izvēlieties Aģentus"

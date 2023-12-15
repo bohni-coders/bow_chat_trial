@@ -1,185 +1,207 @@
+$default-button-height: 4.0rem;
+
 .button {
-  @apply items-center inline-flex h-10 mb-0 gap-2;
+  align-items: center;
+  display: inline-flex;
+  height: $default-button-height;
+  margin-bottom: 0;
 
   .button__content {
-    @apply w-full;
-
-    img,
-    svg {
-      @apply inline-block;
-    }
+    width: 100%;
   }
 
   .spinner {
-    @apply px-2 py-0;
+    padding: 0 var(--space-small);
+  }
+
+  .icon--emoji+.button__content {
+    padding-left: var(--space-small);
+  }
+
+  .icon--font+.button__content {
+    padding-left: var(--space-small);
   }
 
   // @TODDO - Remove after moving all buttons to woot-button
-  .icon + .button__content {
-    @apply w-auto;
+  .icon+.button__content {
+    padding-left: var(--space-small);
+    width: auto;
   }
 
   &.expanded {
-    @apply flex justify-center text-center;
+    display: flex;
+    justify-content: center;
   }
 
   &.round {
-    @apply rounded-full;
+    border-radius: $space-larger;
   }
 
   // @TODO Use with link
 
   &.compact {
-    @apply pb-0 pt-0;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   &.hollow {
-    @apply border border-woot-500 dark:border-woot-500 text-woot-500 dark:text-woot-500 hover:bg-woot-50 dark:hover:bg-woot-900;
+    border-color: var(--s-200);
+    color: var(--w-700);
 
     &.secondary {
-      @apply text-slate-700 border-slate-200 dark:border-slate-600 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700;
+      border-color: var(--s-200);
+      color: var(--s-700);
     }
 
     &.success {
-      @apply text-green-700 dark:text-green-400 border-green-100 dark:border-green-600 hover:bg-green-50 dark:hover:bg-green-800;
+      border-color: var(--s-200);
+      color: var(--g-700);
     }
 
     &.alert {
-      @apply text-red-700 dark:text-red-400 border-red-100 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-800;
+      border-color: var(--s-200);
+      color: var(--r-700);
     }
 
     &.warning {
-      @apply text-yellow-600 dark:text-yellow-600 border-yellow-600 dark:border-yellow-700 hover:bg-yellow-50 dark:hover:bg-yellow-800;
+      border-color: var(--s-200);
+      color: var(--y-700);
     }
 
     &:hover {
-      @apply bg-woot-75 dark:bg-woot-800 border-slate-100 dark:border-woot-600 dark:text-woot-400;
+      background: var(--s-75);
+      border-color: var(--s-100);
 
       &.secondary {
-        @apply border-slate-100 dark:border-slate-700 text-slate-800 dark:text-slate-100;
+        border-color: var(--s-100);
       }
 
       &.success {
-        @apply border-slate-100 dark:border-slate-700 text-green-800 dark:text-green-100;
+        border-color: var(--s-100);
       }
 
       &.alert {
-        @apply border-slate-100 dark:border-slate-700 text-red-700 dark:text-red-100;
+        border-color: var(--s-100);
       }
 
       &.warning {
-        @apply border-slate-100 dark:border-slate-700 text-yellow-700 dark:text-yellow-500;
+        border-color: var(--s-100);
       }
     }
   }
 
   // Smooth style
   &.smooth {
-    @apply bg-woot-50 dark:bg-woot-800 text-woot-700 dark:text-woot-100 hover:text-woot-700 dark:hover:text-woot-700 hover:bg-woot-100 dark:hover:bg-woot-900;
+    @include button-style(var(--w-50), var(--w-100), var(--w-700));
+
 
     &.secondary {
-      @apply bg-slate-50 dark:bg-slate-700 text-slate-700 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800;
+      @include button-style(var(--s-50), var(--s-100), var(--s-700));
     }
 
     &.success {
-      @apply bg-green-50 dark:bg-green-700 text-green-700 dark:text-green-100 hover:bg-green-100 dark:hover:bg-green-800 hover:text-green-800 dark:hover:text-green-100;
+      @include button-style(var(--g-50), var(--g-100), var(--g-700));
     }
 
     &.alert {
-      @apply bg-red-50 dark:bg-red-700 dark:bg-opacity-50 text-red-700 dark:text-red-100 hover:bg-red-100 dark:hover:bg-red-800 dark:hover:bg-opacity-30;
+      @include button-style(var(--r-50), var(--r-100), var(--r-700));
     }
 
     &.warning {
-      @apply bg-yellow-100 dark:bg-yellow-100 text-yellow-700 dark:text-yellow-700 hover:bg-yellow-200 dark:hover:bg-yellow-200;
+      @include button-style(var(--y-100), var(--y-200), var(--y-700));
     }
   }
 
   &.clear {
-    @apply text-woot-500 dark:text-woot-500;
+    color: var(--w-700);
 
     &.secondary {
-      @apply text-slate-700 dark:text-slate-100;
+      color: var(--s-700);
     }
 
     &.success {
-      @apply text-green-700 dark:text-green-100;
+      color: var(--g-700);
     }
 
     &.alert {
-      @apply text-red-700 dark:text-red-100;
+      color: var(--r-700);
     }
 
     &.warning {
-      @apply text-yellow-700 dark:text-yellow-600;
+      color: var(--y-700);
     }
 
     &:hover {
-      @apply hover:bg-woot-50 dark:hover:bg-woot-900/50 hover:text-woot-500 dark:hover:text-woot-100;
+      background: var(--w-50);
 
       &.secondary {
-        @apply hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-800 dark:hover:text-slate-100;
+        background: var(--s-50);
       }
 
       &.success {
-        @apply hover:bg-green-50 dark:hover:bg-green-800 hover:text-green-800 dark:hover:text-green-100;
+        background: var(--g-50);
       }
 
       &.alert {
-        @apply hover:bg-red-50 dark:hover:bg-red-800 hover:text-red-700 dark:hover:text-red-100;
+        background: var(--r-50);
       }
 
       &.warning {
-        @apply hover:bg-yellow-100 dark:hover:bg-yellow-800 hover:text-yellow-700 dark:hover:text-yellow-600;
-      }
-    }
-
-    &:active {
-      &.secondary {
-        @apply active:bg-slate-100 dark:active:bg-slate-900;
-      }
-    }
-
-    &:focus {
-      &.secondary {
-        @apply focus:bg-slate-50 dark:focus:bg-slate-700;
+        background: var(--y-50);
       }
     }
   }
 
   // Sizes
   &.tiny {
-    @apply h-6;
+    height: var(--space-medium);
+
+    .icon+.button__content {
+      padding-left: var(--space-micro);
+    }
   }
 
   &.small {
-    @apply h-8 pb-1 pt-1;
+    height: var(--space-large);
+    padding-bottom: var(--space-smaller);
+    padding-top: var(--space-smaller);
+
+    .icon+.button__content {
+      padding-left: var(--space-smaller);
+    }
   }
 
   &.large {
-    @apply h-12;
+    height: var(--space-larger);
   }
 
   &.button--only-icon {
-    @apply justify-center pl-0 pr-0 w-10;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    width: $default-button-height;
 
     &.tiny {
-      @apply w-6;
+      width: var(--space-medium);
     }
 
     &.small {
-      @apply w-8;
+      width: var(--space-large);
     }
 
     &.large {
-      @apply w-12;
+      width: var(--space-larger);
     }
   }
 
   &.link {
-    @apply h-auto m-0 p-0;
+    height: auto;
+    margin: 0;
+    padding: 0;
 
     &:hover {
-      @apply underline;
+      text-decoration: underline;
     }
   }
+
 }

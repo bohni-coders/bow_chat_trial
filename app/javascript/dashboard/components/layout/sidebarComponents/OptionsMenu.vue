@@ -3,10 +3,11 @@
     <div
       v-if="show"
       v-on-clickaway="onClickAway"
-      class="left-3 rtl:left-auto rtl:right-3 bottom-16 w-64 absolute z-30 rounded-md shadow-xl bg-white dark:bg-slate-800 py-2 px-2 border border-slate-25 dark:border-slate-700"
-      :class="{ 'block visible': show }"
+      class="options-menu dropdown-pane"
+      :class="{ 'dropdown-pane--open': show }"
     >
       <availability-status />
+      <li class="divider" />
       <woot-dropdown-menu>
         <woot-dropdown-item v-if="showChangeAccountOption">
           <woot-button
@@ -49,7 +50,7 @@
           >
             <a
               :href="href"
-              class="button small clear secondary bg-white dark:bg-slate-800 h-8"
+              class="button small clear secondary"
               :class="{ 'is-active': isActive }"
               @click="e => handleProfileSettingClick(e, navigate)"
             >
@@ -60,21 +61,10 @@
             </a>
           </router-link>
         </woot-dropdown-item>
-        <woot-dropdown-item>
-          <woot-button
-            variant="clear"
-            color-scheme="secondary"
-            size="small"
-            icon="appearance"
-            @click="openAppearanceOptions"
-          >
-            {{ $t('SIDEBAR_ITEMS.APPEARANCE') }}
-          </woot-button>
-        </woot-dropdown-item>
         <woot-dropdown-item v-if="currentUser.type === 'SuperAdmin'">
           <a
             href="/super_admin"
-            class="button small clear secondary bg-white dark:bg-slate-800 h-8"
+            class="button small clear secondary"
             target="_blank"
             rel="noopener nofollow noreferrer"
             @click="$emit('close')"
@@ -109,9 +99,9 @@
 import { mixin as clickaway } from 'vue-clickaway';
 import { mapGetters } from 'vuex';
 import Auth from '../../../api/auth';
-import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem.vue';
-import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu.vue';
-import AvailabilityStatus from 'dashboard/components/layout/AvailabilityStatus.vue';
+import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem';
+import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu';
+import AvailabilityStatus from 'dashboard/components/layout/AvailabilityStatus';
 
 export default {
   components: {
@@ -156,10 +146,15 @@ export default {
     onClickAway() {
       if (this.show) this.$emit('close');
     },
-    openAppearanceOptions() {
-      const ninja = document.querySelector('ninja-keys');
-      ninja.open({ parent: 'appearance_settings' });
-    },
   },
 };
 </script>
+<style lang="scss" scoped>
+.options-menu.dropdown-pane {
+  left: var(--space-slab);
+  bottom: var(--space-larger);
+  min-width: var(--space-giga);
+  top: unset;
+  z-index: var(--z-index-low);
+}
+</style>

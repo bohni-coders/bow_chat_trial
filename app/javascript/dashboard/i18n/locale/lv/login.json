@@ -1,10 +1,9 @@
 {
   "LOGIN": {
-    "TITLE": "Login to Chatwoot",
+    "TITLE": "Login to Boni Chat",
     "EMAIL": {
       "LABEL": "E-pasts",
-      "PLACEHOLDER": "piemers@firmasnosaukums.com",
-      "ERROR": "Lūdzu, ievadiet derīgu e-pasta adresi"
+      "PLACEHOLDER": "piemers@firmasnosaukums.com"
     },
     "PASSWORD": {
       "LABEL": "Parole",

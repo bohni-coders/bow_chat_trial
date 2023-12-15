@@ -2,7 +2,7 @@ import { frontendURL } from '../../../../helper/URLHelper';
 
 const campaigns = accountId => ({
   parentNav: 'campaigns',
-  routes: ['settings_account_campaigns', 'one_off'],
+  routes: ['settings_account_campaigns', 'one_off', 'whatsapp_campaigns'],
   menuItems: [
     {
       icon: 'arrow-swap',
@@ -19,6 +19,14 @@ const campaigns = accountId => ({
       hasSubMenu: false,
       toState: frontendURL(`accounts/${accountId}/campaigns/one_off`),
       toStateName: 'one_off',
+    },
+    {
+      key: 'whatsappCampaigns',
+      icon: 'whatsapp',
+      label: 'WHATSAPP',
+      hasSubMenu: false,
+      toState: frontendURL(`accounts/${accountId}/campaigns/whatsapp`),
+      toStateName: 'whatsapp_campaigns', // cross check -----------------------------------
     },
   ],
 });

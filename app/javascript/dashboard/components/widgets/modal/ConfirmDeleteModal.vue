@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <modal :show.sync="show" :on-close="closeModal">
     <woot-modal-header :header-title="title" :header-content="message" />
@@ -24,7 +23,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators';
-import Modal from '../../Modal.vue';
+import Modal from '../../Modal';
 
 export default {
   components: {

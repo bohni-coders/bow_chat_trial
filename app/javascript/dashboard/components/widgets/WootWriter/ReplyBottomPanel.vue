@@ -14,11 +14,10 @@
       <file-upload
         ref="upload"
         v-tooltip.top-end="$t('CONVERSATION.REPLYBOX.TIP_ATTACH_ICON')"
-        input-id="conversationAttachment"
         :size="4096 * 4096"
         :accept="allowedFileTypes"
         :multiple="enableMultipleFileUpload"
-        :drop="enableDragAndDrop"
+        :drop="true"
         :drop-directory="false"
         :data="{
           direct_upload_url: '/rails/active_storage/direct_uploads',
@@ -101,24 +100,14 @@
       <transition name="modal-fade">
         <div
           v-show="$refs.upload && $refs.upload.dropActive"
-          class="fixed top-0 bottom-0 left-0 right-0 z-20 flex flex-col items-center justify-center w-full h-full gap-2 text-slate-600 dark:text-slate-200 bg-white_transparent dark:bg-black_transparent"
+          class="modal-mask"
         >
-          <fluent-icon icon="cloud-backup" size="40" />
-          <h4 class="page-sub-title text-slate-600 dark:text-slate-200">
+          <fluent-icon icon="cloud-backup" />
+          <h4 class="page-sub-title">
             {{ $t('CONVERSATION.REPLYBOX.DRAG_DROP') }}
           </h4>
         </div>
       </transition>
-      <woot-button
-        v-if="enableInsertArticleInReply"
-        v-tooltip.top-end="$t('HELP_CENTER.ARTICLE_SEARCH.OPEN_ARTICLE_SEARCH')"
-        icon="document-text-link"
-        color-scheme="secondary"
-        variant="smooth"
-        size="small"
-        :title="$t('HELP_CENTER.ARTICLE_SEARCH.OPEN_ARTICLE_SEARCH')"
-        @click="toggleInsertArticle"
-      />
     </div>
     <div class="right-wrap">
       <woot-button
@@ -144,9 +133,8 @@ import { FEATURE_FLAGS } from 'dashboard/featureFlags';
 import {
   ALLOWED_FILE_TYPES,
   ALLOWED_FILE_TYPES_FOR_TWILIO_WHATSAPP,
-  ALLOWED_FILE_TYPES_FOR_LINE,
 } from 'shared/constants/messages';
-import VideoCallButton from '../VideoCallButton.vue';
+import VideoCallButton from '../VideoCallButton';
 import AIAssistanceButton from '../AIAssistanceButton.vue';
 import { REPLY_EDITOR_MODES } from './constants';
 import { mapGetters } from 'vuex';
@@ -240,14 +228,6 @@ export default {
       type: String,
       default: '',
     },
-    newConversationModalActive: {
-      type: Boolean,
-      default: false,
-    },
-    portalSlug: {
-      type: String,
-      required: true,
-    },
   },
   computed: {
     ...mapGetters({
@@ -271,9 +251,6 @@ export default {
       return this.showFileUpload || this.isNote;
     },
     showAudioRecorderButton() {
-      if (this.isALineChannel) {
-        return false;
-      }
       // Disable audio recorder for safari browser as recording is not supported
       const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(
         navigator.userAgent
@@ -295,13 +272,7 @@ export default {
       if (this.isATwilioWhatsAppChannel) {
         return ALLOWED_FILE_TYPES_FOR_TWILIO_WHATSAPP;
       }
-      if (this.isALineChannel) {
-        return ALLOWED_FILE_TYPES_FOR_LINE;
-      }
       return ALLOWED_FILE_TYPES;
-    },
-    enableDragAndDrop() {
-      return !this.newConversationModalActive;
     },
     audioRecorderPlayStopIcon() {
       switch (this.recordingAudioState) {
@@ -317,23 +288,16 @@ export default {
       }
     },
     showMessageSignatureButton() {
-      return !this.isOnPrivateNote;
+      return !this.isOnPrivateNote && this.isAnEmailChannel;
     },
     sendWithSignature() {
-      // channelType is sourced from inboxMixin
-      return this.fetchSignatureFlagFromUiSettings(this.channelType);
+      const { send_with_signature: isEnabled } = this.uiSettings;
+      return isEnabled;
     },
     signatureToggleTooltip() {
       return this.sendWithSignature
         ? this.$t('CONVERSATION.FOOTER.DISABLE_SIGN_TOOLTIP')
         : this.$t('CONVERSATION.FOOTER.ENABLE_SIGN_TOOLTIP');
-    },
-    enableInsertArticleInReply() {
-      const isFeatEnabled = this.isFeatureEnabledonAccount(
-        this.accountId,
-        FEATURE_FLAGS.INSERT_ARTICLE_IN_REPLY
-      );
-      return isFeatEnabled && this.portalSlug;
     },
   },
   mounted() {
@@ -346,13 +310,12 @@ export default {
       }
     },
     toggleMessageSignature() {
-      this.setSignatureFlagForInbox(this.channelType, !this.sendWithSignature);
+      this.updateUISettings({
+        send_with_signature: !this.sendWithSignature,
+      });
     },
     replaceText(text) {
       this.$emit('replace-text', text);
-    },
-    toggleInsertArticle() {
-      this.$emit('toggle-insert-article');
     },
   },
 };
@@ -360,27 +323,48 @@ export default {
 
 <style lang="scss" scoped>
 .bottom-box {
-  @apply flex justify-between py-3 px-4;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-slab) var(--space-normal);
 
   &.is-note-mode {
-    @apply bg-yellow-100 dark:bg-yellow-800;
+    background: var(--y-50);
   }
 }
 
+.left-wrap .button {
+  margin-right: var(--space-small);
+}
+
 .left-wrap {
-  @apply items-center flex gap-2;
+  align-items: center;
+  display: flex;
 }
 
 .right-wrap {
-  @apply flex;
+  display: flex;
 }
 
 ::v-deep .file-uploads {
   label {
-    @apply cursor-pointer;
+    cursor: pointer;
   }
-  &:hover button {
-    @apply dark:bg-slate-800 bg-slate-100;
+  &:hover .button {
+    background: var(--s-100);
   }
+}
+
+.modal-mask {
+  color: var(--s-600);
+  background: var(--white-transparent);
+  flex-direction: column;
+}
+
+.page-sub-title {
+  color: var(--s-600);
+}
+
+.icon {
+  font-size: 8rem;
 }
 </style>

@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="text-slate-600 dark:text-slate-200 flex items-center justify-center w-full"
-  >
-    Loading...
-  </div>
+  <div>Loading...</div>
 </template>
 <script>
 import uiSettingsMixin from 'dashboard/mixins/uiSettings';

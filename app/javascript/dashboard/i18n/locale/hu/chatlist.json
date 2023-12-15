@@ -8,7 +8,7 @@
     },
     "TAB_HEADING": "Beszélgetések",
     "MENTION_HEADING": "Megemlítések",
-    "UNATTENDED_HEADING": "Figyelmen kívül hagyott",
+    "UNATTENDED_HEADING": "Unattended",
     "SEARCH": {
       "INPUT": "Keresés: emberek, beszélgetése, mentett válaszok .."
     },
@@ -36,33 +36,17 @@
       }
     },
     "VIEW_FILTER": "Megtekintés",
-    "SORT_TOOLTIP_LABEL": "Beszélgetések rendezése",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "Státusz",
-      "ORDER_BY": "Rendezés"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Létrehozva",
-        "OLDEST": "Létrehozva:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Utolsó aktivitás:",
-        "ACTIVE": "Utolsó aktivitás"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Utolsó aktivitás"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
-        "TEXT": "Létrehozva"
-      },
-      "sort_on_priority": {
-        "TEXT": "Prioritás"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Függőben lévő válasz"
+        "TEXT": "Created at"
       }
     },
     "ATTACHMENTS": {
@@ -86,34 +70,34 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Beszélgetés rendezése",
-      "DROPDOWN_TITLE": "Rendezés",
+      "TITLE": "Sort conversation",
+      "DROPDOWN_TITLE": "Sort by",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Utolsó aktivitás",
-          "LABEL": "Utolsó aktivitás"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
-          "NAME": "Létrehozva",
-          "LABEL": "Létrehozva"
+          "NAME": "Created at",
+          "LABEL": "Created at"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Utolsó felhasználói üzenet",
-          "LABEL": "Utolsó üzenet"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },
     "RECEIVED_VIA_EMAIL": "E-mailen keresztül érkezett",
     "VIEW_TWEET_IN_TWITTER": "Üzenet megtekintése Twitteren",
     "REPLY_TO_TWEET": "Válasz",
-    "LINK_TO_STORY": "Instagram story megnyitása",
+    "LINK_TO_STORY": "Go to instagram story",
     "SENT": "Sikeresen elküldve",
-    "READ": "Olvasott",
-    "DELIVERED": "Elküldve",
+    "READ": "Read successfully",
+    "DELIVERED": "Delivered successfully",
     "NO_MESSAGES": "Nincs üzenet",
     "NO_CONTENT": "Nincs elérhető tartalom",
     "HIDE_QUOTED_TEXT": "Idézett szöveg eltűntetése",
     "SHOW_QUOTED_TEXT": "Idézett szöveg megjelenítése",
-    "MESSAGE_READ": "Olvasott"
+    "MESSAGE_READ": "Read"
   }
 }

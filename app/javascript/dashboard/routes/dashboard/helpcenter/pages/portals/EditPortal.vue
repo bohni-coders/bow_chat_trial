@@ -9,7 +9,7 @@
       "
       :show-new-button="false"
     />
-    <div class="overflow-auto max-h-[96%]">
+    <div>
       <setting-intro-banner :header-title="portalName">
         <woot-tabs
           :index="activeTabIndex"
@@ -24,9 +24,9 @@
           />
         </woot-tabs>
       </setting-intro-banner>
-      <div class="p-4 max-w-full my-auto flex flex-wrap">
-        <router-view />
-      </div>
+    </div>
+    <div class="row content-box">
+      <router-view />
     </div>
   </div>
 </template>
@@ -34,8 +34,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import globalConfigMixin from 'shared/mixins/globalConfigMixin';
-import SettingsHeader from 'dashboard/routes/dashboard/settings/SettingsHeader.vue';
-import SettingIntroBanner from 'dashboard/components/widgets/SettingIntroBanner.vue';
+import SettingsHeader from 'dashboard/routes/dashboard/settings/SettingsHeader';
+import SettingIntroBanner from 'dashboard/components/widgets/SettingIntroBanner';
 
 export default {
   components: {

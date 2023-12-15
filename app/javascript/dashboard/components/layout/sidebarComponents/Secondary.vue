@@ -1,14 +1,7 @@
 <template>
-  <div
-    v-if="hasSecondaryMenu"
-    class="h-full overflow-auto w-48 flex flex-col bg-white dark:bg-slate-900 border-r dark:border-slate-800/50 rtl:border-r-0 rtl:border-l border-slate-50 text-sm px-2 pb-8"
-  >
+  <div v-if="hasSecondaryMenu" class="main-nav secondary-menu">
     <account-context @toggle-accounts="toggleAccountModal" />
-    <transition-group
-      name="menu-list"
-      tag="ul"
-      class="pt-2 list-none ml-0 mb-0"
-    >
+    <transition-group name="menu-list" tag="ul" class="menu vertical">
       <secondary-nav-item
         v-for="menuItem in accessibleMenuItems"
         :key="menuItem.toState"
@@ -83,12 +76,15 @@ export default {
       if (!this.currentRole) {
         return [];
       }
-      const menuItemsFilteredByRole = this.menuConfig.menuItems.filter(
-        menuItem =>
-          window.roleWiseRoutes[this.currentRole].indexOf(
-            menuItem.toStateName
-          ) > -1
-      );
+
+      // ----------------------------- changed onkar -------------------------------
+
+      const menuItemsFilteredByRole = this.menuConfig.menuItems; // .filter(
+      //   menuItem =>
+      //     window.roleWiseRoutes[this.currentRole].indexOf(
+      //       menuItem.toStateName
+      //     ) > -1
+      // );
       return menuItemsFilteredByRole.filter(item => {
         if (item.showOnlyOnCloud) {
           return this.isOnChatwootCloud;
@@ -136,7 +132,6 @@ export default {
         toStateName: 'labels_list',
         showModalForNewItem: true,
         modalName: 'AddLabel',
-        dataTestid: 'sidebar-new-label-button',
         children: this.labels.map(label => ({
           id: label.id,
           label: label.title,
@@ -257,3 +252,27 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@import '~dashboard/assets/scss/woot';
+
+.secondary-menu {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-right: 1px solid var(--s-50);
+  height: 100%;
+  width: 20rem;
+  flex-shrink: 0;
+  overflow-y: hidden;
+  position: unset;
+
+  &:hover {
+    overflow-y: hidden;
+  }
+
+  .menu {
+    padding: var(--space-small);
+    overflow-y: auto;
+  }
+}
+</style>

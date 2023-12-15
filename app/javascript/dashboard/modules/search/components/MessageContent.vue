@@ -1,10 +1,7 @@
 <template>
-  <blockquote
-    ref="messageContainer"
-    class="message border-l-2 border-slate-100 dark:border-slate-700"
-  >
+  <blockquote ref="messageContainer" class="message">
     <p class="header">
-      <strong class="text-slate-700 dark:text-slate-100">
+      <strong class="author">
         {{ author }}
       </strong>
       {{ $t('SEARCH.WROTE') }}
@@ -49,20 +46,13 @@ export default {
     },
   },
   mounted() {
-    this.$watch(() => {
-      return this.$refs.messageContainer;
-    }, this.setOverflow);
-
-    this.$nextTick(this.setOverflow);
+    this.$nextTick(() => {
+      const wrap = this.$refs.messageContainer;
+      const message = wrap.querySelector('.message-content');
+      this.isOverflowing = message.offsetHeight > 150;
+    });
   },
   methods: {
-    setOverflow() {
-      const wrap = this.$refs.messageContainer;
-      if (wrap) {
-        const message = wrap.querySelector('.message-content');
-        this.isOverflowing = message.offsetHeight > 150;
-      }
-    },
     escapeHtml(html) {
       var text = document.createTextNode(html);
       var p = document.createElement('p');
@@ -71,11 +61,18 @@ export default {
     },
     prepareContent(content = '') {
       const escapedText = this.escapeHtml(content);
-      return this.highlightContent(
-        escapedText,
-        this.searchTerm,
-        'searchkey--highlight'
-      );
+      const plainTextContent = this.getPlainText(escapedText);
+      const escapedSearchTerm = this.escapeRegExp(this.searchTerm);
+      return plainTextContent
+        .replace(
+          new RegExp(`(${escapedSearchTerm})`, 'ig'),
+          '<span class="searchkey--highlight">$1</span>'
+        )
+        .replace(/\s{2,}|\n|\r/g, ' ');
+    },
+    // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+    escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     },
   },
 };
@@ -83,22 +80,31 @@ export default {
 
 <style scoped lang="scss">
 .message {
-  @apply py-0 px-2 mt-2;
+  border-color: var(--s-100);
+  border-width: var(--space-micro);
+  padding: 0 var(--space-small);
+  margin-top: var(--space-small);
 }
 .message-content::v-deep p,
 .message-content::v-deep li::marker {
-  @apply text-slate-700 dark:text-slate-100 mb-1;
+  color: var(--s-700);
+  margin-bottom: var(--space-smaller);
 }
-
+.author {
+  color: var(--s-700);
+}
 .header {
-  @apply text-slate-500 dark:text-slate-300 mb-1;
+  color: var(--s-500);
+  margin-bottom: var(--space-smaller);
 }
 
 .message-content {
-  @apply break-words text-slate-600 dark:text-slate-200;
+  overflow-wrap: break-word;
 }
 
 .message-content::v-deep .searchkey--highlight {
-  @apply text-woot-600 dark:text-woot-500 text-sm font-semibold;
+  color: var(--w-600);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-small);
 }
 </style>

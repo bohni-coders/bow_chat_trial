@@ -1,15 +1,13 @@
 <template>
-  <div class="w-full pl-4">
-    <header class="flex justify-between items-center mb-4">
-      <div class="flex items-center w-full gap-3">
-        <label
-          class="font-normal mb-0 text-base text-slate-800 dark:text-slate-100"
-        >
-          {{ $t('HELP_CENTER.PORTAL.EDIT.CATEGORIES.TITLE') }}
-        </label>
+  <div class="category-list--container">
+    <header>
+      <div class="header-left--wrap">
+        <label class="sub-block-title header-text">{{
+          $t('HELP_CENTER.PORTAL.EDIT.CATEGORIES.TITLE')
+        }}</label>
         <select
           :value="currentLocaleCode"
-          class="w-[15%] select-locale"
+          class="row small-2 select-locale"
           @change="changeCurrentCategory"
         >
           <option
@@ -21,7 +19,7 @@
           </option>
         </select>
       </div>
-      <div class="flex-none items-center">
+      <div class="header-right--wrap">
         <woot-button
           size="small"
           variant="smooth"
@@ -63,9 +61,9 @@ import { mapGetters } from 'vuex';
 import alertMixin from 'shared/mixins/alertMixin';
 import portalMixin from '../../mixins/portalMixin';
 
-import CategoryListItem from './CategoryListItem.vue';
-import AddCategory from './AddCategory.vue';
-import EditCategory from './EditCategory.vue';
+import CategoryListItem from './CategoryListItem';
+import AddCategory from './AddCategory';
+import EditCategory from './EditCategory';
 import { PORTALS_EVENTS } from '../../../../../helper/AnalyticsHelper/events';
 
 export default {
@@ -170,7 +168,38 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.select-locale {
-  @apply h-8 mb-0 py-0.5;
+.category-list--container {
+  width: 100%;
+  padding-left: var(--space-normal);
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-normal);
+
+    .header-left--wrap {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .header-text {
+        font-weight: var(--font-weight-normal);
+        margin-right: var(--space-slab);
+        margin-bottom: 0;
+      }
+    }
+
+    .header-right--wrap {
+      flex: none;
+      align-items: center;
+    }
+    .select-locale {
+      height: var(--space-large);
+      margin-bottom: 0;
+      padding-top: var(--space-micro);
+      padding-bottom: var(--space-micro);
+    }
+  }
 }
 </style>

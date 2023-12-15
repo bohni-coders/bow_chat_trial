@@ -1,0 +1,44 @@
+FROM ruby:3.2.2
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install -y nodejs yarn
+
+
+RUN mkdir -p /usr/local/nvm    
+
+# Install nvm with node and npm
+ENV NODE_VERSION=16.13.0
+RUN apt install -y curl
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+
+WORKDIR /myapp
+
+ARG POSTGRES_DATABASE 
+ARG  POSTGRES_HOST
+ARG POSTGRES_USERNAME
+ARG POSTGRES_PASSWORD
+#RUN touch /myapp/log/development.log
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+
+COPY package.json /myapp/package.json
+COPY yarn.lock /myapp/yarn.lock
+RUN bundle exec rails webpacker:install
+RUN rm -rf node_modules
+RUN rails assets:clobber
+RUN yarn
+RUN rails assets:precompile
+RUN  rm -rf /myapp/tmp/pids/server.pid
+COPY . /myapp
+RUN export NODE_OPTIONS=--openssl-legacy-provider
+RUN  touch .env
+RUN mkdir -p log && touch  log/development.log
+
+CMD yarn start:dev

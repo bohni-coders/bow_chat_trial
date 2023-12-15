@@ -20,7 +20,7 @@
 <script>
 import alertMixin from 'shared/mixins/alertMixin';
 import microsoftClient from '../../../../../../api/channel/microsoftClient';
-import SettingsSection from '../../../../../../components/SettingsSection.vue';
+import SettingsSection from '../../../../../../components/SettingsSection';
 
 export default {
   components: {

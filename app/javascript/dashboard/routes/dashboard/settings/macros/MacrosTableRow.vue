@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Thumbnail from 'dashboard/components/widgets/Thumbnail.vue';
+import Thumbnail from 'dashboard/components/widgets/Thumbnail';
 import accountMixin from 'dashboard/mixins/account.js';
 export default {
   components: {

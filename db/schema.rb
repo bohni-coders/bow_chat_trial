@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_11_010807) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_10_164923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pg_trgm"
@@ -204,6 +204,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_010807) do
     t.jsonb "audience", default: []
     t.datetime "scheduled_at", precision: nil
     t.boolean "trigger_only_during_business_hours", default: false
+    t.jsonb "attachments"
     t.index ["account_id"], name: "index_campaigns_on_account_id"
     t.index ["campaign_status"], name: "index_campaigns_on_campaign_status"
     t.index ["campaign_type"], name: "index_campaigns_on_campaign_type"
@@ -453,7 +454,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_010807) do
     t.integer "priority"
     t.bigint "sla_policy_id"
     t.datetime "waiting_since"
-    t.string "cached_label_list"
     t.index ["account_id", "display_id"], name: "index_conversations_on_account_id_and_display_id", unique: true
     t.index ["account_id", "id"], name: "index_conversations_on_id_and_account_id"
     t.index ["account_id", "inbox_id", "status", "assignee_id"], name: "conv_acid_inbid_stat_asgnid_idx"
@@ -730,7 +730,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_010807) do
     t.datetime "read_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "snoozed_until"
     t.index ["account_id"], name: "index_notifications_on_account_id"
     t.index ["primary_actor_type", "primary_actor_id"], name: "uniq_primary_actor_per_account_notifications"
     t.index ["secondary_actor_type", "secondary_actor_id"], name: "uniq_secondary_actor_per_account_notifications"
@@ -927,6 +926,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_010807) do
     t.integer "webhook_type", default: 0
     t.jsonb "subscriptions", default: ["conversation_status_changed", "conversation_updated", "conversation_created", "contact_created", "contact_updated", "message_created", "message_updated", "webwidget_triggered"]
     t.index ["account_id", "url"], name: "index_webhooks_on_account_id_and_url", unique: true
+  end
+
+  create_table "whatsapp_campaigns", force: :cascade do |t|
+    t.integer "display_id", null: false
+    t.text "message", null: false
+    t.jsonb "message_template"
+    t.integer "sender_id"
+    t.boolean "enabled", default: true
+    t.bigint "account_id", null: false
+    t.bigint "inbox_id", null: false
+    t.integer "campaign_status", default: 0, null: false
+    t.jsonb "contacts", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "working_hours", force: :cascade do |t|

@@ -1,13 +1,6 @@
 {
   "CSAT": {
     "TITLE": "Konuşmanızı oylayın",
-    "PLACEHOLDER": "Biraz daha fazla bilgi verin...",
-    "RATINGS": {
-      "POOR": "😞 Poor",
-      "FAIR": "😑 Fair",
-      "AVERAGE": "😐 Average",
-      "GOOD": "😀 Good",
-      "EXCELLENT": "😍 Excellent"
-    }
+    "PLACEHOLDER": "Biraz daha fazla bilgi verin..."
   }
 }

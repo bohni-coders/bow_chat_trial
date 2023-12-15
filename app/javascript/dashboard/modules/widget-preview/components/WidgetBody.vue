@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Thumbnail from 'dashboard/components/widgets/Thumbnail.vue';
+import Thumbnail from 'dashboard/components/widgets/Thumbnail';
 export default {
   name: 'WidgetBody',
   components: {
@@ -129,13 +129,13 @@ export default {
         max-width: 100%;
 
         .chat-bubble {
-          border-radius: 1.25rem;
+          border-radius: 2rem;
           box-shadow: var(--shadow-medium);
           color: var(--white);
           display: inline-block;
           font-size: var(--font-size-nano);
           line-height: 1.5;
-          padding: 0.8125rem 1.09375rem;
+          padding: 1.3rem 1.75rem;
           text-align: left;
 
           p {

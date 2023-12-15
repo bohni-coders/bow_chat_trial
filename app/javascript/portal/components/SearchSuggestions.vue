@@ -1,49 +1,38 @@
 <template>
   <div
-    class="shadow-xl hover:shadow-lg bg-white dark:bg-slate-900 mt-2 max-h-96 scroll-py-2 p-5 overflow-y-auto text-sm text-slate-700 dark:text-slate-100 border border-solid border-slate-50 dark:border-slate-800 rounded-lg"
+    class="shadow-md bg-white mt-2 max-h-72 scroll-py-2 p-4 rounded overflow-y-auto text-sm text-slate-700"
   >
-    <div
-      v-if="isLoading"
-      class="font-medium text-sm text-slate-400 dark:text-slate-700"
-    >
+    <div v-if="isLoading" class="font-medium text-sm text-slate-400">
       {{ loadingPlaceholder }}
     </div>
+    <h3 v-if="shouldShowResults" class="font-medium text-sm text-slate-400">
+      {{ resultsTitle }}
+    </h3>
     <ul
       v-if="shouldShowResults"
-      class="bg-white dark:bg-slate-900 gap-4 flex flex-col text-sm text-slate-700 dark:text-slate-100"
+      class="bg-white mt-2 max-h-72 scroll-py-2 overflow-y-auto text-sm text-slate-700"
       role="listbox"
     >
       <li
         v-for="(article, index) in items"
         :id="article.id"
         :key="article.id"
-        class="group flex border border-solid hover:bg-slate-25 dark:hover:bg-slate-800 border-slate-100 dark:border-slate-800 rounded-lg cursor-pointer select-none items-center p-4"
-        :class="isSearchItemActive(index)"
+        class="group flex cursor-default select-none items-center rounded-md p-2 mb-1"
+        :class="{ 'bg-slate-25': index === selectedIndex }"
         role="option"
         tabindex="-1"
-        @mouse-enter="onHover(index)"
-        @mouse-leave="onHover(-1)"
+        @mouseover="onHover(index)"
       >
         <a
-          class="flex flex-col gap-1 overflow-y-hidden"
           :href="generateArticleUrl(article)"
+          class="flex-auto truncate text-base font-medium leading-6 w-full hover:underline"
         >
-          <span
-            v-dompurify-html="prepareContent(article.title)"
-            class="flex-auto truncate text-base font-semibold leading-6 w-full overflow-hidden text-ellipsis whitespace-nowrap"
-          />
-          <div
-            v-dompurify-html="prepareContent(article.content)"
-            class="line-clamp-2 text-ellipsis text-slate-600 dark:text-slate-300 text-sm"
-          />
+          {{ article.title }}
         </a>
       </li>
     </ul>
 
-    <div
-      v-if="showEmptyResults"
-      class="font-medium text-sm text-slate-400 dark:text-slate-700"
-    >
+    <div v-if="showEmptyResults" class="font-medium text-sm text-slate-400">
       {{ emptyPlaceholder }}
     </div>
   </div>
@@ -51,10 +40,9 @@
 
 <script>
 import mentionSelectionKeyboardMixin from 'dashboard/components/widgets/mentions/mentionSelectionKeyboardMixin.js';
-import messageFormatterMixin from 'shared/mixins/messageFormatterMixin';
 
 export default {
-  mixins: [mentionSelectionKeyboardMixin, messageFormatterMixin],
+  mixins: [mentionSelectionKeyboardMixin],
   props: {
     items: {
       type: Array,
@@ -80,14 +68,10 @@ export default {
       type: String,
       default: '',
     },
-    searchTerm: {
-      type: String,
-      default: '',
-    },
   },
   data() {
     return {
-      selectedIndex: -1,
+      selectedIndex: 0,
     };
   },
 
@@ -101,24 +85,18 @@ export default {
   },
 
   methods: {
-    isSearchItemActive(index) {
-      return index === this.selectedIndex
-        ? 'bg-slate-25 dark:bg-slate-800'
-        : 'bg-white dark:bg-slate-900';
-    },
     generateArticleUrl(article) {
       return `/hc/${article.portal.slug}/articles/${article.slug}`;
     },
     handleKeyboardEvent(e) {
       this.processKeyDownEvent(e);
-      this.$el.scrollTop = 102 * this.selectedIndex;
+      this.$el.scrollTop = 40 * this.selectedIndex;
     },
-    prepareContent(content) {
-      return this.highlightContent(
-        content,
-        this.searchTerm,
-        'bg-slate-100 dark:bg-slate-700 font-semibold text-slate-600 dark:text-slate-200'
-      );
+    onHover(index) {
+      this.selectedIndex = index;
+    },
+    onSelect() {
+      window.location = this.generateArticleUrl(this.items[this.selectedIndex]);
     },
   },
 };

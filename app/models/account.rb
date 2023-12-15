@@ -44,6 +44,8 @@ class Account < ApplicationRecord
   has_many :automation_rules, dependent: :destroy_async
   has_many :macros, dependent: :destroy_async
   has_many :campaigns, dependent: :destroy_async
+  has_many :whatsapp_campaigns, dependent: :destroy_async
+
   has_many :canned_responses, dependent: :destroy_async
   has_many :categories, dependent: :destroy_async, class_name: '::Category'
   has_many :contacts, dependent: :destroy_async
@@ -151,5 +153,5 @@ class Account < ApplicationRecord
 end
 
 Account.prepend_mod_with('Account')
-Account.include_mod_with('Concerns::Account')
+Account.include_mod_with('EnterpriseAccountConcern')
 Account.include_mod_with('Audit::Account')

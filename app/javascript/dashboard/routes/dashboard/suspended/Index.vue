@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import EmptyState from 'dashboard/components/widgets/EmptyState.vue';
+import EmptyState from 'dashboard/components/widgets/EmptyState';
 export default {
   components: { EmptyState },
 };

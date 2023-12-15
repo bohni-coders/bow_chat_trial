@@ -18,8 +18,6 @@
     "EMPTY_STATE_DEFAULT": "Search by conversation id, email, phone number, messages for better search results.",
     "BOT_LABEL": "Bot",
     "READ_MORE": "Read more",
-    "WROTE": "wrote:",
-    "FROM": "fra",
-    "EMAIL": "e-mail"
+    "WROTE": "wrote:"
   }
 }

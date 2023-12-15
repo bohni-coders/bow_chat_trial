@@ -1,9 +1,8 @@
 <template>
   <div class="csat--table-container">
     <ve-table
-      max-height="calc(100vh - 21.875rem)"
+      max-height="calc(100vh - 35rem)"
       :fixed-header="true"
-      :border-around="true"
       :columns="columns"
       :table-data="tableData"
     />
@@ -23,7 +22,7 @@
 </template>
 <script>
 import { VeTable, VePagination } from 'vue-easytable';
-import UserAvatarWithName from 'dashboard/components/widgets/UserAvatarWithName.vue';
+import UserAvatarWithName from 'dashboard/components/widgets/UserAvatarWithName';
 import { CSAT_RATINGS } from 'shared/constants/messages';
 import { mapGetters } from 'vuex';
 import timeMixin from 'dashboard/mixins/time';
@@ -57,13 +56,7 @@ export default {
           width: 200,
           renderBodyCell: ({ row }) => {
             if (row.contact) {
-              return (
-                <UserAvatarWithName
-                  textClass="text-sm text-slate-800"
-                  size="24px"
-                  user={row.contact}
-                />
-              );
+              return <UserAvatarWithName size="24px" user={row.contact} />;
             }
             return '---';
           },
@@ -156,11 +149,12 @@ export default {
   flex: 1;
 
   .ve-table {
-    @apply bg-white dark:bg-slate-900;
+    background: var(--white);
 
     &::v-deep {
       .ve-table-container {
         border-radius: var(--border-radius-normal);
+        border: 1px solid var(--color-border) !important;
       }
 
       th.ve-table-header-th {
@@ -194,18 +188,20 @@ export default {
 
 .csat--empty-records {
   align-items: center;
-  // border: 1px solid var(--color-border);
+  background-color: var(--white);
+  border: 1px solid var(--color-border);
   border-top: 0;
+  color: var(--b-600);
   display: flex;
   font-size: var(--font-size-small);
-  height: 12.5rem;
+  height: 20rem;
   justify-content: center;
   margin-top: -1px;
   width: 100%;
-  @apply text-slate-600 dark:text-slate-200 bg-white dark:bg-slate-900 border border-t-0 border-solid border-slate-75 dark:border-slate-700;
 }
 
 .csat--timestamp {
-  @apply text-slate-600 dark:text-slate-200 text-sm;
+  color: var(--b-400);
+  font-size: var(--font-size-small);
 }
 </style>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import WootReports from './components/WootReports.vue';
+import WootReports from './components/WootReports';
 
 export default {
   components: {

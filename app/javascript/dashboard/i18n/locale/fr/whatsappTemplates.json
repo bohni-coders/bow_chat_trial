@@ -3,7 +3,7 @@
         "MODAL": {
             "TITLE": "Modèles WhatsApp",
             "SUBTITLE": "Sélectionnez le modèle whatsapp que vous souhaitez envoyer",
-            "TEMPLATE_SELECTED_SUBTITLE": "Traiter %{templateName}"
+            "TEMPLATE_SELECTED_SUBTITLE": "Process %{templateName}"
         },
         "PICKER": {
             "SEARCH_PLACEHOLDER": "Rechercher des modèles",

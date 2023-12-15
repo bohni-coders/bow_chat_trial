@@ -1,12 +1,12 @@
 <template>
-  <div class="flex-1 overflow-auto">
+  <div class="column content-box">
     <campaigns-table
       :campaigns="campaigns"
       :show-empty-result="showEmptyResult"
       :is-loading="uiFlags.isFetching"
       :campaign-type="type"
-      @edit="openEditPopup"
-      @delete="openDeletePopup"
+      @on-edit-click="openEditPopup"
+      @on-delete-click="openDeletePopup"
     />
     <woot-modal :show.sync="showEditPopup" :on-close="hideEditPopup">
       <edit-campaign
@@ -29,8 +29,8 @@
 import { mapGetters } from 'vuex';
 import alertMixin from 'shared/mixins/alertMixin';
 import campaignMixin from 'shared/mixins/campaignMixin';
-import CampaignsTable from './CampaignsTable.vue';
-import EditCampaign from './EditCampaign.vue';
+import CampaignsTable from './CampaignsTable';
+import EditCampaign from './EditCampaign';
 export default {
   components: {
     CampaignsTable,
@@ -65,23 +65,26 @@ export default {
     },
   },
   methods: {
-    openEditPopup(campaign) {
+    openEditPopup(response) {
+      const { row: campaign } = response;
       this.selectedCampaign = campaign;
       this.showEditPopup = true;
     },
     hideEditPopup() {
       this.showEditPopup = false;
     },
-    openDeletePopup(campaign) {
+    openDeletePopup(response) {
       this.showDeleteConfirmationPopup = true;
-      this.selectedCampaign = campaign;
+      this.selectedCampaign = response;
     },
     closeDeletePopup() {
       this.showDeleteConfirmationPopup = false;
     },
     confirmDeletion() {
       this.closeDeletePopup();
-      const { id } = this.selectedCampaign;
+      const {
+        row: { id },
+      } = this.selectedCampaign;
       this.deleteCampaign(id);
     },
     async deleteCampaign(id) {
@@ -98,6 +101,12 @@ export default {
 
 <style scoped lang="scss">
 .button-wrapper {
-  @apply flex justify-end pb-2.5;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: var(--space-one);
+}
+
+.content-box .page-top-bar::v-deep {
+  padding: var(--space-large) var(--space-large) var(--space-zero);
 }
 </style>

@@ -1,12 +1,11 @@
 import articlesAPI from 'dashboard/api/helpCenter/articles';
-import { uploadFile } from 'dashboard/helper/uploadHelper';
 import { throwErrorMessage } from 'dashboard/store/utils/api';
 
 import types from '../../mutation-types';
 export const actions = {
   index: async (
     { commit },
-    { pageNumber, portalSlug, locale, status, authorId, categorySlug }
+    { pageNumber, portalSlug, locale, status, author_id, category_slug }
   ) => {
     try {
       commit(types.SET_UI_FLAG, { isFetching: true });
@@ -17,8 +16,8 @@ export const actions = {
         portalSlug,
         locale,
         status,
-        authorId,
-        categorySlug,
+        author_id,
+        category_slug,
       });
       const articleIds = payload.map(article => article.id);
       commit(types.CLEAR_ARTICLES);
@@ -127,9 +126,19 @@ export const actions = {
     }
   },
 
-  attachImage: async (_, { file }) => {
-    const { fileUrl } = await uploadFile(file);
-    return fileUrl;
+  attachImage: async (_, { portalSlug, file }) => {
+    try {
+      const {
+        data: { file_url: fileUrl },
+      } = await articlesAPI.uploadImage({
+        portalSlug,
+        file,
+      });
+      return fileUrl;
+    } catch (error) {
+      throwErrorMessage(error);
+    }
+    return '';
   },
 
   reorder: async (_, { portalSlug, categorySlug, reorderedGroup }) => {

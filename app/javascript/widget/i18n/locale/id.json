@@ -8,8 +8,8 @@
       "SUBMIT": "Kirim"
     },
     "MESSAGE_BUBBLE": {
-      "RETRY": "Kirim pesan lagi",
-      "ERROR_MESSAGE": "Tidak dapat mengirim, coba lagi"
+      "RETRY": "Send message again",
+      "ERROR_MESSAGE": "Couldn't send, try again"
     }
   },
   "TEAM_AVAILABILITY": {
@@ -19,24 +19,12 @@
   "REPLY_TIME": {
     "IN_A_FEW_MINUTES": "Biasanya membalas dalam beberapa menit",
     "IN_A_FEW_HOURS": "Biasanya membalas dalam beberapa jam",
-    "IN_A_DAY": "Biasanya membalas dalam sehari",
-    "BACK_IN": "Kami akan kembali online"
+    "IN_A_DAY": "Biasanya membalas dalam sehari"
   },
-  "DAY_NAMES": [
-    "Minggu",
-    "Senin",
-    "Selasa",
-    "Rabu",
-    "Kamis",
-    "Jumat",
-    "Sabtu"
-  ],
   "START_CONVERSATION": "Mulai Percakapan",
   "END_CONVERSATION": "Akhiri Percakapan",
   "CONTINUE_CONVERSATION": "Lanjutkan Percakapan",
-  "YOU": "You",
   "START_NEW_CONVERSATION": "Mulai Percakapan",
-  "VIEW_UNREAD_MESSAGES": "You have unread messages",
   "UNREAD_VIEW": {
     "VIEW_MESSAGES_BUTTON": "Lihat pesan baru",
     "CLOSE_MESSAGES_BUTTON": "Tutup",
@@ -46,7 +34,7 @@
   "BUBBLE": {
     "LABEL": "Chat dengan kami"
   },
-  "POWERED_BY": "Powered by Chatwoot",
+  "POWERED_BY": "Powered by Boni",
   "EMAIL_PLACEHOLDER": "Masukkan email Anda",
   "CHAT_PLACEHOLDER": "Ketik pesan Anda",
   "TODAY": "Hari ini",
@@ -68,9 +56,7 @@
         "LABEL": "Nomor Telpon",
         "PLACEHOLDER": "Masukan Nomor Telepon",
         "REQUIRED_ERROR": "Nomor Telepon Dibutuhkan",
-        "DIAL_CODE_VALID_ERROR": "Silakan pilih kode negara",
-        "VALID_ERROR": "Mohon berikan nomor telepon yang valid",
-        "DROPDOWN_EMPTY": "Tidak ada hasil ditemukan"
+        "VALID_ERROR": "Phone number should be of E.164 format eg: +1415555555"
       },
       "MESSAGE": {
         "LABEL": "Pesan",
@@ -78,59 +64,34 @@
         "ERROR": "Pesan terlalu pendek"
       }
     },
-    "CAMPAIGN_HEADER": "Silahkan input nama dan email anda sebelum memulai percakapan",
-    "IS_REQUIRED": "dibutuhkan",
-    "REQUIRED": "Diperlukan"
+    "CAMPAIGN_HEADER": "Please provide your name and email before starting the conversation",
+    "IS_REQUIRED": "is required",
+    "REQUIRED": "Required"
   },
   "FILE_SIZE_LIMIT": "File melebihi batas {MAXIMUM_FILE_UPLOAD_SIZE} lampiran",
   "CHAT_FORM": {
     "INVALID": {
-      "FIELD": "Kolom tidak valid"
+      "FIELD": "Invalid field"
     }
   },
   "EMOJI": {
-    "PLACEHOLDER": "Cari emoji",
-    "NOT_FOUND": "Tidak ada emoji yang cocok dengan penelusuran anda"
+    "PLACEHOLDER": "Search emojis",
+    "NOT_FOUND": "No emoji match your search"
   },
   "CSAT": {
-    "TITLE": "Nilai percakapan anda",
-    "SUBMITTED_TITLE": "Terima kasih telah mengirimkan penilaian",
-    "PLACEHOLDER": "Beritahu kami lebih lanjut..."
+    "TITLE": "Rate your conversation",
+    "SUBMITTED_TITLE": "Thank you for submitting the rating",
+    "PLACEHOLDER": "Tell us more..."
   },
   "EMAIL_TRANSCRIPT": {
-    "BUTTON_TEXT": "Minta transkrip percakapan",
+    "BUTTON_TEXT": "Request a conversation transcript",
     "SEND_EMAIL_SUCCESS": "Transkrip percakapan berhasil terkirim",
     "SEND_EMAIL_ERROR": "Terjadi kesalahan, harap coba lagi"
   },
   "INTEGRATIONS": {
     "DYTE": {
-      "CLICK_HERE_TO_JOIN": "Klik disini untuk join",
-      "LEAVE_THE_ROOM": "Tinggalkan panggilan"
-    }
-  },
-  "PORTAL": {
-    "POPULAR_ARTICLES": "Popular Articles",
-    "VIEW_ALL_ARTICLES": "Lihat semua artikel",
-    "IFRAME_LOAD_ERROR": "There was an error loading the article, please refresh the page and try again."
-  },
-  "ATTACHMENTS": {
-    "image": {
-      "CONTENT": "Pesan gambar"
-    },
-    "audio": {
-      "CONTENT": "Pesan audio"
-    },
-    "video": {
-      "CONTENT": "Pesan video"
-    },
-    "file": {
-      "CONTENT": "Lampiran File"
-    },
-    "location": {
-      "CONTENT": "Lokasi"
-    },
-    "fallback": {
-      "CONTENT": "telah membagikan url"
+      "CLICK_HERE_TO_JOIN": "Click here to join",
+      "LEAVE_THE_ROOM": "Leave the call"
     }
   }
 }

@@ -1,0 +1,3 @@
+class WhatsappCampaignPolicy < CampaignPolicy
+  
+end

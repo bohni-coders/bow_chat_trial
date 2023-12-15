@@ -11,7 +11,7 @@ function prepareData(data) {
 
 function getChartOptions() {
   var fontFamily =
-    'PlusJakarta,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    'Inter,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
   return {
     responsive: true,
     legend: { labels: { fontFamily } },
@@ -46,7 +46,7 @@ function drawSuperAdminDashboard(data) {
         {
           label: 'Conversations',
           data: chartData.dataSet,
-          backgroundColor: '#1f93ff',
+          backgroundColor: '#1DC775',
         },
       ],
     },

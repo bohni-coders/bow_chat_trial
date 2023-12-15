@@ -4,7 +4,7 @@
     <woot-dropdown-item
       v-for="status in availabilityStatuses"
       :key="status.value"
-      class="flex items-baseline"
+      class="status-items"
     >
       <woot-button
         size="small"
@@ -18,25 +18,23 @@
       </woot-button>
     </woot-dropdown-item>
     <woot-dropdown-divider />
-    <woot-dropdown-item class="m-0 flex items-center justify-between p-2">
-      <div class="flex items-center">
+    <woot-dropdown-item class="auto-offline--toggle">
+      <div class="info-wrap">
         <fluent-icon
           v-tooltip.right-start="$t('SIDEBAR.SET_AUTO_OFFLINE.INFO_TEXT')"
           icon="info"
           size="14"
-          class="mt-px"
+          class="info-icon"
         />
 
-        <span
-          class="my-0 mx-1 text-xs font-medium text-slate-600 dark:text-slate-100"
-        >
+        <span class="auto-offline--text">
           {{ $t('SIDEBAR.SET_AUTO_OFFLINE.TEXT') }}
         </span>
       </div>
 
       <woot-switch
         size="small"
-        class="mt-px mx-1 mb-0"
+        class="auto-offline--switch"
         :value="currentUserAutoOffline"
         @input="updateAutoOffline"
       />
@@ -49,11 +47,11 @@
 import { mapGetters } from 'vuex';
 import { mixin as clickaway } from 'vue-clickaway';
 import alertMixin from 'shared/mixins/alertMixin';
-import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem.vue';
-import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu.vue';
-import WootDropdownHeader from 'shared/components/ui/dropdown/DropdownHeader.vue';
-import WootDropdownDivider from 'shared/components/ui/dropdown/DropdownDivider.vue';
-import AvailabilityStatusBadge from '../widgets/conversation/AvailabilityStatusBadge.vue';
+import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem';
+import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu';
+import WootDropdownHeader from 'shared/components/ui/dropdown/DropdownHeader';
+import WootDropdownDivider from 'shared/components/ui/dropdown/DropdownDivider';
+import AvailabilityStatusBadge from '../widgets/conversation/AvailabilityStatusBadge';
 import wootConstants from 'dashboard/constants/globals';
 
 const { AVAILABILITY_STATUS_KEYS } = wootConstants;
@@ -140,3 +138,71 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '~dashboard/assets/scss/variables';
+
+.status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-micro) var(--space-smaller);
+}
+
+.status-view {
+  display: flex;
+  align-items: baseline;
+
+  & &--title {
+    color: var(--b-600);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    margin-left: var(--space-small);
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+  }
+}
+
+.status-change {
+  .dropdown-pane {
+    top: -132px;
+    right: var(--space-normal);
+  }
+
+  .status-items {
+    display: flex;
+    align-items: baseline;
+  }
+}
+
+.auto-offline--toggle {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-smaller);
+  margin: 0;
+
+  .info-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .info-icon {
+    margin-top: -1px;
+  }
+
+  .auto-offline--switch {
+    margin: -1px var(--space-micro) 0;
+  }
+
+  .auto-offline--text {
+    margin: 0 var(--space-smaller);
+    font-size: var(--font-size-mini);
+    font-weight: var(--font-weight-medium);
+    color: var(--s-700);
+  }
+}
+</style>

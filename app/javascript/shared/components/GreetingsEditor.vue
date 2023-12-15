@@ -1,25 +1,22 @@
 <template>
-  <section class="w-[75%]">
-    <div
-      v-if="richtext"
-      class="py-0 px-4 rounded-md border border-solid border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 mt-0 mx-0 mb-4"
-    >
+  <section>
+    <label v-if="richtext" class="greetings--richtext">
       <woot-message-editor
         v-model="greetingsMessage"
         :is-format-mode="true"
         :enable-variables="true"
-        class="input bg-white dark:bg-slate-900"
+        class="input"
         :placeholder="placeholder"
         :min-height="4"
         @input="handleInput"
       />
-    </div>
+    </label>
     <resizable-text-area
       v-else
       v-model="greetingsMessage"
-      :rows="4"
+      rows="4"
       type="text"
-      class="greetings--textarea"
+      class="medium-9 greetings--textarea"
       :label="label"
       :placeholder="placeholder"
       @input="handleInput"
@@ -28,8 +25,8 @@
 </template>
 
 <script>
-import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor.vue';
-import ResizableTextArea from 'shared/components/ResizableTextArea.vue';
+import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor';
+import ResizableTextArea from 'shared/components/ResizableTextArea';
 
 export default {
   components: {
@@ -71,3 +68,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.greetings--richtext {
+  padding: 0 var(--space-normal);
+  border-radius: var(--border-radius-normal);
+  border: 1px solid var(--color-border);
+  margin: 0 0 var(--space-normal);
+}
+</style>

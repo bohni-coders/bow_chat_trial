@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// 🚨 This component is deprecated. Please use fluent-icon instead.
 import { hasEmojiSupport } from 'shared/helpers/emoji';
 import { mapGetters } from 'vuex';
 

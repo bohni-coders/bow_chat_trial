@@ -22,14 +22,10 @@
       :label-class="context => labelClass(context)"
       :input-class="context => inputClass(context)"
       :validation-messages="{
-        startsWithPlus: $t(
-          'PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.DIAL_CODE_VALID_ERROR'
-        ),
-        isValidPhoneNumber: $t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.VALID_ERROR'),
+        isPhoneE164OrEmpty: $t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.VALID_ERROR'),
         email: $t('PRE_CHAT_FORM.FIELDS.EMAIL_ADDRESS.VALID_ERROR'),
         required: $t('PRE_CHAT_FORM.REQUIRED'),
       }"
-      :has-error-in-phone-input="hasErrorInPhoneInput"
     />
     <FormulateInput
       v-if="!hasActiveCampaign"
@@ -46,7 +42,7 @@
     />
 
     <custom-button
-      class="font-medium mt-2 mb-5"
+      class="font-medium my-5"
       block
       :bg-color="widgetColor"
       :text-color="textColor"
@@ -59,8 +55,8 @@
 </template>
 
 <script>
-import CustomButton from 'shared/components/Button.vue';
-import Spinner from 'shared/components/Spinner.vue';
+import CustomButton from 'shared/components/Button';
+import Spinner from 'shared/components/Spinner';
 import { mapGetters } from 'vuex';
 import { getContrastingTextColor } from '@chatwoot/utils';
 import messageFormatterMixin from 'shared/mixins/messageFormatterMixin';
@@ -68,7 +64,6 @@ import { isEmptyObject } from 'widget/helpers/utils';
 import routerMixin from 'widget/mixins/routerMixin';
 import darkModeMixin from 'widget/mixins/darkModeMixin';
 import configMixin from 'widget/mixins/configMixin';
-
 export default {
   components: {
     CustomButton,
@@ -84,7 +79,6 @@ export default {
   data() {
     return {
       locale: this.$root.$i18n.locale,
-      hasErrorInPhoneInput: false,
       message: '',
       formValues: {},
       labels: {
@@ -149,10 +143,7 @@ export default {
         .filter(field => field.enabled)
         .map(field => ({
           ...field,
-          type:
-            field.name === 'phoneNumber'
-              ? 'phoneInput'
-              : this.findFieldType(field.type),
+          type: this.findFieldType(field.type),
         }));
     },
     conversationCustomAttributes() {
@@ -180,7 +171,7 @@ export default {
       return contactAttributes;
     },
     inputStyles() {
-      return `mt-1 border rounded w-full py-2 px-3 text-slate-700 outline-none`;
+      return `mt-2 border rounded w-full py-2 px-3 text-slate-700 outline-none`;
     },
     isInputDarkOrLightMode() {
       return `${this.$dm('bg-white', 'dark:bg-slate-600')} ${this.$dm(
@@ -211,9 +202,6 @@ export default {
       if (classification === 'box' && type === 'checkbox') {
         return '';
       }
-      if (type === 'phoneInput') {
-        this.hasErrorInPhoneInput = hasErrors;
-      }
       if (!hasErrors) {
         return `${this.inputStyles} hover:border-black-300 focus:border-black-300 ${this.isInputDarkOrLightMode} ${this.inputBorderColor}`;
       }
@@ -236,9 +224,12 @@ export default {
       return this.formValues[name] || null;
     },
     getValidation({ type, name }) {
+      if (!this.isContactFieldRequired(name)) {
+        return '';
+      }
       const validations = {
         emailAddress: 'email',
-        phoneNumber: 'startsWithPlus|isValidPhoneNumber',
+        phoneNumber: 'isPhoneE164OrEmpty',
         url: 'url',
         date: 'date',
         text: null,
@@ -247,17 +238,11 @@ export default {
         checkbox: false,
       };
       const validationKeys = Object.keys(validations);
-      const isRequired = this.isContactFieldRequired(name);
-      const validation = isRequired ? 'bail|required' : 'bail|optional';
-
+      const validation = 'bail|required';
       if (validationKeys.includes(name) || validationKeys.includes(type)) {
         const validationType = validations[type] || validations[name];
-        const validationString = validationType
-          ? `${validation}|${validationType}`
-          : validation;
-        return validationString;
+        return validationType ? `${validation}|${validationType}` : validation;
       }
-
       return '';
     },
     findFieldType(type) {
@@ -306,7 +291,6 @@ export default {
     .formulate-input-wrapper {
       display: flex;
       align-items: center;
-      line-height: $space-normal;
 
       label {
         margin-left: 0.2rem;

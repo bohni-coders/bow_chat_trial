@@ -5,11 +5,10 @@
     :type="type"
     :icons="icons"
     :view-box="viewBox"
-    :icon-lib="iconLib"
   />
 </template>
 <script>
-import BaseIcon from './Icon.vue';
+import BaseIcon from './Icon';
 import icons from './icons.json';
 
 export default {
@@ -33,10 +32,6 @@ export default {
     viewBox: {
       type: String,
       default: '0 0 24 24',
-    },
-    iconLib: {
-      type: String,
-      default: 'fluent',
     },
   },
   data() {

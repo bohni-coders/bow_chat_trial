@@ -1,0 +1,22 @@
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/stackprof-0.2.25/ext/stackprof
+/usr/local/rvm/rubies/ruby-3.2.2/bin/ruby extconf.rb
+checking for rb_postponed_job_register_one()... yes
+checking for rb_profile_frames()... yes
+checking for rb_tracepoint_new()... yes
+checking for RUBY_INTERNAL_EVENT_NEWOBJ... yes
+creating Makefile
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/stackprof-0.2.25/ext/stackprof
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-y8f1nv sitelibdir\=./.gem.20231212-160499-y8f1nv clean
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/stackprof-0.2.25/ext/stackprof
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-y8f1nv sitelibdir\=./.gem.20231212-160499-y8f1nv
+compiling stackprof.c
+linking shared-object stackprof/stackprof.so
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/stackprof-0.2.25/ext/stackprof
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-y8f1nv sitelibdir\=./.gem.20231212-160499-y8f1nv install
+/usr/bin/install -m 0755 stackprof.so ./.gem.20231212-160499-y8f1nv/stackprof
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/stackprof-0.2.25/ext/stackprof
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-y8f1nv sitelibdir\=./.gem.20231212-160499-y8f1nv clean

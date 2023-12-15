@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 overflow-auto p-4">
+  <div class="column content-box">
     <woot-button
       color-scheme="success"
       class-names="button--fixed-top"
@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import AddAttribute from './AddAttribute.vue';
-import CustomAttribute from './CustomAttribute.vue';
+import AddAttribute from './AddAttribute';
+import CustomAttribute from './CustomAttribute';
 export default {
   components: {
     AddAttribute,

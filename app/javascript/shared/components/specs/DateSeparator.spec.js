@@ -37,8 +37,9 @@ describe('dateSeparator', () => {
     dateSeparator = shallowMount(DateSeparator, {
       store,
       localVue,
-      propsData: { date: 'Nov 18, 2019' },
-      mocks: { $t: msg => msg },
+      propsData: {
+        date: 'Nov 18, 2019',
+      },
       i18n: i18nConfig,
       mixins: [darkModeMixin],
     });

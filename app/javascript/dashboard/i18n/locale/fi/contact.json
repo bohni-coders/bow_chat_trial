@@ -33,8 +33,7 @@
       "LABEL_SELECT": {
         "TITLE": "Add Labels",
         "PLACEHOLDER": "Search labels",
-        "NO_RESULT": "No labels found",
-        "CREATE_LABEL": "Create new label"
+        "NO_RESULT": "No labels found"
       }
     },
     "MERGE_CONTACT": "Yhdistä yhteystieto",
@@ -71,14 +70,7 @@
       "SUBMIT": "Import",
       "CANCEL": "Peruuta"
     },
-    "SUCCESS_MESSAGE": "You will be notified via email when the import is complete.",
-    "ERROR_MESSAGE": "Tapahtui virhe, yritä uudelleen"
-  },
-  "EXPORT_CONTACTS": {
-    "BUTTON_LABEL": "Export",
-    "TITLE": "Export Contacts",
-    "DESC": "Export contacts to a CSV file.",
-    "SUCCESS_MESSAGE": "Export is in progress, You will be notified via email when export file is ready to dowanlod.",
+    "SUCCESS_MESSAGE": "Contacts saved successfully",
     "ERROR_MESSAGE": "Tapahtui virhe, yritä uudelleen"
   },
   "DELETE_NOTE": {
@@ -200,13 +192,9 @@
         "ERROR": "Subject can't be empty"
       },
       "MESSAGE": {
-        "LABEL": "Viesti",
+        "LABEL": "Message",
         "PLACEHOLDER": "Write your message here",
         "ERROR": "Message can't be empty"
-      },
-      "ATTACHMENTS": {
-        "SELECT": "Choose files",
-        "HELP_TEXT": "Drag and drop files here or choose files to attach"
       },
       "SUBMIT": "Lähetä viesti",
       "CANCEL": "Peruuta",
@@ -223,7 +211,6 @@
     "FILTER_CONTACTS": "Filter",
     "FILTER_CONTACTS_SAVE": "Save filter",
     "FILTER_CONTACTS_DELETE": "Poista suodatin",
-    "FILTER_CONTACTS_EDIT": "Edit segment",
     "LIST": {
       "LOADING_MESSAGE": "Ladataan yhteystietoja...",
       "404": "Ei hakua vastaavia yhteystietoja 🔍",
@@ -309,20 +296,20 @@
       },
       "VALUE": {
         "LABEL": "Attribute value",
-        "PLACEHOLDER": "Esim: 11901 "
+        "PLACEHOLDER": "Eg: 11901 "
       },
       "ADD": {
         "TITLE": "Luo uusi määrite ",
-        "SUCCESS": "Attribuutin lisäys onnistui",
-        "ERROR": "Attribuuttia ei voitu lisätä. Yritä myöhemmin uudelleen"
+        "SUCCESS": "Attribute added successfully",
+        "ERROR": "Unable to add attribute. Please try again later"
       },
       "UPDATE": {
-        "SUCCESS": "Tunniste päivitetty onnistuneesti",
-        "ERROR": "Attribuuttia ei voida päivittää. Yritä myöhemmin uudelleen"
+        "SUCCESS": "Attribute updated successfully",
+        "ERROR": "Unable to update attribute. Please try again later"
       },
       "DELETE": {
-        "SUCCESS": "Attribuutin poisto onnistui",
-        "ERROR": "Attribuuttia ei voida poistaa. Yritä uudelleen myöhemmin"
+        "SUCCESS": "Attribute deleted successfully",
+        "ERROR": "Unable to delete attribute. Please try again later"
       },
       "ATTRIBUTE_SELECT": {
         "TITLE": "Lisää määritteitä",
@@ -331,15 +318,15 @@
       },
       "ATTRIBUTE_TYPE": {
         "LIST": {
-          "PLACEHOLDER": "Valitse arvo",
-          "SEARCH_INPUT_PLACEHOLDER": "Etsi arvo",
+          "PLACEHOLDER": "Select value",
+          "SEARCH_INPUT_PLACEHOLDER": "Search value",
           "NO_RESULT": "Tuloksia ei löytynyt"
         }
       }
     },
     "VALIDATIONS": {
-      "REQUIRED": "Kelvollinen arvo vaaditaan",
-      "INVALID_URL": "Virheellinen URL"
+      "REQUIRED": "Valid value is required",
+      "INVALID_URL": "Invalid URL"
     }
   },
   "MERGE_CONTACTS": {
@@ -347,17 +334,17 @@
     "DESCRIPTION": "Yhdistämällä yhteystiedot voit muuntaa kaksi profiilia yhdeksi, mukaan lukien kaikki määritteet ja keskustelut. Ristiriitatilanteessa ensisijaisen yhteyshenkilön määritteet ovat ensisijaisia.",
     "PRIMARY": {
       "TITLE": "Ensisijainen kontakti",
-      "HELP_LABEL": "Poistetaan"
-    },
-    "PARENT": {
-      "TITLE": "Yhdistettävä yhteystieto",
-      "PLACEHOLDER": "Etsi yhteystietoa",
       "HELP_LABEL": "Säilytetään"
     },
+    "CHILD": {
+      "TITLE": "Yhdistettävä yhteystieto",
+      "PLACEHOLDER": "Etsi yhteystietoa",
+      "HELP_LABEL": "Poistetaan"
+    },
     "SUMMARY": {
-      "TITLE": "Yhteenveto",
-      "DELETE_WARNING": "Contact of <strong>%{primaryContactName}</strong> will be deleted.",
-      "ATTRIBUTE_WARNING": "Contact details of <strong>%{primaryContactName}</strong> will be copied to <strong>%{parentContactName}</strong>."
+      "TITLE": "Summary",
+      "DELETE_WARNING": "Contact of <strong>%{childContactName}</strong> will be deleted.",
+      "ATTRIBUTE_WARNING": "Contact details of <strong>%{childContactName}</strong> will be copied to <strong>%{primaryContactName}</strong>."
     },
     "SEARCH": {
       "ERROR": "ERROR_MESSAGE"

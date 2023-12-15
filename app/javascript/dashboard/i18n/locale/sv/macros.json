@@ -27,7 +27,7 @@
       "TABLE_HEADER": [
         "Namn",
         "Created by",
-        "Senast uppdaterad av",
+        "Last updated by",
         "Visibility"
       ],
       "404": "No macros found"

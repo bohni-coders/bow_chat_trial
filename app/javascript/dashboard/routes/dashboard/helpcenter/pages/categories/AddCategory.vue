@@ -1,39 +1,39 @@
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <woot-modal :show.sync="show" :on-close="onClose">
     <woot-modal-header
       :header-title="$t('HELP_CENTER.CATEGORY.ADD.TITLE')"
       :header-content="$t('HELP_CENTER.CATEGORY.ADD.SUB_TITLE')"
     />
-    <form class="w-full" @submit.prevent="onCreate">
-      <div class="w-full">
-        <div class="flex flex-row w-full mt-0 mx-0 mb-4">
-          <div class="w-[50%]">
+    <form class="row" @submit.prevent="onCreate">
+      <div class="medium-12 columns">
+        <div class="row article-info">
+          <div class="columns medium-6">
             <label>
               <span>{{ $t('HELP_CENTER.CATEGORY.ADD.PORTAL') }}</span>
-              <p class="text-slate-600 dark:text-slate-400">{{ portalName }}</p>
+              <p class="value">{{ portalName }}</p>
             </label>
           </div>
-          <div class="w-[50%]">
+          <div class="columns medium-6">
             <label>
               <span>{{ $t('HELP_CENTER.CATEGORY.ADD.LOCALE') }}</span>
-              <p class="text-slate-600 dark:text-slate-400">{{ locale }}</p>
+              <p class="value">{{ locale }}</p>
             </label>
           </div>
         </div>
-        <category-name-icon-input
+        <woot-input
+          v-model.trim="name"
+          :class="{ error: $v.name.$error }"
+          class="medium-12 columns"
+          :error="nameError"
           :label="$t('HELP_CENTER.CATEGORY.ADD.NAME.LABEL')"
           :placeholder="$t('HELP_CENTER.CATEGORY.ADD.NAME.PLACEHOLDER')"
           :help-text="$t('HELP_CENTER.CATEGORY.ADD.NAME.HELP_TEXT')"
-          :has-error="$v.name.$error"
-          :error-message="$t('HELP_CENTER.CATEGORY.ADD.NAME.ERROR')"
-          @name-change="onNameChange"
-          @icon-change="onClickInsertEmoji"
+          @input="onNameChange"
         />
         <woot-input
           v-model.trim="slug"
           :class="{ error: $v.slug.$error }"
-          class="w-full"
+          class="medium-12 columns"
           :error="slugError"
           :label="$t('HELP_CENTER.CATEGORY.ADD.SLUG.LABEL')"
           :placeholder="$t('HELP_CENTER.CATEGORY.ADD.SLUG.PLACEHOLDER')"
@@ -51,8 +51,8 @@
             "
           />
         </label>
-        <div class="w-full">
-          <div class="flex flex-row justify-end gap-2 py-2 px-0 w-full">
+        <div class="medium-12 columns">
+          <div class="modal-footer justify-content-end w-full">
             <woot-button class="button clear" @click.prevent="onClose">
               {{ $t('HELP_CENTER.CATEGORY.ADD.BUTTONS.CANCEL') }}
             </woot-button>
@@ -71,10 +71,8 @@ import alertMixin from 'shared/mixins/alertMixin';
 import { required, minLength } from 'vuelidate/lib/validators';
 import { convertToCategorySlug } from 'dashboard/helper/commons.js';
 import { PORTALS_EVENTS } from '../../../../../helper/AnalyticsHelper/events';
-import CategoryNameIconInput from './NameEmojiInput.vue';
 
 export default {
-  components: { CategoryNameIconInput },
   mixins: [alertMixin],
   props: {
     show: {
@@ -97,7 +95,6 @@ export default {
   data() {
     return {
       name: '',
-      icon: '',
       slug: '',
       description: '',
     };
@@ -117,6 +114,12 @@ export default {
         ? this.$route.params.portalSlug
         : this.portalSlug;
     },
+    nameError() {
+      if (this.$v.name.$error) {
+        return this.$t('HELP_CENTER.CATEGORY.ADD.NAME.ERROR');
+      }
+      return '';
+    },
     slugError() {
       if (this.$v.slug.$error) {
         return this.$t('HELP_CENTER.CATEGORY.ADD.SLUG.ERROR');
@@ -125,8 +128,7 @@ export default {
     },
   },
   methods: {
-    onNameChange(name) {
-      this.name = name;
+    onNameChange() {
       this.slug = convertToCategorySlug(this.name);
     },
     onCreate() {
@@ -135,15 +137,11 @@ export default {
     onClose() {
       this.$emit('cancel');
     },
-    onClickInsertEmoji(emoji) {
-      this.icon = emoji;
-    },
 
     async addCategory() {
-      const { name, slug, description, locale, icon } = this;
+      const { name, slug, description, locale } = this;
       const data = {
         name,
-        icon,
         slug,
         description,
         locale,
@@ -176,11 +174,19 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.article-info {
+  width: 100%;
+  margin: 0 0 var(--space-normal);
+  .value {
+    color: var(--s-600);
+  }
+}
+
 .input-container::v-deep {
-  @apply mt-0 mb-4 mx-0;
+  margin: 0 0 var(--space-normal);
 
   input {
-    @apply mb-0;
+    margin-bottom: 0;
   }
 }
 </style>

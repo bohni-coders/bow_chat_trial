@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 overflow-auto p-4">
+  <div class="column content-box">
     <woot-button
       color-scheme="success"
       class-names="button--fixed-top"
@@ -18,7 +18,7 @@
 <script>
 import campaignMixin from 'shared/mixins/campaignMixin';
 import Campaign from './Campaign.vue';
-import AddCampaign from './AddCampaign.vue';
+import AddCampaign from './AddCampaign';
 
 export default {
   components: {
@@ -31,10 +31,13 @@ export default {
   },
   computed: {
     buttonText() {
-      if (this.isOngoingType) {
-        return this.$t('CAMPAIGN.HEADER_BTN_TXT.ONGOING');
-      }
-      return this.$t('CAMPAIGN.HEADER_BTN_TXT.ONE_OFF');
+      if (this.isWhatsapp) return this.$t('CAMPAIGN.HEADER_BTN_TXT.WHATSAPP');
+
+      if (this.isOngoingType) return this.$t('CAMPAIGN.HEADER_BTN_TXT.ONGOING');
+
+      if (this.isOnOffType) return this.$t('CAMPAIGN.HEADER_BTN_TXT.ONE_OFF');
+
+      return this.$t('CAMPAIGN.HEADER_BTN_TXT.WHATSAPP');
     },
   },
   mounted() {

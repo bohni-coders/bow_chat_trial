@@ -4,8 +4,6 @@
     "LOADING_CHART": "Memuat data grafik...",
     "NO_ENOUGH_DATA": "Kami belum menerima cukup data untuk membuat laporan, Silakan coba lagi nanti.",
     "DOWNLOAD_AGENT_REPORTS": "Unduh laporan agen",
-    "DATA_FETCHING_FAILED": "Gagal mengambil data, silakan coba lagi nanti.",
-    "SUMMARY_FETCHING_FAILED": "Gagal mengambil ringkasan, silakan coba lagi nanti.",
     "METRICS": {
       "CONVERSATIONS": {
         "NAME": "Percakapan",
@@ -20,33 +18,21 @@
         "DESC": "( Total )"
       },
       "FIRST_RESPONSE_TIME": {
-        "NAME": "Waktu Respon Pertama",
+        "NAME": "First Response Time",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Respon Pertama adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "First Response Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Waktu Penyelesaian",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Penyelesaian adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "Resolution Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Jumlah Terselesaikan",
         "DESC": "( Total )"
-      },
-      "REPLY_TIME": {
-        "NAME": "Customer waiting time",
-        "TOOLTIP_TEXT": "Waiting time is %{metricValue} (based on %{conversationCount} conversations)"
       }
-    },
-    "DATE_RANGE_OPTIONS": {
-      "LAST_7_DAYS": "7 hari terakhir",
-      "LAST_30_DAYS": "30 hari terakhir",
-      "LAST_3_MONTHS": "3 bulan terakhir",
-      "LAST_6_MONTHS": "6 bulan terakhir",
-      "LAST_YEAR": "Tahun terakhir",
-      "CUSTOM_DATE_RANGE": "Rentang tanggal kustom"
     },
     "DATE_RANGE": [
       {
@@ -78,42 +64,36 @@
       "CONFIRM": "Terapkan",
       "PLACEHOLDER": "Pilih rentang tanggal"
     },
-    "GROUP_BY_FILTER_DROPDOWN_LABEL": "Kelompokkan Berdasarkan",
-    "DURATION_FILTER_LABEL": "Durasi",
-    "GROUPING_OPTIONS": {
-      "DAY": "Hari",
-      "WEEK": "Minggu",
-      "MONTH": "Bulan",
-      "YEAR": "Tahun"
-    },
+    "GROUP_BY_FILTER_DROPDOWN_LABEL": "Group By",
+    "DURATION_FILTER_LABEL": "Duration",
     "GROUP_BY_DAY_OPTIONS": [
       {
         "id": 1,
-        "groupBy": "Hari"
+        "groupBy": "Day"
       }
     ],
     "GROUP_BY_WEEK_OPTIONS": [
       {
         "id": 1,
-        "groupBy": "Hari"
+        "groupBy": "Day"
       },
       {
         "id": 2,
-        "groupBy": "Minggu"
+        "groupBy": "Week"
       }
     ],
     "GROUP_BY_MONTH_OPTIONS": [
       {
         "id": 1,
-        "groupBy": "Hari"
+        "groupBy": "Day"
       },
       {
         "id": 2,
-        "groupBy": "Minggu"
+        "groupBy": "Week"
       },
       {
         "id": 3,
-        "groupBy": "Bulan"
+        "groupBy": "Month"
       }
     ],
     "GROUP_BY_YEAR_OPTIONS": [
@@ -128,6 +108,10 @@
       {
         "id": 3,
         "groupBy": "Month"
+      },
+      {
+        "id": 4,
+        "groupBy": "Year"
       }
     ],
     "BUSINESS_HOURS": "Jam Kerja"
@@ -152,16 +136,16 @@
         "DESC": "( Total )"
       },
       "FIRST_RESPONSE_TIME": {
-        "NAME": "Waktu Respon Pertama",
+        "NAME": "First Response Time",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Respon Pertama adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "First Response Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Waktu Penyelesaian",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Penyelesaian adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "Resolution Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Jumlah Terselesaikan",
@@ -219,16 +203,16 @@
         "DESC": "( Total )"
       },
       "FIRST_RESPONSE_TIME": {
-        "NAME": "Waktu Respon Pertama",
+        "NAME": "First Response Time",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Respon Pertama adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "First Response Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Waktu Penyelesaian",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Penyelesaian adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "Resolution Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Jumlah Terselesaikan",
@@ -286,16 +270,16 @@
         "DESC": "( Total )"
       },
       "FIRST_RESPONSE_TIME": {
-        "NAME": "Waktu Respon Pertama",
+        "NAME": "First Response Time",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Respon Pertama adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "First Response Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Waktu Penyelesaian",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Penyelesaian adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "Resolution Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Jumlah Terselesaikan",
@@ -353,16 +337,16 @@
         "DESC": "( Total )"
       },
       "FIRST_RESPONSE_TIME": {
-        "NAME": "Waktu Respon Pertama",
+        "NAME": "First Response Time",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Respon Pertama adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "First Response Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_TIME": {
         "NAME": "Waktu Penyelesaian",
         "DESC": "( Rata-Rata )",
-        "INFO_TEXT": "Total jumlah percakapan yang digunakan untuk perhitungan:",
-        "TOOLTIP_TEXT": "Waktu Penyelesaian adalah %{metricValue} (berdasarkan %{conversationCount} percakapan)"
+        "INFO_TEXT": "Total number of conversations used for computation:",
+        "TOOLTIP_TEXT": "Resolution Time is %{metricValue} (based on %{conversationCount} conversations)"
       },
       "RESOLUTION_COUNT": {
         "NAME": "Jumlah Terselesaikan",
@@ -403,11 +387,10 @@
   "CSAT_REPORTS": {
     "HEADER": "Laporan CSAT",
     "NO_RECORDS": "Tidak ada respons survey CSAT yang tersedia.",
-    "DOWNLOAD": "Unduh Laporan CSAT",
-    "DOWNLOAD_FAILED": "Gagal mengunduh Laporan CSAT",
+    "DOWNLOAD": "Download CSAT Reports",
     "FILTERS": {
       "AGENTS": {
-        "PLACEHOLDER": "Pilih Agen"
+        "PLACEHOLDER": "Choose Agents"
       }
     },
     "TABLE": {
@@ -435,45 +418,45 @@
   },
   "OVERVIEW_REPORTS": {
     "HEADER": "Gambaran",
-    "LIVE": "Langsung",
+    "LIVE": "Live",
     "ACCOUNT_CONVERSATIONS": {
-      "HEADER": "Percakapan Terbuka",
-      "LOADING_MESSAGE": "Memuat metrik percakapan...",
+      "HEADER": "Open Conversations",
+      "LOADING_MESSAGE": "Loading conversation metrics...",
       "OPEN": "Terbuka",
-      "UNATTENDED": "Tidak Ditangani",
-      "UNASSIGNED": "Belum Ditugaskan"
+      "UNATTENDED": "Unattended",
+      "UNASSIGNED": "Belum ditugaskan"
     },
     "CONVERSATION_HEATMAP": {
-      "HEADER": "Lalu Lintas Percakapan",
-      "NO_CONVERSATIONS": "Tidak ada percakapan",
-      "CONVERSATION": "%{count} percakapan",
-      "CONVERSATIONS": "%{count} percakapan"
+      "HEADER": "Conversation Traffic",
+      "NO_CONVERSATIONS": "No conversations",
+      "CONVERSATION": "%{count} conversation",
+      "CONVERSATIONS": "%{count} conversations"
     },
     "AGENT_CONVERSATIONS": {
-      "HEADER": "Percakapan oleh Agen",
-      "LOADING_MESSAGE": "Memuat metrik agen...",
-      "NO_AGENTS": "Tidak ada percakapan oleh agen",
+      "HEADER": "Conversations by agents",
+      "LOADING_MESSAGE": "Loading agent metrics...",
+      "NO_AGENTS": "There are no conversations by agents",
       "TABLE_HEADER": {
         "AGENT": "Agen",
-        "OPEN": "TERBUKA",
-        "UNATTENDED": "Tidak Ditangani",
+        "OPEN": "OPEN",
+        "UNATTENDED": "Unattended",
         "STATUS": "Status"
       }
     },
     "AGENT_STATUS": {
-      "HEADER": "Status Agen",
+      "HEADER": "Agent status",
       "ONLINE": "Online",
       "BUSY": "Sibuk",
       "OFFLINE": "Offline"
     }
   },
   "DAYS_OF_WEEK": {
-    "SUNDAY": "Minggu",
-    "MONDAY": "Senin",
-    "TUESDAY": "Selasa",
-    "WEDNESDAY": "Rabu",
-    "THURSDAY": "Kamis",
-    "FRIDAY": "Jumat",
-    "SATURDAY": "Sabtu"
+    "SUNDAY": "Sunday",
+    "MONDAY": "Monday",
+    "TUESDAY": "Tuesday",
+    "WEDNESDAY": "Wednesday",
+    "THURSDAY": "Thursday",
+    "FRIDAY": "Friday",
+    "SATURDAY": "Saturday"
   }
 }

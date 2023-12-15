@@ -33,8 +33,7 @@
       "LABEL_SELECT": {
         "TITLE": "Añadir etiquetas",
         "PLACEHOLDER": "Buscar etiquetas",
-        "NO_RESULT": "No se encontraron etiquetas",
-        "CREATE_LABEL": "Crear nueva etiqueta"
+        "NO_RESULT": "No se encontraron etiquetas"
       }
     },
     "MERGE_CONTACT": "Combinar contacto",
@@ -71,14 +70,7 @@
       "SUBMIT": "Importar",
       "CANCEL": "Cancelar"
     },
-    "SUCCESS_MESSAGE": "Se le notificará por correo electrónico cuando se complete la importación.",
-    "ERROR_MESSAGE": "Hubo un error, por favor inténtelo de nuevo"
-  },
-  "EXPORT_CONTACTS": {
-    "BUTTON_LABEL": "Exportar",
-    "TITLE": "Exportar contactos",
-    "DESC": "Exportar contactos a un archivo CSV.",
-    "SUCCESS_MESSAGE": "El proceso de exportar esta en proceso. Será notificado por correo cuando el archivo esté listo para descargar.",
+    "SUCCESS_MESSAGE": "Contacto guardado correctamente",
     "ERROR_MESSAGE": "Hubo un error, por favor inténtelo de nuevo"
   },
   "DELETE_NOTE": {
@@ -128,9 +120,9 @@
       "PHONE_NUMBER": {
         "PLACEHOLDER": "Escriba el número de teléfono del contacto",
         "LABEL": "Número telefónico",
-        "HELP": "El número telefónico debe tener el formato E.164, por ejemplo: +753001234567 [+][código del país][código de área][número teléfonico]",
+        "HELP": "Phone number should be of E.164 format eg: +1415555555 [+][country code][area code][local phone number]. You can select the dial code from the dropdown.",
         "ERROR": "El número telefónico debe estar vacío o en formato E.164",
-        "DIAL_CODE_ERROR": "Por favor, seleccione un código de marcado de la lista",
+        "DIAL_CODE_ERROR": "Please select a dial code from the list",
         "DUPLICATE": "Este número de teléfono está en uso para otro contacto."
       },
       "LOCATION": {
@@ -142,15 +134,15 @@
         "LABEL": "Empresa"
       },
       "COUNTRY": {
-        "PLACEHOLDER": "Introduzca el nombre del país",
+        "PLACEHOLDER": "Enter the country name",
         "LABEL": "Nombre del país",
         "SELECT_PLACEHOLDER": "Seleccionar",
         "REMOVE": "Eliminar",
-        "SELECT_COUNTRY": "Seleccionar país"
+        "SELECT_COUNTRY": "Select Country"
       },
       "CITY": {
-        "PLACEHOLDER": "Introduzca el nombre de la ciudad",
-        "LABEL": "Nombre de ciudad"
+        "PLACEHOLDER": "Enter the city name",
+        "LABEL": "City Name"
       },
       "SOCIAL_PROFILES": {
         "FACEBOOK": {
@@ -190,8 +182,8 @@
         "LABEL": "Para"
       },
       "INBOX": {
-        "LABEL": "Bandeja de entrada",
-        "PLACEHOLDER": "Elegir bandeja de entrada",
+        "LABEL": "Via Inbox",
+        "PLACEHOLDER": "Choose source inbox",
         "ERROR": "Seleccione una bandeja de entrada"
       },
       "SUBJECT": {
@@ -203,10 +195,6 @@
         "LABEL": "Mensaje",
         "PLACEHOLDER": "Escriba su mensaje aquí",
         "ERROR": "El mensaje no puede estar vacío"
-      },
-      "ATTACHMENTS": {
-        "SELECT": "Seleccionar archivos",
-        "HELP_TEXT": "Arrastre y suelte los archivos aquí o elige archivos para adjuntar"
       },
       "SUBMIT": "Enviar mensaje",
       "CANCEL": "Cancelar",
@@ -223,7 +211,6 @@
     "FILTER_CONTACTS": "Filtro",
     "FILTER_CONTACTS_SAVE": "Guardar filtro",
     "FILTER_CONTACTS_DELETE": "Eliminar filtro",
-    "FILTER_CONTACTS_EDIT": "Editar segmento",
     "LIST": {
       "LOADING_MESSAGE": "Cargando contactos...",
       "404": "No hay contactos que coincidan con tu búsqueda 🔍",
@@ -347,17 +334,17 @@
     "DESCRIPTION": "Fusionar los contactos para combinar dos perfiles en uno, incluyendo todos los atributos y conversaciones.",
     "PRIMARY": {
       "TITLE": "Contacto principal",
-      "HELP_LABEL": "A eliminar"
+      "HELP_LABEL": "Mantener"
     },
-    "PARENT": {
+    "CHILD": {
       "TITLE": "Contacto para combinar",
       "PLACEHOLDER": "Buscar un contacto",
-      "HELP_LABEL": "Mantener"
+      "HELP_LABEL": "A eliminar"
     },
     "SUMMARY": {
       "TITLE": "Resumen",
-      "DELETE_WARNING": "El contacto de <strong>%{primaryContactName}</strong> se eliminará.",
-      "ATTRIBUTE_WARNING": "Los datos de contacto de <strong>%{primaryContactName}</strong> se copiarán en <strong>%{parentContactName}</strong>."
+      "DELETE_WARNING": "El contacto de <strong>%{childContactName}</strong> se eliminará.",
+      "ATTRIBUTE_WARNING": "Los datos de contacto de <strong>%{childContactName}</strong> se copiarán en <strong>%{primaryContactName}</strong>."
     },
     "SEARCH": {
       "ERROR": "ERROR"

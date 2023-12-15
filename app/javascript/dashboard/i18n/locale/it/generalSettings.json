@@ -3,7 +3,6 @@
     "TITLE": "Impostazioni account",
     "SUBMIT": "Aggiorna le impostazioni",
     "BACK": "Indietro",
-    "DISMISS": "Dismiss",
     "UPDATE": {
       "ERROR": "Impossibile aggiornare le impostazioni, riprova!",
       "SUCCESS": "Impostazioni account aggiornate con successo"
@@ -49,10 +48,7 @@
       }
     },
     "UPDATE_CHATWOOT": "È disponibile un aggiornamento %{latestChatwootVersion} per Chatwoot. Aggiorna la tua istanza.",
-    "LEARN_MORE": "Scopri di più",
-    "PAYMENT_PENDING": "Your payment is pending. Please update your payment information to continue using Chatwoot",
-    "LIMITS_UPGRADE": "Your account has exceeded the usage limits, please upgrade your plan to continue using Chatwoot",
-    "OPEN_BILLING": "Open billing"
+    "LEARN_MORE": "Scopri di più"
   },
   "FORMS": {
     "MULTISELECT": {
@@ -107,12 +103,9 @@
       "CHANGE_ASSIGNEE": "Cambia assegnatario",
       "CHANGE_PRIORITY": "Change Priority",
       "CHANGE_TEAM": "Cambia Team",
-      "SNOOZE_CONVERSATION": "Posticipa conversazione",
       "ADD_LABEL": "Aggiungi etichetta alla conversazione",
       "REMOVE_LABEL": "Rimuovi etichetta dalla conversazione",
-      "SETTINGS": "Impostazioni",
-      "AI_ASSIST": "AI Assist",
-      "APPEARANCE": "Appearance"
+      "SETTINGS": "Impostazioni"
     },
     "COMMANDS": {
       "GO_TO_CONVERSATION_DASHBOARD": "Vai alla dashboard Conversazioni",
@@ -134,7 +127,6 @@
       "GO_TO_NOTIFICATIONS": "Vai alle notifiche",
       "ADD_LABELS_TO_CONVERSATION": "Aggiungi etichetta alla conversazione",
       "ASSIGN_AN_AGENT": "Assegna un agente",
-      "AI_ASSIST": "AI Assist",
       "ASSIGN_PRIORITY": "Assign priority",
       "ASSIGN_A_TEAM": "Assegna un team",
       "MUTE_CONVERSATION": "Silenzia conversazione",
@@ -146,21 +138,10 @@
       "SNOOZE_CONVERSATION": "Posticipa conversazione",
       "UNTIL_NEXT_REPLY": "Fino alla prossima risposta",
       "UNTIL_NEXT_WEEK": "Fino alla prossima settimana",
-      "UNTIL_TOMORROW": "Fino a domani",
-      "UNTIL_NEXT_MONTH": "Until next month",
-      "AN_HOUR_FROM_NOW": "Until an hour from now",
-      "CUSTOM": "Custom...",
-      "CHANGE_APPEARANCE": "Change Appearance",
-      "LIGHT_MODE": "Light",
-      "DARK_MODE": "Dark",
-      "SYSTEM_MODE": "System"
+      "UNTIL_TOMORROW": "Fino a domani"
     }
   },
   "DASHBOARD_APPS": {
     "LOADING_MESSAGE": "Loading Dashboard App..."
-  },
-  "COMMON": {
-    "OR": "Or",
-    "CLICK_HERE": "clicca qui"
   }
 }

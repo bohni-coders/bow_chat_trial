@@ -3,12 +3,14 @@
     <span
       v-for="(user, index) in users"
       :key="user.id"
-      :class="`${
-        index ? '-ml-4' : ''
-      } inline-block rounded-full text-white shadow-solid`"
+      :class="
+        `${
+          index ? '-ml-4' : ''
+        } inline-block rounded-full text-white shadow-solid`
+      "
     >
       <thumbnail
-        size="36px"
+        size="40px"
         :username="user.name"
         :src="user.avatar"
         has-border

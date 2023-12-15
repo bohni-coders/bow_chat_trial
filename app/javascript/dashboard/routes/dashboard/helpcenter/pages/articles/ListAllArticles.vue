@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="py-0 px-0 w-full max-w-full overflow-auto bg-white dark:bg-slate-900"
-  >
+  <div class="container overflow-auto">
     <article-header
       :header-title="headerTitle"
       :count="meta.count"
@@ -15,14 +13,9 @@
       @page-change="onPageChange"
       @reorder="onReorder"
     />
-    <div
-      v-if="shouldShowLoader"
-      class="items-center flex text-base justify-center py-6 px-4 text-slate-600 dark:text-slate-200"
-    >
+    <div v-if="shouldShowLoader" class="articles--loader">
       <spinner />
-      <span class="text-slate-600 dark:text-slate-200">{{
-        $t('HELP_CENTER.TABLE.LOADING_MESSAGE')
-      }}</span>
+      <span>{{ $t('HELP_CENTER.TABLE.LOADING_MESSAGE') }}</span>
     </div>
     <empty-state
       v-else-if="shouldShowEmptyState"
@@ -34,9 +27,9 @@
 import { mapGetters } from 'vuex';
 
 import Spinner from 'shared/components/Spinner.vue';
-import ArticleHeader from 'dashboard/routes/dashboard/helpcenter/components/Header/ArticleHeader.vue';
-import EmptyState from 'dashboard/components/widgets/EmptyState.vue';
-import ArticleTable from '../../components/ArticleTable.vue';
+import ArticleHeader from 'dashboard/routes/dashboard/helpcenter/components/Header/ArticleHeader';
+import EmptyState from 'dashboard/components/widgets/EmptyState';
+import ArticleTable from '../../components/ArticleTable';
 
 export default {
   components: {
@@ -139,8 +132,8 @@ export default {
         portalSlug: this.$route.params.portalSlug,
         locale: this.$route.params.locale,
         status: this.status,
-        authorId: this.author,
-        categorySlug: this.selectedCategorySlug,
+        author_id: this.author,
+        category_slug: this.selectedCategorySlug,
       });
     },
     onPageChange(pageNumber) {
@@ -155,3 +148,18 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.container {
+  padding: 0 var(--space-normal);
+  width: 100%;
+  overflow: auto;
+  .articles--loader {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-default);
+    justify-content: center;
+    padding: var(--space-big);
+  }
+}
+</style>

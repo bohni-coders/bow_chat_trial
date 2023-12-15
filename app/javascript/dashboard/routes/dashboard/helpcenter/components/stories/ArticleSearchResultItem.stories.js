@@ -1,4 +1,4 @@
-import ArticleSearchResultItem from '../ArticleSearch/ArticleSearchResultItem.vue';
+import ArticleSearchResultItem from '../ArticleSearchResultItem.vue';
 
 export default {
   title: 'Components/Help Center/ArticleSearchResultItem',

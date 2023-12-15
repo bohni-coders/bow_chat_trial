@@ -7,37 +7,45 @@ export default {
       accountSummary: 'getAccountSummary',
       accountReport: 'getAccountReports',
     }),
-  },
-  methods: {
-    calculateTrend(key) {
-      if (!this.accountSummary.previous[key]) return 0;
-      const diff = this.accountSummary[key] - this.accountSummary.previous[key];
-      return Math.round((diff / this.accountSummary.previous[key]) * 100);
+    calculateTrend() {
+      return metric_key => {
+        if (!this.accountSummary.previous[metric_key]) return 0;
+        return Math.round(
+          ((this.accountSummary[metric_key] -
+            this.accountSummary.previous[metric_key]) /
+            this.accountSummary.previous[metric_key]) *
+            100
+        );
+      };
     },
-    displayMetric(key) {
-      if (this.isAverageMetricType(key)) {
-        return formatTime(this.accountSummary[key]);
-      }
-      return Number(this.accountSummary[key] || '').toLocaleString();
+    displayMetric() {
+      return metric_key => {
+        if (this.isAverageMetricType(metric_key)) {
+          return formatTime(this.accountSummary[metric_key]);
+        }
+        return this.accountSummary[metric_key];
+      };
     },
-    displayInfoText(key) {
-      if (this.metrics[this.currentSelection].KEY !== key) {
+    displayInfoText() {
+      return metric_key => {
+        if (this.metrics[this.currentSelection].KEY !== metric_key) {
+          return '';
+        }
+        if (this.isAverageMetricType(metric_key)) {
+          const total = this.accountReport.data
+            .map(item => item.count)
+            .reduce((prev, curr) => prev + curr, 0);
+          return `${this.metrics[this.currentSelection].INFO_TEXT} ${total}`;
+        }
         return '';
-      }
-      if (this.isAverageMetricType(key)) {
-        const total = this.accountReport.data
-          .map(item => item.count)
-          .reduce((prev, curr) => prev + curr, 0);
-        return `${this.metrics[this.currentSelection].INFO_TEXT} ${total}`;
-      }
-      return '';
+      };
     },
-    isAverageMetricType(key) {
-      return [
-        'avg_first_response_time',
-        'avg_resolution_time',
-        'reply_time',
-      ].includes(key);
+    isAverageMetricType() {
+      return metric_key => {
+        return ['avg_first_response_time', 'avg_resolution_time'].includes(
+          metric_key
+        );
+      };
     },
   },
 };

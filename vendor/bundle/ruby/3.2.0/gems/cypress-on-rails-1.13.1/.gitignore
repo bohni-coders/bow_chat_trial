@@ -1,0 +1,12 @@
+.DS_Store
+Gemfile.lock
+.ruby-version
+spec/examples.txt
+.idea
+spec/test.log
+pkg/*.gem
+vendor/bundle
+.vscode
+node_modules
+package-lock.json
+yarn.lock

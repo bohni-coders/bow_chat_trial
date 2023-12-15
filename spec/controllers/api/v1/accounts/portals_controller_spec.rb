@@ -211,36 +211,32 @@ RSpec.describe 'Api::V1::Accounts::Portals', type: :request do
     end
   end
 
-  describe 'DELETE /api/v1/accounts/{account.id}/portals/{portal.slug}/logo' do
-    context 'when it is an unauthenticated user' do
-      it 'returns unauthorized' do
-        delete "/api/v1/accounts/#{account.id}/portals/#{portal.slug}/logo"
+  describe 'POST /api/v1/accounts/{account.id}/portals/attach_file' do
+    it 'update the portal with a logo' do
+      file = fixture_file_upload(Rails.root.join('spec/assets/avatar.png'), 'image/png')
 
-        expect(response).to have_http_status(:unauthorized)
-      end
-    end
+      post "/api/v1/accounts/#{account.id}/portals/attach_file",
+           headers: admin.create_new_auth_token,
+           params: { logo: file }
 
-    context 'when it is an authenticated user' do
-      before do
-        portal.logo.attach(io: Rails.root.join('spec/assets/avatar.png').open, filename: 'avatar.png', content_type: 'image/png')
-      end
+      expect(response).to have_http_status(:success)
 
-      it 'throw error if agent' do
-        delete "/api/v1/accounts/#{account.id}/portals/#{portal.slug}/logo",
-               headers: agent.create_new_auth_token,
-               as: :json
+      blob = response.parsed_body
 
-        expect(response).to have_http_status(:unauthorized)
-      end
+      expect(blob['blob_key']).to be_present
+      expect(blob['blob_id']).to be_present
 
-      it 'delete portal logo if admin' do
-        delete "/api/v1/accounts/#{account.id}/portals/#{portal.slug}/logo",
-               headers: admin.create_new_auth_token,
-               as: :json
+      params = { blob_id: blob['blob_id'] }
 
-        expect { portal.logo.attachment.reload }.to raise_error(ActiveRecord::RecordNotFound)
-        expect(response).to have_http_status(:success)
-      end
+      expect(portal.logo.attachment).not_to be_present
+
+      patch "/api/v1/accounts/#{account.id}/portals/#{portal.slug}",
+            headers: admin.create_new_auth_token,
+            params: params
+      portal.reload
+
+      expect(portal.logo.presence).to be_truthy
+      expect(portal.logo.attachment).to be_present
     end
   end
 end

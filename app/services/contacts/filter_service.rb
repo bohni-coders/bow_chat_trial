@@ -35,7 +35,7 @@ class Contacts::FilterService < FilterService
       " (contacts.#{attribute_key})::#{current_filter['data_type']} #{filter_operator_value}#{current_filter['data_type']} #{query_operator} "
     when 'standard'
       if attribute_key == 'labels'
-        " #{tag_filter_query('Contact', 'contacts', query_hash, current_index)} "
+        " tags.id #{filter_operator_value} #{query_operator} "
       else
         " LOWER(contacts.#{attribute_key}) #{filter_operator_value} #{query_operator} "
       end
@@ -54,7 +54,7 @@ class Contacts::FilterService < FilterService
   end
 
   def base_relation
-    Current.account.contacts
+    Current.account.contacts.left_outer_joins(:labels)
   end
 
   private

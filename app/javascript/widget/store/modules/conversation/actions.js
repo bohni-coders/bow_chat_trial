@@ -10,7 +10,6 @@ import {
   deleteCustomAttribute,
 } from 'widget/api/conversation';
 
-import { ON_CONVERSATION_CREATED } from 'widget/constants/widgetBusEvents';
 import { createTemporaryMessage, getNonDeletedMessages } from './helpers';
 
 export const actions = {
@@ -22,8 +21,6 @@ export const actions = {
       const [message = {}] = messages;
       commit('pushMessageToConversation', message);
       dispatch('conversationAttributes/getAttributes', {}, { root: true });
-      // Emit event to notify that conversation is created and show the chat screen
-      bus.$emit(ON_CONVERSATION_CREATED);
     } catch (error) {
       // Ignore error
     } finally {
@@ -31,17 +28,18 @@ export const actions = {
     }
   },
   sendMessage: async ({ dispatch }, params) => {
-    const { content, replyTo } = params;
-    const message = createTemporaryMessage({ content, replyTo });
+    const { content } = params;
+    const message = createTemporaryMessage({ content });
+
     dispatch('sendMessageWithData', message);
   },
   sendMessageWithData: async ({ commit }, message) => {
-    const { id, content, replyTo, meta = {} } = message;
+    const { id, content, meta = {} } = message;
 
     commit('pushMessageToConversation', message);
     commit('updateMessageMeta', { id, meta: { ...meta, error: '' } });
     try {
-      const { data } = await sendMessageAPI(content, replyTo);
+      const { data } = await sendMessageAPI(content);
 
       commit('deleteMessage', message.id);
       commit('pushMessageToConversation', { ...data, status: 'sent' });
@@ -71,7 +69,6 @@ export const actions = {
     };
     const tempMessage = createTemporaryMessage({
       attachments: [attachment],
-      replyTo: params.replyTo,
     });
     commit('pushMessageToConversation', tempMessage);
     try {

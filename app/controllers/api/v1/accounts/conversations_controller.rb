@@ -60,7 +60,7 @@ class Api::V1::Accounts::ConversationsController < Api::V1::Accounts::BaseContro
   end
 
   def toggle_status
-    if params[:status].present?
+    if params[:status]
       set_conversation_status
       @status = @conversation.save!
     else
@@ -110,8 +110,8 @@ class Api::V1::Accounts::ConversationsController < Api::V1::Accounts::BaseContro
   end
 
   def assign_conversation
-    @conversation.assignee = current_user
-    @conversation.save!
+    @agent = Current.account.users.find(current_user.id)
+    @conversation.update_assignee(@agent)
   end
 
   def conversation

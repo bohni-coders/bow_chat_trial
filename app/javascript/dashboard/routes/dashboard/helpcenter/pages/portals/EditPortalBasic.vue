@@ -7,7 +7,6 @@
       $t('HELP_CENTER.PORTAL.EDIT.EDIT_BASIC_INFO.BUTTON_TEXT')
     "
     @submit="updatePortalSettings"
-    @delete-logo="deleteLogo"
   />
 </template>
 
@@ -15,7 +14,7 @@
 import { mapGetters } from 'vuex';
 import alertMixin from 'shared/mixins/alertMixin';
 
-import PortalSettingsBasicForm from 'dashboard/routes/dashboard/helpcenter/components/PortalSettingsBasicForm.vue';
+import PortalSettingsBasicForm from 'dashboard/routes/dashboard/helpcenter/components/PortalSettingsBasicForm';
 
 export default {
   components: {
@@ -68,19 +67,6 @@ export default {
           error?.message ||
           this.$t('HELP_CENTER.PORTAL.ADD.API.ERROR_MESSAGE_FOR_UPDATE');
       } finally {
-        this.showAlert(this.alertMessage);
-      }
-    },
-    async deleteLogo() {
-      try {
-        const portalSlug = this.lastPortalSlug;
-        await this.$store.dispatch('portals/deleteLogo', {
-          portalSlug,
-        });
-      } catch (error) {
-        this.alertMessage =
-          error?.message ||
-          this.$t('HELP_CENTER.PORTAL.ADD.LOGO.IMAGE_DELETE_ERROR');
         this.showAlert(this.alertMessage);
       }
     },

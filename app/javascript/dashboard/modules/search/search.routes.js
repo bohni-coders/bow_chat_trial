@@ -1,7 +1,6 @@
 /* eslint-disable storybook/default-exports */
+import SearchView from './components/SearchView.vue';
 import { frontendURL } from '../../helper/URLHelper';
-
-const SearchView = () => import('./components/SearchView.vue');
 
 export const routes = [
   {

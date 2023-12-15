@@ -15,7 +15,7 @@
     "FILTER_ALL": "Visi",
     "ASSIGNEE_TYPE_TABS": {
       "me": "Mano",
-      "unassigned": "Ne priskirtas",
+      "unassigned": "Unassigned",
       "all": "Visi"
     },
     "CHAT_STATUS_FILTER_ITEMS": {
@@ -36,33 +36,17 @@
       }
     },
     "VIEW_FILTER": "Paržiūra",
-    "SORT_TOOLTIP_LABEL": "Rūšiuoti pokalbius",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "Būsena",
-      "ORDER_BY": "Rūšiuoti pagal"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Sukurta",
-        "OLDEST": "Sukurta:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Paskutiniai veiksmai:",
-        "ACTIVE": "Paskutiniai veiksmai"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Paskutiniai veiksmai"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
-        "TEXT": "Sukurta"
-      },
-      "sort_on_priority": {
-        "TEXT": "Prioritetas"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Laukiama atsakymo"
+        "TEXT": "Created at"
       }
     },
     "ATTACHMENTS": {
@@ -86,25 +70,25 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Rūšiuoti pokalbį",
+      "TITLE": "Sort conversation",
       "DROPDOWN_TITLE": "Rūšiuoti pagal",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Paskutiniai veiksmai",
-          "LABEL": "Paskutiniai veiksmai"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
-          "NAME": "Sukurta",
-          "LABEL": "Sukurta"
+          "NAME": "Created at",
+          "LABEL": "Created at"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Paskutinė vartotojo žinutė",
-          "LABEL": "Paskutinė žinutė"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },
     "RECEIVED_VIA_EMAIL": "Gauta el. paštu",
-    "VIEW_TWEET_IN_TWITTER": "Pažiūrėti Twitter tweetus",
+    "VIEW_TWEET_IN_TWITTER": "View tweet in Twitter",
     "REPLY_TO_TWEET": "Atsakyti į šitą tweetą",
     "LINK_TO_STORY": "Eikite į Instagram istoriją",
     "SENT": "Išsiųsta sėkmingai",

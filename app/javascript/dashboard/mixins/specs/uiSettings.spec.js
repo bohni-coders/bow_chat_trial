@@ -19,8 +19,7 @@ describe('uiSettingsMixin', () => {
       getUISettings: () => ({
         enter_to_send_enabled: false,
         is_ct_labels_open: true,
-        conversation_sidebar_items_order:
-          DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+        conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
         contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
       }),
     };
@@ -37,8 +36,7 @@ describe('uiSettingsMixin', () => {
     expect(wrapper.vm.uiSettings).toEqual({
       enter_to_send_enabled: false,
       is_ct_labels_open: true,
-      conversation_sidebar_items_order:
-        DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+      conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
       contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
     });
   });
@@ -58,8 +56,7 @@ describe('uiSettingsMixin', () => {
           uiSettings: {
             enter_to_send_enabled: true,
             is_ct_labels_open: true,
-            conversation_sidebar_items_order:
-              DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+            conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
             contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
           },
         },
@@ -83,8 +80,7 @@ describe('uiSettingsMixin', () => {
           uiSettings: {
             enter_to_send_enabled: false,
             is_ct_labels_open: false,
-            conversation_sidebar_items_order:
-              DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+            conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
             contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
           },
         },

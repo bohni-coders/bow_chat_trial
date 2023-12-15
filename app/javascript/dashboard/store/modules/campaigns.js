@@ -14,6 +14,7 @@ export const state = {
 
 export const getters = {
   getUIFlags(_state) {
+    // -------------------------------------- here -------------------------------
     return _state.uiFlags;
   },
   getCampaigns: _state => campaignType => {

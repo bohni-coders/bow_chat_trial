@@ -36,13 +36,10 @@
       },
       "MESSAGE_SIGNATURE_SECTION": {
         "TITLE": "Personal message signature",
-        "NOTE": "Create a unique message signature to appear at the end of every message you send from any inbox. You can also include an inline image, which is supported in live-chat, email, and API inboxes.",
+        "NOTE": "Create a personal message signature that would be added to all the messages you send from your email inbox. Use the rich content editor to create a highly personalised signature.",
         "BTN_TEXT": "Save message signature",
         "API_ERROR": "Couldn't save signature! Try again",
-        "API_SUCCESS": "Signature saved successfully",
-        "IMAGE_UPLOAD_ERROR": "Couldn't upload image! Try again",
-        "IMAGE_UPLOAD_SUCCESS": "Image added successfully. Please click on save to save the signature",
-        "IMAGE_UPLOAD_SIZE_ERROR": "Image size should be less than {size}MB"
+        "API_SUCCESS": "Signature saved successfully"
       },
       "MESSAGE_SIGNATURE": {
         "LABEL": "Message Signature",
@@ -152,7 +149,6 @@
     "SELECTOR_SUBTITLE": "Välj ett konto från följande lista",
     "PROFILE_SETTINGS": "Profilinställningar",
     "KEYBOARD_SHORTCUTS": "Keyboard Shortcuts",
-    "APPEARANCE": "Change Appearance",
     "SUPER_ADMIN_CONSOLE": "Super Admin Console",
     "LOGOUT": "Logga ut"
   },
@@ -199,7 +195,7 @@
     "CONVERSATIONS": "Konversationer",
     "ALL_CONVERSATIONS": "All Conversations",
     "MENTIONED_CONVERSATIONS": "Mentions",
-    "PARTICIPATING_CONVERSATIONS": "Deltar",
+    "PARTICIPATING_CONVERSATIONS": "Participating",
     "UNATTENDED_CONVERSATIONS": "Unattended",
     "REPORTS": "Rapporter",
     "SETTINGS": "Inställningar",
@@ -214,7 +210,7 @@
     "INTEGRATIONS": "Integrationer",
     "PROFILE_SETTINGS": "Profilinställningar",
     "ACCOUNT_SETTINGS": "Kontoinställningar",
-    "APPLICATIONS": "Applikationer",
+    "APPLICATIONS": "Applications",
     "LABELS": "Etiketter",
     "CUSTOM_ATTRIBUTES": "Egna egenskaper",
     "AUTOMATION": "Automation",
@@ -242,9 +238,9 @@
     "REPORTS_OVERVIEW": "Overview",
     "FACEBOOK_REAUTHORIZE": "Din Facebook-anslutning har löpt ut, vänligen återanslut din Facebook-sida för att fortsätta med tjänsterna",
     "HELP_CENTER": {
-      "TITLE": "Hjälpcenter",
-      "ALL_ARTICLES": "Alla artiklar",
-      "MY_ARTICLES": "Mina artiklar",
+      "TITLE": "Help Center (Beta)",
+      "ALL_ARTICLES": "All Articles",
+      "MY_ARTICLES": "My Articles",
       "DRAFT": "Draft",
       "ARCHIVED": "Archived",
       "CATEGORY": "Category",

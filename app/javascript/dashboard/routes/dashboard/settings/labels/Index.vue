@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 overflow-auto p-4">
+  <div class="column content-box">
     <woot-button
       color-scheme="success"
       class-names="button--fixed-top"
@@ -8,11 +8,11 @@
     >
       {{ $t('LABEL_MGMT.HEADER_BTN_TXT') }}
     </woot-button>
-    <div class="flex flex-row gap-4">
-      <div class="w-[60%]">
+    <div class="row">
+      <div class="small-8 columns with-right-space">
         <p
           v-if="!uiFlags.isFetching && !records.length"
-          class="flex h-full items-center flex-col justify-center"
+          class="no-items-error-message"
         >
           {{ $t('LABEL_MGMT.LIST.404') }}
         </p>
@@ -32,9 +32,7 @@
           <tbody>
             <tr v-for="(label, index) in records" :key="label.title">
               <td class="label-title">
-                <span class="overflow-hidden whitespace-nowrap text-ellipsis">{{
-                  label.title
-                }}</span>
+                <span class="text-truncate">{{ label.title }}</span>
               </td>
               <td>{{ label.description }}</td>
               <td>
@@ -73,7 +71,7 @@
         </table>
       </div>
 
-      <div class="w-[34%]">
+      <div class="small-4 columns">
         <span v-dompurify-html="$t('LABEL_MGMT.SIDEBAR_TXT')" />
       </div>
     </div>
@@ -103,8 +101,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import AddLabel from './AddLabel.vue';
-import EditLabel from './EditLabel.vue';
+import AddLabel from './AddLabel';
+import EditLabel from './EditLabel';
 import alertMixin from 'shared/mixins/alertMixin';
 
 export default {
@@ -129,10 +127,14 @@ export default {
     }),
     // Delete Modal
     deleteConfirmText() {
-      return this.$t('LABEL_MGMT.DELETE.CONFIRM.YES');
+      return `${this.$t('LABEL_MGMT.DELETE.CONFIRM.YES')} ${
+        this.selectedResponse.title
+      }`;
     },
     deleteRejectText() {
-      return this.$t('LABEL_MGMT.DELETE.CONFIRM.NO');
+      return `${this.$t('LABEL_MGMT.DELETE.CONFIRM.NO')} ${
+        this.selectedResponse.title
+      }`;
     },
     deleteMessage() {
       return ` ${this.selectedResponse.title}?`;
@@ -191,15 +193,21 @@ export default {
 @import '~dashboard/assets/scss/variables';
 
 .label-color--container {
-  @apply flex items-center;
+  display: flex;
+  align-items: center;
 }
 
 .label-color--display {
-  @apply rounded h-4 w-4 mr-1 rtl:mr-0 rtl:ml-1 border border-solid border-slate-50 dark:border-slate-700;
+  border-radius: $space-smaller;
+  height: $space-normal;
+  margin-right: $space-smaller;
+  width: $space-normal;
+  border: 1px solid var(--color-border-light);
 }
 .label-title {
   span {
-    @apply w-60 inline-block;
+    width: var(--space-giga);
+    display: inline-block;
   }
 }
 </style>

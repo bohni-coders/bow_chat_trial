@@ -21,7 +21,7 @@ export default {
     },
     textClass: {
       type: String,
-      default: 'text-sm leading-3',
+      default: 'text-sm',
     },
     icon: {
       type: Boolean,

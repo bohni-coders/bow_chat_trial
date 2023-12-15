@@ -3,7 +3,6 @@
     "TITLE": "Podešavanja naloga",
     "SUBMIT": "Primeni izmene",
     "BACK": "Nazad",
-    "DISMISS": "Dismiss",
     "UPDATE": {
       "ERROR": "Nije bilo moguće primeniti izmene, pokušajte ponovo!",
       "SUCCESS": "Izmene podešavanja naloga su uspešno primenjene"
@@ -49,10 +48,7 @@
       }
     },
     "UPDATE_CHATWOOT": "Dostupna je nadogradnja %{latestChatwootVersion} za Chatwoot. Molim vas nadogradite vaše izdanje.",
-    "LEARN_MORE": "Saznajte više",
-    "PAYMENT_PENDING": "Your payment is pending. Please update your payment information to continue using Chatwoot",
-    "LIMITS_UPGRADE": "Your account has exceeded the usage limits, please upgrade your plan to continue using Chatwoot",
-    "OPEN_BILLING": "Open billing"
+    "LEARN_MORE": "Saznajte više"
   },
   "FORMS": {
     "MULTISELECT": {
@@ -107,12 +103,9 @@
       "CHANGE_ASSIGNEE": "Promeni dodeljenog",
       "CHANGE_PRIORITY": "Change Priority",
       "CHANGE_TEAM": "Promeni tim",
-      "SNOOZE_CONVERSATION": "Odloži razgovor",
       "ADD_LABEL": "Dodaj oznaku razgovoru",
       "REMOVE_LABEL": "Ukloni oznaku sa razgovora",
-      "SETTINGS": "Podešavanja",
-      "AI_ASSIST": "AI Assist",
-      "APPEARANCE": "Appearance"
+      "SETTINGS": "Podešavanja"
     },
     "COMMANDS": {
       "GO_TO_CONVERSATION_DASHBOARD": "Idi na radnu tablu razgovora",
@@ -134,7 +127,6 @@
       "GO_TO_NOTIFICATIONS": "Idi na obaveštenja",
       "ADD_LABELS_TO_CONVERSATION": "Dodaj oznaku razgovoru",
       "ASSIGN_AN_AGENT": "Dodeli agenta",
-      "AI_ASSIST": "AI Assist",
       "ASSIGN_PRIORITY": "Assign priority",
       "ASSIGN_A_TEAM": "Dodeli tim",
       "MUTE_CONVERSATION": "Utišaj razgovor",
@@ -146,21 +138,10 @@
       "SNOOZE_CONVERSATION": "Odloži razgovor",
       "UNTIL_NEXT_REPLY": "Do sledećeg odgovora",
       "UNTIL_NEXT_WEEK": "Do sledeće nedelje",
-      "UNTIL_TOMORROW": "Do sutra",
-      "UNTIL_NEXT_MONTH": "Until next month",
-      "AN_HOUR_FROM_NOW": "Until an hour from now",
-      "CUSTOM": "Custom...",
-      "CHANGE_APPEARANCE": "Change Appearance",
-      "LIGHT_MODE": "Light",
-      "DARK_MODE": "Dark",
-      "SYSTEM_MODE": "System"
+      "UNTIL_TOMORROW": "Do sutra"
     }
   },
   "DASHBOARD_APPS": {
     "LOADING_MESSAGE": "Loading Dashboard App..."
-  },
-  "COMMON": {
-    "OR": "Or",
-    "CLICK_HERE": "kliknite ovde"
   }
 }

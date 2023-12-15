@@ -1,17 +1,17 @@
 # if you dont specify locked attribute, the default value will be true
 # which means the particular config will be locked
 - name: INSTALLATION_NAME
-  value: 'Chatwoot'
+  value: 'Bow Chat'
 - name: LOGO_THUMBNAIL
-  value: '/brand-assets/logo_thumbnail.svg'
+  value: '/brand-assets/logo_thumbnail.svg' # changed
 - name: LOGO
-  value: '/brand-assets/logo.svg'
+  value: '/brand-assets/logo.svg' # changed .svg
 - name: BRAND_URL
   value: 'https://www.chatwoot.com'
 - name: WIDGET_BRAND_URL
-  value: 'https://www.chatwoot.com'
+  value: 'https://boni.one'
 - name: BRAND_NAME
-  value: 'Chatwoot'
+  value: 'Boni'
 - name: TERMS_URL
   value: 'https://www.chatwoot.com/terms-of-service'
 - name: PRIVACY_URL
@@ -71,14 +71,4 @@
 - name: DEPLOYMENT_ENV
   value: self-hosted
 - name: CSML_EDITOR_HOST
-  value:
-- name: LOGO_DARK
-  value: '/brand-assets/logo_dark.svg'
-- name: INSTALLATION_PRICING_PLAN
-  value: 'community'
-- name: CHATWOOT_SUPPORT_WEBSITE_TOKEN
-  value:
-- name: CHATWOOT_SUPPORT_SCRIPT_URL
-  value:
-- name: CHATWOOT_SUPPORT_IDENTIFIER_HASH
   value:

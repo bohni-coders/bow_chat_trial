@@ -1,5 +1,5 @@
 # pre-build stage
-FROM ruby:3.2.2-alpine3.18 AS pre-builder
+FROM ruby:3.2.2-alpine3.16 AS pre-builder
 
 # ARG default to production settings
 # For development docker-compose file overrides ARGS
@@ -10,30 +10,27 @@ ENV BUNDLER_VERSION=2.1.2
 ARG RAILS_SERVE_STATIC_FILES=true
 ENV RAILS_SERVE_STATIC_FILES ${RAILS_SERVE_STATIC_FILES}
 
-ARG RAILS_ENV=production
+ARG RAILS_ENV=development
 ENV RAILS_ENV ${RAILS_ENV}
-
-ARG NODE_OPTIONS="--openssl-legacy-provider"
-ENV NODE_OPTIONS ${NODE_OPTIONS}
 
 ENV BUNDLE_PATH="/gems"
 
 RUN apk update && apk add --no-cache \
-  openssl \
-  tar \
-  build-base \
-  tzdata \
-  postgresql-dev \
-  postgresql-client \
-  nodejs-current \
-  yarn \
-  git \
+    openssl \
+    tar \
+    build-base \
+    tzdata \
+    postgresql-dev \
+    postgresql-client \
+    nodejs \
+    yarn \
+    git \
   && mkdir -p /var/app \
   && gem install bundler
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
+COPY ../Gemfile ../Gemfile.lock ./
 
 # natively compile grpc and protobuf to support alpine musl (dialogflow-docker workflow)
 # https://github.com/googleapis/google-cloud-ruby/issues/13306
@@ -73,7 +70,7 @@ RUN rm -rf /gems/ruby/3.2.0/cache/*.gem \
   && rm .gitignore
 
 # final build stage
-FROM ruby:3.2.2-alpine3.18
+FROM ruby:3.2.2-alpine3.16
 
 
 ARG BUNDLE_WITHOUT="development:test"
@@ -89,22 +86,22 @@ ENV RAILS_SERVE_STATIC_FILES ${RAILS_SERVE_STATIC_FILES}
 ARG BUNDLE_FORCE_RUBY_PLATFORM=1
 ENV BUNDLE_FORCE_RUBY_PLATFORM ${BUNDLE_FORCE_RUBY_PLATFORM}
 
-ARG RAILS_ENV=production
+ARG RAILS_ENV=development
 ENV RAILS_ENV ${RAILS_ENV}
 ENV BUNDLE_PATH="/gems"
 
 RUN apk update && apk add --no-cache \
   build-base \
-  openssl \
-  tzdata \
-  postgresql-client \
-  imagemagick \
-  git \
-  vips \
+    openssl \
+    tzdata \
+    postgresql-client \
+    imagemagick \
+    git \
+    vips \
   && gem install bundler
 
 RUN if [ "$RAILS_ENV" != "production" ]; then \
-  apk add --no-cache nodejs-current yarn; \
+  apk add --no-cache nodejs yarn; \
   fi
 
 COPY --from=pre-builder /gems/ /gems/

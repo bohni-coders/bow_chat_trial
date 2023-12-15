@@ -18,7 +18,7 @@
 #  lock_to_single_conversation   :boolean          default(FALSE), not null
 #  name                          :string           not null
 #  out_of_office_message         :string
-#  sender_name_type              :integer          default("friendly"), not null
+#  sender_name_type              :integer          default(0), not null
 #  timezone                      :string           default("UTC")
 #  working_hours_enabled         :boolean          default(FALSE)
 #  created_at                    :datetime         not null
@@ -50,8 +50,6 @@ class Inbox < ApplicationRecord
                                                        message: I18n.t('errors.inboxes.validations.name') }
   validates :account_id, presence: true
   validates :timezone, inclusion: { in: TZInfo::Timezone.all_identifiers }
-  validates :out_of_office_message, length: { maximum: Limits::OUT_OF_OFFICE_MESSAGE_MAX_LENGTH }
-  validates :greeting_message, length: { maximum: Limits::GREETING_MESSAGE_MAX_LENGTH }
   validate :ensure_valid_max_assignment_limit
 
   belongs_to :account
@@ -73,12 +71,7 @@ class Inbox < ApplicationRecord
   has_many :webhooks, dependent: :destroy_async
   has_many :hooks, dependent: :destroy_async, class_name: 'Integrations::Hook'
 
-  enum sender_name_type: { friendly: 0, professional: 1 }
-
   after_destroy :delete_round_robin_agents
-
-  after_create_commit :dispatch_create_event
-  after_update_commit :dispatch_update_event
 
   scope :order_by_name, -> { order('lower(name) ASC') }
 
@@ -129,7 +122,7 @@ class Inbox < ApplicationRecord
   end
 
   def active_bot?
-    agent_bot_inbox&.active? || hooks.where(app_id: 'dialogflow', status: 'enabled').count.positive?
+    agent_bot_inbox&.active? || hooks.pluck(:app_id).include?('dialogflow')
   end
 
   def inbox_type
@@ -162,18 +155,6 @@ class Inbox < ApplicationRecord
 
   private
 
-  def dispatch_create_event
-    return if ENV['ENABLE_INBOX_EVENTS'].blank?
-
-    Rails.configuration.dispatcher.dispatch(INBOX_CREATED, Time.zone.now, inbox: self)
-  end
-
-  def dispatch_update_event
-    return if ENV['ENABLE_INBOX_EVENTS'].blank?
-
-    Rails.configuration.dispatcher.dispatch(INBOX_UPDATED, Time.zone.now, inbox: self, changed_attributes: previous_changes)
-  end
-
   def ensure_valid_max_assignment_limit
     # overridden in enterprise/app/models/enterprise/inbox.rb
   end
@@ -189,4 +170,3 @@ end
 
 Inbox.prepend_mod_with('Inbox')
 Inbox.include_mod_with('Audit::Inbox')
-Inbox.include_mod_with('Concerns::Inbox')

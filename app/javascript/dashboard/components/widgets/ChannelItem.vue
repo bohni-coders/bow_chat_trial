@@ -7,7 +7,7 @@
   />
 </template>
 <script>
-import ChannelSelector from '../ChannelSelector.vue';
+import ChannelSelector from '../ChannelSelector';
 export default {
   components: { ChannelSelector },
   props: {
@@ -21,9 +21,6 @@ export default {
     },
   },
   computed: {
-    hasFbConfigured() {
-      return window.chatwootConfig?.fbAppId;
-    },
     isActive() {
       const { key } = this.channel;
       if (Object.keys(this.enabledFeatures).length === 0) {
@@ -33,7 +30,10 @@ export default {
         return this.enabledFeatures.channel_website;
       }
       if (key === 'facebook') {
-        return this.enabledFeatures.channel_facebook && this.hasFbConfigured;
+        return this.enabledFeatures.channel_facebook;
+      }
+      if (key === 'twitter') {
+        return this.enabledFeatures.channel_twitter;
       }
       if (key === 'email') {
         return this.enabledFeatures.channel_email;

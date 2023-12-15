@@ -73,5 +73,3 @@ class Macro < ApplicationRecord
     errors.add(:actions, "Macro execution actions #{actions.join(',')} not supported.") if actions.any?
   end
 end
-
-Macro.include_mod_with('Audit::Macro')

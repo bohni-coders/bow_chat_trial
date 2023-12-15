@@ -3,7 +3,7 @@
     <resizable-text-area
       v-model="articleTitle"
       type="text"
-      :rows="1"
+      rows="1"
       class="article-heading"
       :placeholder="$t('HELP_CENTER.EDIT_ARTICLE.TITLE_PLACEHOLDER')"
       @focus="onFocus"
@@ -14,7 +14,6 @@
       v-model="articleContent"
       class="article-content"
       :placeholder="$t('HELP_CENTER.EDIT_ARTICLE.CONTENT_PLACEHOLDER')"
-      :enabled-menu-options="customEditorMenuOptions"
       @focus="onFocus"
       @blur="onBlur"
       @input="onContentInput"
@@ -24,9 +23,8 @@
 
 <script>
 import { debounce } from '@chatwoot/utils';
-import ResizableTextArea from 'shared/components/ResizableTextArea.vue';
+import ResizableTextArea from 'shared/components/ResizableTextArea';
 import WootArticleEditor from 'dashboard/components/widgets/WootWriter/FullEditor.vue';
-import { ARTICLE_EDITOR_MENU_OPTIONS } from 'dashboard/constants/editor';
 
 export default {
   components: {
@@ -48,7 +46,6 @@ export default {
       articleTitle: '',
       articleContent: '',
       saveArticle: () => {},
-      customEditorMenuOptions: ARTICLE_EDITOR_MENU_OPTIONS,
     };
   },
   mounted() {
@@ -81,21 +78,42 @@ export default {
 
 <style lang="scss" scoped>
 .edit-article--container {
-  @apply my-8 mx-auto py-0 px-6 max-w-[56rem] w-full;
+  margin: var(--space-large) auto;
+  padding: 0 var(--space-medium);
+  max-width: 89.6rem;
+  width: 100%;
 }
 
 .article-heading {
-  @apply text-[2.5rem] font-semibold w-full text-slate-900 dark:text-slate-75 p-4 hover:bg-slate-25 dark:hover:bg-slate-800 hover:rounded-md resize-none min-h-[4rem] max-h-[40rem] h-auto mb-2 border-0 border-solid border-transparent dark:border-transparent;
+  font-size: var(--font-size-giga);
+  font-weight: var(--font-weight-bold);
+  width: 100%;
+  min-height: var(--space-jumbo);
+  max-height: 64rem;
+  height: auto;
+  margin-bottom: var(--space-small);
+  border: 0px solid transparent;
+  padding: 0;
+  color: var(--s-900);
+  padding: var(--space-normal);
+  resize: none;
+
+  &:hover {
+    background: var(--s-25);
+    border-radius: var(--border-radius-normal);
+  }
 }
 
 .article-content {
-  @apply py-0 px-4 h-fit;
+  padding: 0 var(--space-normal);
+  height: fit-content;
 }
 
 ::v-deep {
   .ProseMirror-menubar-wrapper {
     .ProseMirror-woot-style {
-      @apply min-h-[15rem] max-h-full;
+      min-height: var(--space-giga);
+      max-height: 100%;
     }
   }
 }

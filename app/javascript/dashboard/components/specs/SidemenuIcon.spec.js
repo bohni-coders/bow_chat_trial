@@ -3,9 +3,7 @@ import SidemenuIcon from '../SidemenuIcon';
 
 describe('SidemenuIcon', () => {
   test('matches snapshot', () => {
-    const wrapper = shallowMount(SidemenuIcon, {
-      stubs: { WootButton: { template: '<button><slot /></button>' } },
-    });
+    const wrapper = shallowMount(SidemenuIcon);
     expect(wrapper.vm).toBeTruthy();
     expect(wrapper.element).toMatchSnapshot();
   });

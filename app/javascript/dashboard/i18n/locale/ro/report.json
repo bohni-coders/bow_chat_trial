@@ -4,8 +4,6 @@
     "LOADING_CHART": "Încărcare date grafic...",
     "NO_ENOUGH_DATA": "Nu am primit suficiente date pentru a genera raportul. Vă rugăm să încercați din nou mai târziu.",
     "DOWNLOAD_AGENT_REPORTS": "Descărcați rapoartele agenților",
-    "DATA_FETCHING_FAILED": "Preluarea datelor a eșuat, te rugăm să încerci din nou mai târziu.",
-    "SUMMARY_FETCHING_FAILED": "Preluarea rezumatului a eșuat, te rugăm să încerci mai târziu.",
     "METRICS": {
       "CONVERSATIONS": {
         "NAME": "Conversații",
@@ -34,19 +32,7 @@
       "RESOLUTION_COUNT": {
         "NAME": "Număr de rezoluții",
         "DESC": "( Total )"
-      },
-      "REPLY_TIME": {
-        "NAME": "Customer waiting time",
-        "TOOLTIP_TEXT": "Waiting time is %{metricValue} (based on %{conversationCount} conversations)"
       }
-    },
-    "DATE_RANGE_OPTIONS": {
-      "LAST_7_DAYS": "Ultimele 7 zile",
-      "LAST_30_DAYS": "Ultimele 30 zile",
-      "LAST_3_MONTHS": "Ultimele 3 luni",
-      "LAST_6_MONTHS": "Ultimele 6 luni",
-      "LAST_YEAR": "Anul trecut",
-      "CUSTOM_DATE_RANGE": "Interval de date particularizat"
     },
     "DATE_RANGE": [
       {
@@ -78,14 +64,8 @@
       "CONFIRM": "Aplică",
       "PLACEHOLDER": "Selectarea intervalului de date"
     },
-    "GROUP_BY_FILTER_DROPDOWN_LABEL": "Grupează după",
+    "GROUP_BY_FILTER_DROPDOWN_LABEL": "Nu sunt conversații active în acest grup.",
     "DURATION_FILTER_LABEL": "Durata",
-    "GROUPING_OPTIONS": {
-      "DAY": "Zi",
-      "WEEK": "Săptămână",
-      "MONTH": "Luna",
-      "YEAR": "Anul"
-    },
     "GROUP_BY_DAY_OPTIONS": [
       {
         "id": 1,
@@ -128,6 +108,10 @@
       {
         "id": 3,
         "groupBy": "Luna"
+      },
+      {
+        "id": 4,
+        "groupBy": "Anul"
       }
     ],
     "BUSINESS_HOURS": "Program de lucru"
@@ -270,7 +254,7 @@
     "HEADER": "Prezentare generală a inboxului",
     "LOADING_CHART": "Încărcare date grafic...",
     "NO_ENOUGH_DATA": "Nu am primit suficiente date pentru a genera raportul. Vă rugăm să încercați din nou mai târziu.",
-    "DOWNLOAD_INBOX_REPORTS": "Descărcarea rapoartelor inbox",
+    "DOWNLOAD_INBOX_REPORTS": "Descarcă un formular csv.",
     "FILTER_DROPDOWN_LABEL": "Selectați Inbox",
     "METRICS": {
       "CONVERSATIONS": {
@@ -404,7 +388,6 @@
     "HEADER": "Rapoarte CSAT",
     "NO_RECORDS": "Nu există răspunsuri predefinite disponibile în acest cont.",
     "DOWNLOAD": "Descărcați rapoartele CSAT",
-    "DOWNLOAD_FAILED": "Descărcarea rapoartelor CSAT a eșuat",
     "FILTERS": {
       "AGENTS": {
         "PLACEHOLDER": "Alege agenți"

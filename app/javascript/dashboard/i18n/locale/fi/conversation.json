@@ -12,10 +12,6 @@
     "NO_INBOX_2": " päästäksesi alkuun",
     "NO_INBOX_AGENT": "Voi ei! Näyttää siltä, että et kuulu mihinkään saapuneet-kansioon. Ota yhteyttä työnantajaasi",
     "SEARCH_MESSAGES": "Etsi viestejä keskusteluissa",
-    "EMPTY_STATE": {
-      "CMD_BAR": "to open command menu",
-      "KEYBOARD_SHORTCUTS": "to view keyboard shortcuts"
-    },
     "SEARCH": {
       "TITLE": "Etsi viestejä",
       "RESULT_TITLE": "Search Results",
@@ -34,6 +30,7 @@
     "ASSIGN_TO_ME": "Siirrä minulle",
     "TWILIO_WHATSAPP_CAN_REPLY": "You can only reply to this conversation using a template message due to",
     "TWILIO_WHATSAPP_24_HOURS_WINDOW": "24h vastausikkuna",
+    "SELECT_A_TWEET_TO_REPLY": "Please select a tweet to reply to.",
     "REPLYING_TO": "Olet vastaamassa:",
     "REMOVE_SELECTION": "Poista valinnat",
     "DOWNLOAD": "Lataa",
@@ -46,7 +43,6 @@
     "NO_RESPONSE": "No response",
     "RATING_TITLE": "Arvio",
     "FEEDBACK_TITLE": "Palaute",
-    "REPLY_MESSAGE_NOT_FOUND": "Message not available",
     "CARD": {
       "SHOW_LABELS": "Show labels",
       "HIDE_LABELS": "Hide labels"
@@ -58,25 +54,18 @@
       "OPEN": "Näytä",
       "CLOSE": "Sulje",
       "DETAILS": "tiedot",
-      "SNOOZED_UNTIL": "Snoozed until",
       "SNOOZED_UNTIL_TOMORROW": "Snoozed until tomorrow",
       "SNOOZED_UNTIL_NEXT_WEEK": "Snoozed until next week",
       "SNOOZED_UNTIL_NEXT_REPLY": "Snoozed until next reply"
     },
     "RESOLVE_DROPDOWN": {
       "MARK_PENDING": "Mark as pending",
-      "SNOOZE_UNTIL": "Snooze",
       "SNOOZE": {
         "TITLE": "Snooze until",
         "NEXT_REPLY": "Next reply",
         "TOMORROW": "Tomorrow",
         "NEXT_WEEK": "Next week"
       }
-    },
-    "CUSTOM_SNOOZE": {
-      "TITLE": "Snooze until",
-      "APPLY": "Snooze",
-      "CANCEL": "Peruuta"
     },
     "PRIORITY": {
       "TITLE": "Priority",
@@ -139,8 +128,7 @@
       "PRIVATE_NOTE": "Sisäinen merkintä",
       "SEND": "Lähetä",
       "CREATE": "Lisää muistiinpano",
-      "DISMISS_REPLY": "Dismiss reply",
-      "REPLYING_TO": "Replying to:",
+      "TWEET": "Twiittaa",
       "TIP_FORMAT_ICON": "Show rich text editor",
       "TIP_EMOJI_ICON": "Show emoji selector",
       "TIP_ATTACH_ICON": "Attach files",
@@ -152,7 +140,6 @@
       "STOP_AUDIO_RECORDING": "Stop audio recording",
       "": "",
       "EMAIL_HEAD": {
-        "TO": "TO",
         "ADD_BCC": "Add bcc",
         "CC": {
           "LABEL": "CC",
@@ -195,7 +182,6 @@
     },
     "CONTEXT_MENU": {
       "COPY": "Kopioi",
-      "REPLY_TO": "Reply to this message",
       "DELETE": "Poista",
       "CREATE_A_CANNED_RESPONSE": "Add to canned responses",
       "TRANSLATE": "Translate",
@@ -270,17 +256,17 @@
   "CONVERSATION_CUSTOM_ATTRIBUTES": {
     "ADD_BUTTON_TEXT": "Create attribute",
     "UPDATE": {
-      "SUCCESS": "Tunniste päivitetty onnistuneesti",
-      "ERROR": "Attribuuttia ei voida päivittää. Yritä myöhemmin uudelleen"
+      "SUCCESS": "Attribute updated successfully",
+      "ERROR": "Unable to update attribute. Please try again later"
     },
     "ADD": {
       "TITLE": "Add",
-      "SUCCESS": "Attribuutin lisäys onnistui",
-      "ERROR": "Attribuuttia ei voitu lisätä. Yritä myöhemmin uudelleen"
+      "SUCCESS": "Attribute added successfully",
+      "ERROR": "Unable to add attribute. Please try again later"
     },
     "DELETE": {
-      "SUCCESS": "Attribuutin poisto onnistui",
-      "ERROR": "Attribuuttia ei voida poistaa. Yritä uudelleen myöhemmin"
+      "SUCCESS": "Attribute deleted successfully",
+      "ERROR": "Unable to delete attribute. Please try again later"
     },
     "ATTRIBUTE_SELECT": {
       "TITLE": "Lisää määritteitä",

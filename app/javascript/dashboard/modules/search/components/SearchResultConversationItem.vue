@@ -5,7 +5,7 @@
     </div>
     <div class="conversation-details">
       <div class="meta-wrap">
-        <div class="flex-container">
+        <div class="flex-container ">
           <woot-label
             class="conversation-id"
             :title="`#${id}`"
@@ -13,29 +13,17 @@
             small
           />
           <div class="inbox-name-wrap">
-            <inbox-name :inbox="inbox" class="mr-2 rtl:mr-0 rtl:ml-2" />
+            <inbox-name :inbox="inbox" class="margin-right-1" />
           </div>
         </div>
         <div>
           <span class="created-at">{{ createdAtTime }}</span>
         </div>
       </div>
-      <div class="user-details">
-        <h5
-          v-if="name"
-          class="text-block-title name text-slate-800 dark:text-slate-100"
-        >
-          <span class="pre-text"> {{ $t('SEARCH.FROM') }}: </span>
-          {{ name }}
-        </h5>
-        <h5
-          v-if="email"
-          class="text-block-title email text-slate-700 dark:text-slate-200 overflow-hidden whitespace-nowrap text-ellipsis"
-        >
-          <span class="pre-text">{{ $t('SEARCH.EMAIL') }}:</span>
-          {{ email }}
-        </h5>
-      </div>
+      <h5 v-if="name" class="text-block-title name">
+        <span class="pre-text">from:</span>
+        {{ name }}
+      </h5>
       <slot />
     </div>
   </router-link>
@@ -61,10 +49,6 @@ export default {
       default: () => ({}),
     },
     name: {
-      type: String,
-      default: '',
-    },
-    email: {
       type: String,
       default: '',
     },
@@ -101,37 +85,57 @@ export default {
 
 <style scoped lang="scss">
 .conversation-item {
-  @apply cursor-pointer flex p-2 rounded hover:bg-slate-25 dark:hover:bg-slate-800;
+  cursor: pointer;
+  display: flex;
+  padding: var(--space-small);
+  border-radius: var(--border-radius-small);
+
+  &:hover {
+    background-color: var(--s-25);
+  }
 }
 
 .meta-wrap {
-  @apply flex items-center justify-between mb-1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-smaller);
 }
 .icon-wrap {
-  @apply w-6 h-6 flex-shrink-0  bg-woot-75 dark:bg-woot-600/50 flex items-center justify-center rounded text-woot-600 dark:text-woot-500;
+  width: var(--space-medium);
+  height: var(--space-medium);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--w-600);
+  border-radius: var(--border-radius-small);
+  background-color: var(--w-75);
 }
 
 .inbox-name-wrap {
-  @apply bg-slate-25 dark:bg-slate-800 h-5 flex justify-center items-center rounded w-fit ml-1 rtl:ml-0 rtl:mr-1;
+  background-color: var(--s-25);
+  height: var(--space-two);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-small);
+  width: fit-content;
+  margin-left: var(--space-smaller);
 }
 .conversation-details {
-  @apply ml-2 flex-grow min-w-0;
-}
-
-.name {
-  @apply flex-shrink-0;
+  margin-left: var(--space-small);
+  flex-grow: 1;
+  min-width: 0;
 }
 .conversation-id,
-.name,
-.email {
-  @apply m-0;
+.name {
+  margin: 0;
 }
 .created-at,
 .pre-text {
-  @apply text-slate-600 dark:text-slate-100 text-xs font-normal;
-}
-
-.user-details {
-  @apply flex gap-2;
+  color: var(--s-600);
+  font-size: var(--font-size-mini);
+  font-weight: var(--font-weight-normal);
 }
 </style>

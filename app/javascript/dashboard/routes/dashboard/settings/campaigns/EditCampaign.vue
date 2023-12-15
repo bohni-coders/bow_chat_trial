@@ -1,8 +1,8 @@
 <template>
-  <div class="h-auto overflow-auto flex flex-col">
+  <div class="column content-box">
     <woot-modal-header :header-title="pageTitle" />
-    <form class="flex flex-col w-full" @submit.prevent="editCampaign">
-      <div class="w-full">
+    <form class="row" @submit.prevent="editCampaign">
+      <div class="medium-12 columns">
         <woot-input
           v-model="title"
           :label="$t('CAMPAIGN.ADD.FORM.TITLE.LABEL')"
@@ -12,12 +12,10 @@
           :placeholder="$t('CAMPAIGN.ADD.FORM.TITLE.PLACEHOLDER')"
           @blur="$v.title.$touch"
         />
-        <div class="editor-wrap">
-          <label>
-            {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.LABEL') }}
-          </label>
+        <label class="editor-wrap">
+          {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.LABEL') }}
           <woot-message-editor
-            v-model="message"
+            v-model.trim="message"
             class="message-editor"
             :is-format-mode="true"
             :class="{ editor_warning: $v.message.$error }"
@@ -27,7 +25,7 @@
           <span v-if="$v.message.$error" class="editor-warning__message">
             {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.ERROR') }}
           </span>
-        </div>
+        </label>
 
         <label :class="{ error: $v.selectedInbox.$error }">
           {{ $t('CAMPAIGN.ADD.FORM.INBOX.LABEL') }}
@@ -99,7 +97,7 @@
           {{ $t('CAMPAIGN.ADD.FORM.TRIGGER_ONLY_BUSINESS_HOURS') }}
         </label>
       </div>
-      <div class="flex flex-row justify-end gap-2 py-2 px-0 w-full">
+      <div class="modal-footer">
         <woot-button :is-loading="uiFlags.isCreating">
           {{ $t('CAMPAIGN.EDIT.UPDATE_BUTTON_TEXT') }}
         </woot-button>
@@ -114,7 +112,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
-import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor.vue';
+import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor';
 import alertMixin from 'shared/mixins/alertMixin';
 import campaignMixin from 'shared/mixins/campaignMixin';
 import { URLPattern } from 'urlpattern-polyfill';
@@ -283,16 +281,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 ::v-deep .ProseMirror-woot-style {
-  height: 5rem;
-}
-
-.message-editor {
-  @apply px-3;
-
-  ::v-deep {
-    .ProseMirror-menubar {
-      @apply rounded-tl-[4px];
-    }
-  }
+  height: 8rem;
 }
 </style>

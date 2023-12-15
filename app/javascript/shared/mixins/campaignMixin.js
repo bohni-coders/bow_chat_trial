@@ -12,5 +12,8 @@ export default {
     isOnOffType() {
       return this.campaignType === CAMPAIGN_TYPES.ONE_OFF;
     },
+    isWhatsapp() {
+      return this.campaignType === CAMPAIGN_TYPES.WHATSAPP; // whatsapp
+    },
   },
 };

@@ -27,7 +27,7 @@ class PortalPolicy < ApplicationPolicy
     @account_user.administrator?
   end
 
-  def logo?
+  def attach_file?
     @account_user.administrator?
   end
 

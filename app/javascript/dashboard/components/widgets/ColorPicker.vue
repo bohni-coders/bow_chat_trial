@@ -61,16 +61,21 @@ export default {
 }
 
 .colorpicker--selected {
-  @apply border border-solid border-slate-50 dark:border-slate-600 rounded cursor-pointer h-8 w-8 mb-4;
+  border: 1px solid var(--color-border-light);
+  border-radius: $space-smaller;
+  cursor: pointer;
+  height: $space-large;
+  margin-bottom: $space-normal;
+  width: $space-large;
 }
 
 .colorpicker--chrome.vc-chrome {
-  @apply shadow-lg -mt-2.5 absolute z-[9999] border border-solid border-slate-75 dark:border-slate-600 rounded;
+  @include elegant-card;
 
-  ::v-deep {
-    input {
-      @apply bg-white dark:bg-white;
-    }
-  }
+  border: 1px solid $color-border;
+  border-radius: $space-smaller;
+  margin-top: -$space-one;
+  position: absolute;
+  z-index: 9999;
 }
 </style>

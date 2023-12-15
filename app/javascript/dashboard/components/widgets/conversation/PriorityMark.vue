@@ -6,13 +6,8 @@
       delay: { show: 1500, hide: 0 },
       hideOnClick: true,
     }"
-    class="shrink-0 rounded-sm inline-flex w-3.5 h-3.5"
-    :class="{
-      'bg-red-50 dark:bg-red-700 dark:bg-opacity-30 text-red-500 dark:text-red-600':
-        isUrgent,
-      'bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-200':
-        !isUrgent,
-    }"
+    class="conversation-priority-mark"
+    :class="{ urgent: priority === CONVERSATION_PRIORITY.URGENT }"
   >
     <fluent-icon
       :icon="`priority-${priority.toLowerCase()}`"
@@ -46,9 +41,24 @@ export default {
         `CONVERSATION.PRIORITY.OPTIONS.${this.priority.toUpperCase()}`
       );
     },
-    isUrgent() {
-      return this.priority === CONVERSATION_PRIORITY.URGENT;
-    },
   },
 };
 </script>
+
+<style scoped lang="scss">
+.conversation-priority-mark {
+  align-items: center;
+  flex-shrink: 0;
+  background: var(--s-50);
+  border-radius: var(--border-radius-small);
+  color: var(--s-600);
+  display: inline-flex;
+  width: var(--space-snug);
+  height: var(--space-snug);
+
+  &.urgent {
+    background: var(--r-50);
+    color: var(--r-500);
+  }
+}
+</style>

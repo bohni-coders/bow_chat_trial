@@ -3,8 +3,8 @@ import { IFrameHelper } from './IFrameHelper';
 import { isExpandedView } from './settingsHelper';
 
 export const bubbleSVG =
-  'M240.808 240.808H122.123C56.6994 240.808 3.45695 187.562 3.45695 122.122C3.45695 56.7031 56.6994 3.45697 122.124 3.45697C187.566 3.45697 240.808 56.7031 240.808 122.122V240.808Z';
-
+  'M225.42,177.36a120,120,0,1,0-43.73,45.58L232,232.26a3.07,3.07,0,0,0,3.55-3.63Zm-35.7,8.17a1.86,1.86,0,0,1-2.14,2.21l-30.37-5.64a72.27,72.27,0,1,1,26.4-27.49Z';
+  
 export const body = document.getElementsByTagName('body')[0];
 export const widgetHolder = document.createElement('div');
 

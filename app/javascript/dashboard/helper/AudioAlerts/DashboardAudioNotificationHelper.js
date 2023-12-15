@@ -97,7 +97,6 @@ class DashboardAudioNotificationHelper {
     return conversationAssigneeId === this.currentUserId;
   };
 
-  // eslint-disable-next-line class-methods-use-this
   isMessageFromCurrentConversation = message => {
     return (
       window.WOOT.$store.getters.getSelectedChat?.id === message.conversation_id

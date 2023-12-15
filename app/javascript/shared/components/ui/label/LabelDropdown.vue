@@ -1,18 +1,9 @@
 <template>
-  <div class="flex flex-col w-full max-h-[12.5rem]">
-    <div class="flex items-center justify-center mb-1">
-      <h4
-        class="text-sm text-slate-800 dark:text-slate-100 m-0 overflow-hidden whitespace-nowrap text-ellipsis flex-grow"
-      >
-        {{ $t('CONTACT_PANEL.LABELS.LABEL_SELECT.TITLE') }}
-      </h4>
-      <hotkey
-        custom-class="text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-600 text-xxs border border-solid border-slate-75 dark:border-slate-600"
-      >
-        L
-      </hotkey>
-    </div>
-    <div class="mb-2 flex-shrink-0 flex-grow-0 flex-auto max-h-8">
+  <div class="dropdown-search-wrap">
+    <h4 class="text-block-title">
+      {{ $t('CONTACT_PANEL.LABELS.LABEL_SELECT.TITLE') }}
+    </h4>
+    <div class="search-wrap">
       <input
         ref="searchbar"
         v-model="search"
@@ -22,10 +13,8 @@
         :placeholder="$t('CONTACT_PANEL.LABELS.LABEL_SELECT.PLACEHOLDER')"
       />
     </div>
-    <div
-      class="flex justify-start items-start flex-grow flex-shrink flex-auto overflow-auto"
-    >
-      <div class="w-full">
+    <div class="list-wrap">
+      <div class="list">
         <woot-dropdown-menu>
           <label-dropdown-item
             v-for="label in filteredActiveLabels"
@@ -36,39 +25,8 @@
             @click="onAddRemove(label)"
           />
         </woot-dropdown-menu>
-        <div
-          v-if="noResult"
-          class="flex justify-center py-4 px-2.5 font-medium text-xs text-slate-700 dark:text-slate-200"
-        >
+        <div v-if="noResult" class="no-result">
           {{ $t('CONTACT_PANEL.LABELS.LABEL_SELECT.NO_RESULT') }}
-        </div>
-        <div
-          v-if="allowCreation && shouldShowCreate"
-          class="flex pt-1 border-t border-solid border-slate-100 dark:border-slate-900"
-        >
-          <woot-button
-            size="small"
-            variant="clear"
-            color-scheme="secondary"
-            icon="add"
-            is-expanded
-            class="button-new-label"
-            :is-disabled="hasExactMatchInResults"
-            @click="showCreateModal"
-          >
-            {{ createLabelPlaceholder }}
-            {{ parsedSearch }}
-          </woot-button>
-
-          <woot-modal
-            :show.sync="createModalVisible"
-            :on-close="hideCreateModal"
-          >
-            <add-label-modal
-              :prefill-title="parsedSearch"
-              @close="hideCreateModal"
-            />
-          </woot-modal>
         </div>
       </div>
     </div>
@@ -76,17 +34,10 @@
 </template>
 
 <script>
-import LabelDropdownItem from './LabelDropdownItem.vue';
-import Hotkey from 'dashboard/components/base/Hotkey.vue';
-import AddLabelModal from 'dashboard/routes/dashboard/settings/labels/AddLabel.vue';
-import { picoSearch } from '@scmmishra/pico-search';
-import { sanitizeLabel } from 'shared/helpers/sanitizeData';
-
+import LabelDropdownItem from './LabelDropdownItem';
 export default {
   components: {
     LabelDropdownItem,
-    AddLabelModal,
-    Hotkey,
   },
 
   props: {
@@ -98,49 +49,23 @@ export default {
       type: Array,
       default: () => [],
     },
-    allowCreation: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   data() {
     return {
       search: '',
-      createModalVisible: false,
     };
   },
 
   computed: {
-    createLabelPlaceholder() {
-      const label = this.$t('CONTACT_PANEL.LABELS.LABEL_SELECT.CREATE_LABEL');
-      return this.search ? `${label}:` : label;
-    },
-
     filteredActiveLabels() {
-      if (!this.search) return this.accountLabels;
-
-      return picoSearch(this.accountLabels, this.search, ['title'], {
-        threshold: 0.9,
+      return this.accountLabels.filter(label => {
+        return label.title.toLowerCase().includes(this.search.toLowerCase());
       });
     },
 
     noResult() {
-      return this.filteredActiveLabels.length === 0;
-    },
-
-    hasExactMatchInResults() {
-      return this.filteredActiveLabels.some(
-        label => label.title === this.search
-      );
-    },
-
-    shouldShowCreate() {
-      return this.allowCreation && this.filteredActiveLabels.length < 3;
-    },
-
-    parsedSearch() {
-      return sanitizeLabel(this.search);
+      return this.filteredActiveLabels.length === 0 && this.search !== '';
     },
   },
 
@@ -172,32 +97,56 @@ export default {
         this.onAdd(label);
       }
     },
-
-    showCreateModal() {
-      this.createModalVisible = true;
-    },
-
-    hideCreateModal() {
-      this.createModalVisible = false;
-    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.hotkey {
-  @apply flex-shrink-0;
-}
+.dropdown-search-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 20rem;
 
-.search-input {
-  @apply m-0 w-full border border-solid border-transparent h-8 text-sm text-slate-700 dark:text-slate-100 rounded-md focus:border-woot-500 bg-slate-50 dark:bg-slate-900;
-}
+  .search-wrap {
+    margin-bottom: var(--space-small);
+    flex: 0 0 auto;
+    max-height: var(--space-large);
 
-.button-new-label {
-  @apply whitespace-nowrap text-ellipsis overflow-hidden items-center;
+    .search-input {
+      margin: 0;
+      width: 100%;
+      border: 1px solid transparent;
+      height: var(--space-large);
+      font-size: var(--font-size-small);
+      padding: var(--space-small);
+      background-color: var(--color-background);
+    }
 
-  .icon {
-    @apply min-w-0;
+    input:focus {
+      border: 1px solid var(--w-500);
+    }
+  }
+
+  .list-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1 1 auto;
+    overflow: auto;
+
+    .list {
+      width: 100%;
+    }
+
+    .no-result {
+      display: flex;
+      justify-content: center;
+      color: var(--s-700);
+      padding: var(--space-smaller) var(--space-one);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-small);
+    }
   }
 }
 </style>

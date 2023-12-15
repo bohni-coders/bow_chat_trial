@@ -8,15 +8,15 @@
     },
     "TAB_HEADING": "Conversas",
     "MENTION_HEADING": "Menções",
-    "UNATTENDED_HEADING": "Por tratar",
+    "UNATTENDED_HEADING": "Unattended",
     "SEARCH": {
       "INPUT": "Pesquisar pessoas, conversas, respostas salvas .."
     },
-    "FILTER_ALL": "Todas",
+    "FILTER_ALL": "TODOS",
     "ASSIGNEE_TYPE_TABS": {
-      "me": "Minhas",
-      "unassigned": "Não atribuídas",
-      "all": "Todas"
+      "me": "Minerar",
+      "unassigned": "Não atribuído",
+      "all": "TODOS"
     },
     "CHAT_STATUS_FILTER_ITEMS": {
       "open": {
@@ -32,37 +32,21 @@
         "TEXT": "Adiado"
       },
       "all": {
-        "TEXT": "Todas"
+        "TEXT": "TODOS"
       }
     },
     "VIEW_FILTER": "Visualizar",
-    "SORT_TOOLTIP_LABEL": "Ordenar conversas",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "SItuação",
-      "ORDER_BY": "Ordenar por"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Criado",
-        "OLDEST": "Criada em:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Última atividade:",
-        "ACTIVE": "Última atividade"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Última atividade"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
         "TEXT": "Criada em"
-      },
-      "sort_on_priority": {
-        "TEXT": "Prioridade"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Resposta Pendente"
       }
     },
     "ATTACHMENTS": {
@@ -86,20 +70,20 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Ordenar conversa",
-      "DROPDOWN_TITLE": "Ordenar por",
+      "TITLE": "Sort conversation",
+      "DROPDOWN_TITLE": "Sort by",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Última atividade em",
-          "LABEL": "Última atividade"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
           "NAME": "Criada em",
           "LABEL": "Criada em"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Última resposta do utilizador em",
-          "LABEL": "Última mensagem"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },
@@ -109,7 +93,7 @@
     "LINK_TO_STORY": "Ir para story do instagram",
     "SENT": "Enviado com sucesso",
     "READ": "Lido com sucesso",
-    "DELIVERED": "Entregue com sucesso",
+    "DELIVERED": "Entregue com Sucesso",
     "NO_MESSAGES": "Nenhuma mensagem",
     "NO_CONTENT": "Sem conteúdo disponível",
     "HIDE_QUOTED_TEXT": "Ocultar Texto Citado",

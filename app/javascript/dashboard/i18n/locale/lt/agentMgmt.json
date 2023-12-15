@@ -21,7 +21,7 @@
     },
     "ADD": {
       "TITLE": "Pridėti agentą prie komandos",
-      "DESC": "Galite pridėti žmonių, kurie galės apdoroti gautuosius laiškus ir teikti pagalbą.",
+      "DESC": "You can add people who will be able to handle support for your inboxes.",
       "CANCEL_BUTTON_TEXT": "Atšaukti",
       "FORM": {
         "NAME": {

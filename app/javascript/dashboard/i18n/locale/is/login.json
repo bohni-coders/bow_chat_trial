@@ -1,10 +1,9 @@
 {
   "LOGIN": {
-    "TITLE": "Login to Chatwoot",
+    "TITLE": "Login to Boni Chat",
     "EMAIL": {
       "LABEL": "Tölvupóstfang",
-      "PLACEHOLDER": "Tölvupóstfang t.d. someone@example.com",
-      "ERROR": "Vinsamlegast skrifaðu gilt netfang"
+      "PLACEHOLDER": "Tölvupóstfang t.d. someone@example.com"
     },
     "PASSWORD": {
       "LABEL": "Lykilorð",

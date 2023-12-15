@@ -36,33 +36,17 @@
       }
     },
     "VIEW_FILTER": "Вигляд",
-    "SORT_TOOLTIP_LABEL": "Відсортувати розмови",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "Статус",
-      "ORDER_BY": "Сортувати за"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Створено",
-        "OLDEST": "Створений в:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Остання активність:",
-        "ACTIVE": "Остання активність"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Остання активність"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
         "TEXT": "Створений в"
-      },
-      "sort_on_priority": {
-        "TEXT": "Пріоритет"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Pending Response"
       }
     },
     "ATTACHMENTS": {
@@ -86,20 +70,20 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Відсортувати розмови",
+      "TITLE": "Sort conversation",
       "DROPDOWN_TITLE": "Сортувати за",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Остання активність о",
-          "LABEL": "Остання активність"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
           "NAME": "Створений в",
           "LABEL": "Створений в"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Дата останнього повідомлення",
-          "LABEL": "Останнє повідомлення"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },

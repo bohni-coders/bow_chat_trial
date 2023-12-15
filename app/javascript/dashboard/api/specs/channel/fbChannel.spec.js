@@ -1,5 +1,6 @@
 import fbChannel from '../../channel/fbChannel';
 import ApiClient from '../../ApiClient';
+import describeWithAPIMock from '../apiSpecHelper';
 
 describe('#FBChannel', () => {
   it('creates correct instance', () => {
@@ -10,26 +11,10 @@ describe('#FBChannel', () => {
     expect(fbChannel).toHaveProperty('update');
     expect(fbChannel).toHaveProperty('delete');
   });
-  describe('API calls', () => {
-    const originalAxios = window.axios;
-    const axiosMock = {
-      post: jest.fn(() => Promise.resolve()),
-      get: jest.fn(() => Promise.resolve()),
-      patch: jest.fn(() => Promise.resolve()),
-      delete: jest.fn(() => Promise.resolve()),
-    };
-
-    beforeEach(() => {
-      window.axios = axiosMock;
-    });
-
-    afterEach(() => {
-      window.axios = originalAxios;
-    });
-
+  describeWithAPIMock('API calls', context => {
     it('#create', () => {
       fbChannel.create({ omniauthToken: 'ASFM131CSF@#@$', appId: 'chatwoot' });
-      expect(axiosMock.post).toHaveBeenCalledWith(
+      expect(context.axiosMock.post).toHaveBeenCalledWith(
         '/api/v1/callbacks/register_facebook_page',
         {
           omniauthToken: 'ASFM131CSF@#@$',
@@ -42,7 +27,7 @@ describe('#FBChannel', () => {
         omniauthToken: 'ASFM131CSF@#@$',
         inboxId: 1,
       });
-      expect(axiosMock.post).toHaveBeenCalledWith(
+      expect(context.axiosMock.post).toHaveBeenCalledWith(
         '/api/v1/callbacks/reauthorize_page',
         {
           omniauth_token: 'ASFM131CSF@#@$',

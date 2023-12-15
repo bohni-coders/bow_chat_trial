@@ -76,8 +76,8 @@
         },
         "AGENT_AVAILABILITY": {
           "LABEL": "Verfügbarkeit",
-          "PLACEHOLDER": "Bitte wählen Sie den Online Status",
-          "ERROR": "Verfügbarkeit ist erforderlich"
+          "PLACEHOLDER": "Please select an availability status",
+          "ERROR": "Availability is required"
         },
         "SUBMIT": "Agent bearbeiten"
       },
@@ -111,7 +111,7 @@
         "PLACEHOLDER": {
           "AGENT": "Agenten suchen",
           "TEAM": "Teams suchen",
-          "INPUT": "Nach Agenten suchen"
+          "INPUT": "Search for agents"
         }
       }
     }

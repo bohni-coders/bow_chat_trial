@@ -1,38 +1,28 @@
 <template>
-  <div class="w-full">
+  <div class="article-container">
     <div
-      class="my-0 py-0 px-4 grid grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-4 border-b border-slate-100 dark:border-slate-700 sticky top-16 bg-white dark:bg-slate-900"
+      class="article-container--header"
       :class="{ draggable: onCategoryPage }"
     >
-      <div
-        class="font-semibold capitalize text-sm py-2 px-0 text-slate-700 dark:text-slate-100 ltr:text-left rtl:text-right col-span-4"
-      >
+      <div class="heading-item heading-title">
         {{ $t('HELP_CENTER.TABLE.HEADERS.TITLE') }}
       </div>
-      <div
-        class="font-semibold capitalize text-sm py-2 px-0 text-slate-700 dark:text-slate-100 text-left"
-      >
+      <div class="heading-item heading-category">
         {{ $t('HELP_CENTER.TABLE.HEADERS.CATEGORY') }}
       </div>
-      <div
-        class="font-semibold capitalize text-sm py-2 px-0 text-slate-700 dark:text-slate-100 text-left hidden lg:block"
-      >
+      <div class="heading-item heading-read-count">
         {{ $t('HELP_CENTER.TABLE.HEADERS.READ_COUNT') }}
       </div>
-      <div
-        class="font-semibold capitalize text-sm py-2 px-0 text-slate-700 dark:text-slate-100 text-left"
-      >
+      <div class="heading-item heading-status">
         {{ $t('HELP_CENTER.TABLE.HEADERS.STATUS') }}
       </div>
-      <div
-        class="font-semibold capitalize text-sm py-2 px-0 text-slate-700 dark:text-slate-100 text-right hidden md:block"
-      >
+      <div class="heading-item heading-last-edited">
         {{ $t('HELP_CENTER.TABLE.HEADERS.LAST_EDITED') }}
       </div>
     </div>
     <draggable
       tag="div"
-      class="border-t-0 px-4"
+      class="article-container--border"
       :disabled="!dragEnabled"
       :list="localArticles"
       ghost-class="article-ghost-class"
@@ -54,11 +44,10 @@
     </draggable>
 
     <table-footer
-      v-if="showArticleFooter"
+      v-if="articles.length"
       :current-page="currentPage"
       :total-count="totalCount"
       :page-size="pageSize"
-      class="dark:bg-slate-900 sticky bottom-0 border-t-0 px-4"
       @page-change="onPageChange"
     />
   </div>
@@ -66,7 +55,7 @@
 
 <script>
 import ArticleItem from './ArticleItem.vue';
-import TableFooter from 'dashboard/components/widgets/TableFooter.vue';
+import TableFooter from 'dashboard/components/widgets/TableFooter';
 import draggable from 'vuedraggable';
 
 export default {
@@ -107,11 +96,6 @@ export default {
     },
     onCategoryPage() {
       return this.$route.name === 'show_category';
-    },
-    showArticleFooter() {
-      return this.currentPage === 1
-        ? this.totalCount > 25
-        : this.articles.length > 0;
     },
   },
   watch: {
@@ -155,7 +139,72 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.article-container {
+  width: 100%;
+
+  & > :not([hidden]) ~ :not([hidden]) {
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+  }
+
+  .article-container--header {
+    margin: 0 var(--space-minus-normal);
+    padding: 0 var(--space-normal);
+    display: grid;
+    gap: var(--space-normal);
+    border-bottom: 1px solid var(--s-100);
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    &.draggable {
+      div.heading-item.heading-title {
+        padding: var(--space-small) var(--space-snug);
+      }
+    }
+
+    div.heading-item {
+      font-weight: var(--font-weight-bold);
+      text-transform: capitalize;
+      color: var(--s-700);
+      font-size: var(--font-size-small);
+      text-align: right;
+      padding: var(--space-small) 0;
+
+      &.heading-title {
+        text-align: left;
+        grid-column: span 4 / span 4;
+      }
+
+      @media (max-width: 1024px) {
+        &.heading-read-count {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        &.heading-read-count,
+        &.heading-last-edited {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .footer {
+    padding: 0;
+    border: 0;
+  }
+}
+
 .article-ghost-class {
-  @apply opacity-50 bg-slate-50 dark:bg-slate-800;
+  opacity: 0.5;
+  background-color: var(--s-50);
 }
 </style>

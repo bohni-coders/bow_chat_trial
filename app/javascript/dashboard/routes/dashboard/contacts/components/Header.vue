@@ -1,46 +1,35 @@
 <template>
-  <header
-    class="bg-white dark:bg-slate-900 border-b border-slate-50 dark:border-slate-800"
-  >
-    <div class="flex justify-between w-full py-2 px-4">
-      <div class="flex items-center justify-center max-w-full min-w-[6.25rem]">
+  <header class="header">
+    <div class="table-actions-wrap">
+      <div class="left-aligned-wrap">
         <woot-sidemenu-icon />
-        <h1
-          class="m-0 text-xl text-slate-900 dark:text-slate-100 overflow-hidden whitespace-nowrap text-ellipsis my-0 mx-2"
-        >
+        <h1 class="page-title header-title">
           {{ headerTitle }}
         </h1>
       </div>
-      <div class="flex gap-2">
-        <div
-          class="max-w-[400px] min-w-[150px] flex items-center relative mx-2 search-wrap"
-        >
-          <div class="flex items-center absolute h-full left-2.5">
-            <fluent-icon
-              icon="search"
-              class="h-5 leading-9 text-sm text-slate-700 dark:text-slate-200"
-            />
-          </div>
+      <div class="right-aligned-wrap">
+        <div class="search-wrap">
+          <fluent-icon icon="search" class="search-icon" />
           <input
             type="text"
             :placeholder="$t('CONTACTS_PAGE.SEARCH_INPUT_PLACEHOLDER')"
-            class="contact-search border-slate-100 dark:border-slate-600"
+            class="contact-search"
             :value="searchQuery"
-            @keyup.enter="submitSearch"
-            @input="inputSearch"
+            @keyup.enter="onSearchSubmit"
+            @input="onInputSearch"
           />
           <woot-button
             :is-loading="false"
             class="clear"
             :class-names="searchButtonClass"
-            @click="submitSearch"
+            @click="onSearchSubmit"
           >
             {{ $t('CONTACTS_PAGE.SEARCH_BUTTON') }}
           </woot-button>
         </div>
-        <div v-if="hasActiveSegments" class="flex gap-2">
+        <div v-if="hasActiveSegments">
           <woot-button
-            class="clear"
+            class="margin-right-1 clear"
             color-scheme="secondary"
             icon="edit"
             @click="onToggleEditSegmentsModal"
@@ -48,7 +37,7 @@
             {{ $t('CONTACTS_PAGE.FILTER_CONTACTS_EDIT') }}
           </woot-button>
           <woot-button
-            class="clear"
+            class="margin-right-1 clear"
             color-scheme="alert"
             icon="delete"
             @click="onToggleDeleteSegmentsModal"
@@ -56,17 +45,14 @@
             {{ $t('CONTACTS_PAGE.FILTER_CONTACTS_DELETE') }}
           </woot-button>
         </div>
-        <div v-if="!hasActiveSegments" class="relative">
-          <div
-            v-if="hasAppliedFilters"
-            class="absolute h-2 w-2 top-1 right-3 bg-slate-500 dark:bg-slate-500 rounded-full"
-          />
+        <div v-if="!hasActiveSegments" class="filters__button-wrap">
+          <div v-if="hasAppliedFilters" class="filters__applied-indicator" />
           <woot-button
-            class="clear"
+            class="margin-right-1 clear"
             color-scheme="secondary"
             data-testid="create-new-contact"
             icon="filter"
-            @click="toggleFilter"
+            @click="onToggleFilter"
           >
             {{ $t('CONTACTS_PAGE.FILTER_CONTACTS') }}
           </woot-button>
@@ -74,7 +60,7 @@
 
         <woot-button
           v-if="hasAppliedFilters && !hasActiveSegments"
-          class="clear"
+          class="margin-right-1 clear"
           color-scheme="alert"
           variant="clear"
           icon="save"
@@ -83,11 +69,11 @@
           {{ $t('CONTACTS_PAGE.FILTER_CONTACTS_SAVE') }}
         </woot-button>
         <woot-button
-          class="clear"
+          class="margin-right-1 clear"
           color-scheme="success"
           icon="person-add"
           data-testid="create-new-contact"
-          @click="toggleCreate"
+          @click="onToggleCreate"
         >
           {{ $t('CREATE_CONTACT.BUTTON_LABEL') }}
         </woot-button>
@@ -97,7 +83,7 @@
           color-scheme="info"
           icon="upload"
           class="clear"
-          @click="toggleImport"
+          @click="onToggleImport"
         >
           {{ $t('IMPORT_CONTACTS.BUTTON_LABEL') }}
         </woot-button>
@@ -105,9 +91,9 @@
         <woot-button
           v-if="isAdmin"
           color-scheme="info"
-          icon="download"
+          icon="upload"
           class="clear"
-          @click="submitExport"
+          @click="onExportSubmit"
         >
           {{ $t('EXPORT_CONTACTS.BUTTON_LABEL') }}
         </woot-button>
@@ -134,6 +120,30 @@ export default {
     segmentsId: {
       type: [String, Number],
       default: 0,
+    },
+    onInputSearch: {
+      type: Function,
+      default: () => {},
+    },
+    onSearchSubmit: {
+      type: Function,
+      default: () => {},
+    },
+    onToggleCreate: {
+      type: Function,
+      default: () => {},
+    },
+    onToggleImport: {
+      type: Function,
+      default: () => {},
+    },
+    onExportSubmit: {
+      type: Function,
+      default: () => {},
+    },
+    onToggleFilter: {
+      type: Function,
+      default: () => {},
     },
   },
   data() {
@@ -166,41 +176,97 @@ export default {
     onToggleDeleteSegmentsModal() {
       this.$emit('on-toggle-delete-filter');
     },
-    toggleCreate() {
-      this.$emit('on-toggle-create');
-    },
-    toggleFilter() {
-      this.$emit('on-toggle-filter');
-    },
-    toggleImport() {
-      this.$emit('on-toggle-import');
-    },
-    submitExport() {
-      this.$emit('on-export-submit');
-    },
-    submitSearch() {
-      this.$emit('on-search-submit');
-    },
-    inputSearch(event) {
-      this.$emit('on-input-search', event);
-    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.page-title {
+  margin: 0;
+}
+.table-actions-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-small) var(--space-normal) var(--space-small)
+    var(--space-normal);
+}
+
+.left-aligned-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-width: var(--space-mega);
+
+  .header-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 var(--space-small);
+  }
+}
+
+.right-aligned-wrap {
+  display: flex;
+}
+
 .search-wrap {
+  max-width: 400px;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: var(--space-small);
+  margin-left: var(--space-small);
+
+  .search-icon {
+    position: absolute;
+    top: 1px;
+    left: var(--space-one);
+    height: 3.8rem;
+    line-height: 3.6rem;
+    font-size: var(--font-size-medium);
+    color: var(--b-700);
+  }
   .contact-search {
-    @apply pl-9 pr-[3.75rem] text-sm w-full h-[2.375rem] m-0;
+    margin: 0;
+    height: 3.8rem;
+    width: 100%;
+    padding-left: var(--space-large);
+    padding-right: 6rem;
+    border-color: var(--s-100);
   }
 
   .button {
+    margin-left: var(--space-small);
+    height: 3.2rem;
+    right: var(--space-smaller);
+    position: absolute;
+    padding: 0 var(--space-small);
     transition: transform 100ms linear;
-    @apply ml-2 h-8 right-1 absolute py-0 px-2 opacity-0 -translate-x-px invisible;
+    opacity: 0;
+    transform: translateX(-1px);
+    visibility: hidden;
   }
 
   .button.show {
-    @apply opacity-100 translate-x-0 visible;
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+.filters__button-wrap {
+  position: relative;
+
+  .filters__applied-indicator {
+    position: absolute;
+    height: var(--space-small);
+    width: var(--space-small);
+    top: var(--space-smaller);
+    right: var(--space-slab);
+    background-color: var(--s-500);
+    border-radius: var(--border-radius-rounded);
   }
 }
 </style>

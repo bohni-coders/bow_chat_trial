@@ -12,11 +12,11 @@
         "DESC": "( Total )"
       },
       "INCOMING_MESSAGES": {
-        "NAME": "Messages received",
+        "NAME": "Incoming Messages",
         "DESC": "( Total )"
       },
       "OUTGOING_MESSAGES": {
-        "NAME": "Messages sent",
+        "NAME": "Outgoing Messages",
         "DESC": "( Total )"
       },
       "FIRST_RESPONSE_TIME": {
@@ -34,10 +34,6 @@
       "RESOLUTION_COUNT": {
         "NAME": "Resolution Count",
         "DESC": "( Total )"
-      },
-      "REPLY_TIME": {
-        "NAME": "Customer waiting time",
-        "TOOLTIP_TEXT": "Waiting time is %{metricValue} (based on %{conversationCount} conversations)"
       }
     },
     "DATE_RANGE_OPTIONS": {
@@ -97,6 +93,7 @@
       { "id": 3, "groupBy": "Month" }
     ],
     "GROUP_BY_YEAR_OPTIONS": [
+      { "id": 1, "groupBy": "Day" },
       { "id": 2, "groupBy": "Week" },
       { "id": 3, "groupBy": "Month" },
       { "id": 4, "groupBy": "Year" }

@@ -3,8 +3,7 @@
     "TITLE": "Chatwoot'ta oturum açın",
     "EMAIL": {
       "LABEL": "E-Posta",
-      "PLACEHOLDER": "example@companyname.com",
-      "ERROR": "Lütfen geçerli bir tam e-posta adresi"
+      "PLACEHOLDER": "example@companyname.com"
     },
     "PASSWORD": {
       "LABEL": "Parola",

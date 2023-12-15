@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="banner flex items-center h-12 gap-4 text-white dark:text-white text-xs py-3 px-4 justify-center"
-    :class="bannerClasses"
-  >
+  <div class="banner" :class="bannerClasses">
     <span class="banner-message">
       {{ bannerMessage }}
       <a
@@ -78,7 +75,7 @@ export default {
   },
   computed: {
     bannerClasses() {
-      const classList = [this.colorScheme];
+      const classList = [this.colorScheme, `banner-align-${this.align}`];
 
       if (this.hasActionButton || this.hasCloseButton) {
         classList.push('has-button');
@@ -99,65 +96,87 @@ export default {
 
 <style lang="scss" scoped>
 .banner {
+  --x-padding: var(--space-normal);
+  --y-padding: var(--space-slab);
+
+  display: flex;
+  gap: var(--x-padding);
+  color: var(--white);
+  font-size: var(--font-size-mini);
+  padding: var(--y-padding) var(--x-padding);
+  justify-content: center;
+
   &.primary {
-    @apply bg-woot-500 dark:bg-woot-500;
+    background: var(--w-500);
     .banner-action__button {
-      @apply bg-woot-600 dark:bg-woot-600 border-none text-white;
+      background: var(--w-600);
+      border: none;
+      color: var(--white);
 
       &:hover {
-        @apply bg-woot-700 dark:bg-woot-700;
+        background: var(--w-800);
       }
     }
   }
 
   &.secondary {
-    @apply bg-slate-200 dark:bg-slate-300 text-slate-800 dark:text-slate-800;
+    background: var(--s-200);
+    color: var(--s-800);
     a {
-      @apply text-slate-800 dark:text-slate-800;
+      color: var(--s-800);
     }
   }
 
   &.alert {
-    @apply bg-red-500 dark:bg-red-500;
+    background: var(--r-500);
     .banner-action__button {
-      @apply bg-red-700 dark:bg-red-700 border-none text-white dark:text-white;
+      background: var(--r-700);
+      border: none;
+      color: var(--white);
 
       &:hover {
-        @apply bg-red-800 dark:bg-red-800;
+        background: var(--r-800);
       }
     }
   }
 
   &.warning {
-    @apply bg-yellow-500 dark:bg-yellow-500 text-yellow-500 dark:text-yellow-500;
+    background: var(--y-600);
+    color: var(--y-500);
     a {
-      @apply text-yellow-500 dark:text-yellow-500;
+      color: var(--y-500);
     }
   }
 
   &.gray {
-    @apply text-black-500 dark:text-black-500;
+    background: var(--b-500);
     .banner-action__button {
-      @apply text-white dark:text-white;
+      color: var(--white);
     }
   }
 
   a {
-    @apply ml-1 underline text-white dark:text-white text-xs;
+    margin-left: var(--space-smaller);
+    text-decoration: underline;
+    color: var(--white);
+    font-size: var(--font-size-mini);
   }
 
   .banner-action__button {
     ::v-deep .button__content {
-      @apply whitespace-nowrap;
+      white-space: nowrap;
     }
   }
 
   .banner-message {
-    @apply flex items-center;
+    display: flex;
+    align-items: center;
   }
 
   .actions {
-    @apply flex gap-1 right-3;
+    display: flex;
+    gap: var(--space-smaller);
+    right: var(--y-padding);
   }
 }
 </style>

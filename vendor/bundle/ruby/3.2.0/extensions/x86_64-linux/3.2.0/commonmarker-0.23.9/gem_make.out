@@ -1,0 +1,109 @@
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/commonmarker-0.23.9/ext/commonmarker
+/usr/local/rvm/rubies/ruby-3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/commonmarker-0.23.9/ext/commonmarker
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-de1ujm sitelibdir\=./.gem.20231212-160499-de1ujm clean
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/commonmarker-0.23.9/ext/commonmarker
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-de1ujm sitelibdir\=./.gem.20231212-160499-de1ujm
+compiling arena.c
+compiling autolink.c
+autolink.c: In function ‘postprocess_text’:
+autolink.c:364:31: warning: passing argument 1 of ‘validate_protocol’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  364 |         if (validate_protocol("mailto:", data + start + offset + max_rewind, rewind, max_rewind)) {
+      |                               ^~~~~~~~~
+autolink.c:299:36: note: expected ‘char *’ but argument is of type ‘const char *’
+  299 | static bool validate_protocol(char protocol[], uint8_t *data, size_t rewind, size_t max_rewind) {
+      |                               ~~~~~^~~~~~~~~~
+autolink.c:369:31: warning: passing argument 1 of ‘validate_protocol’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  369 |         if (validate_protocol("xmpp:", data + start + offset + max_rewind, rewind, max_rewind)) {
+      |                               ^~~~~~~
+autolink.c:299:36: note: expected ‘char *’ but argument is of type ‘const char *’
+  299 | static bool validate_protocol(char protocol[], uint8_t *data, size_t rewind, size_t max_rewind) {
+      |                               ~~~~~^~~~~~~~~~
+autolink.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling blocks.c
+blocks.c: In function ‘cmark_parser_finish’:
+blocks.c:1538:5: warning: "CMARK_DEBUG_NODES" is not defined, evaluates to 0 [-Wundef]
+ 1538 | #if CMARK_DEBUG_NODES
+      |     ^~~~~~~~~~~~~~~~~
+blocks.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling buffer.c
+compiling cmark.c
+compiling cmark_ctype.c
+compiling commonmark.c
+commonmark.c: In function ‘S_render_node’:
+commonmark.c:405:18: warning: assignment discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  405 |       emph_delim = "_";
+      |                  ^
+commonmark.c:407:18: warning: assignment discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  407 |       emph_delim = "*";
+      |                  ^
+commonmark.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling commonmarker.c
+In file included from houdini.h:9,
+                 from commonmarker.c:3:
+config.h:8: warning: "HAVE_STDBOOL_H" redefined
+    8 | #define HAVE_STDBOOL_H
+      | 
+In file included from /usr/local/rvm/rubies/ruby-3.2.2/include/ruby-3.2.0/ruby/internal/config.h:22,
+                 from /usr/local/rvm/rubies/ruby-3.2.2/include/ruby-3.2.0/ruby/ruby.h:15,
+                 from /usr/local/rvm/rubies/ruby-3.2.2/include/ruby-3.2.0/ruby.h:38,
+                 from commonmarker.h:9,
+                 from commonmarker.c:1:
+/usr/local/rvm/rubies/ruby-3.2.2/include/ruby-3.2.0/x86_64-linux/ruby/config.h:44: note: this is the location of the previous definition
+   44 | #define HAVE_STDBOOL_H 1
+      | 
+commonmarker.c: In function ‘Init_commonmarker’:
+commonmarker.c:1224:45: warning: old-style function definition [-Wold-style-definition]
+ 1224 | __attribute__((visibility("default"))) void Init_commonmarker() {
+      |                                             ^~~~~~~~~~~~~~~~~
+commonmarker.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling core-extensions.c
+compiling ext_scanners.c
+compiling footnotes.c
+compiling houdini_href_e.c
+compiling houdini_html_e.c
+compiling houdini_html_u.c
+compiling html.c
+compiling inlines.c
+compiling iterator.c
+compiling latex.c
+compiling linked_list.c
+compiling man.c
+compiling map.c
+compiling node.c
+compiling plaintext.c
+compiling plugin.c
+compiling references.c
+compiling registry.c
+compiling render.c
+compiling scanners.c
+compiling strikethrough.c
+compiling syntax_extension.c
+compiling table.c
+compiling tagfilter.c
+compiling tasklist.c
+compiling utf8.c
+compiling xml.c
+linking shared-object commonmarker/commonmarker.so
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/commonmarker-0.23.9/ext/commonmarker
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-de1ujm sitelibdir\=./.gem.20231212-160499-de1ujm install
+/usr/bin/install -m 0755 commonmarker.so ./.gem.20231212-160499-de1ujm/commonmarker
+
+current directory: /home/onkar/projects/Boni_chat/vendor/bundle/ruby/3.2.0/gems/commonmarker-0.23.9/ext/commonmarker
+make DESTDIR\= sitearchdir\=./.gem.20231212-160499-de1ujm sitelibdir\=./.gem.20231212-160499-de1ujm clean

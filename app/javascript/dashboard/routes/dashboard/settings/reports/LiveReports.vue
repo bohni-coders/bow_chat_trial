@@ -1,9 +1,9 @@
 <template>
-  <div class="flex-1 overflow-auto p-4">
+  <div class="column content-box">
     <div class="row">
       <div class="column small-12 medium-8 conversation-metric">
         <metric-card
-          :header="$t('OVERVIEW_REPORTS.ACCOUNT_CONVERSATIONS.HEADER')"
+          :header="this.$t('OVERVIEW_REPORTS.ACCOUNT_CONVERSATIONS.HEADER')"
           :is-loading="uiFlags.isFetchingAccountConversationMetric"
           :loading-message="
             $t('OVERVIEW_REPORTS.ACCOUNT_CONVERSATIONS.LOADING_MESSAGE')
@@ -22,7 +22,7 @@
         </metric-card>
       </div>
       <div class="column small-12 medium-4">
-        <metric-card :header="$t('OVERVIEW_REPORTS.AGENT_STATUS.HEADER')">
+        <metric-card :header="this.$t('OVERVIEW_REPORTS.AGENT_STATUS.HEADER')">
           <div
             v-for="(metric, name, index) in agentStatusMetrics"
             :key="index"
@@ -37,7 +37,9 @@
       </div>
     </div>
     <div class="row">
-      <metric-card :header="$t('OVERVIEW_REPORTS.CONVERSATION_HEATMAP.HEADER')">
+      <metric-card
+        :header="this.$t('OVERVIEW_REPORTS.CONVERSATION_HEATMAP.HEADER')"
+      >
         <template #control>
           <woot-button
             icon="arrow-download"
@@ -56,7 +58,9 @@
       </metric-card>
     </div>
     <div class="row">
-      <metric-card :header="$t('OVERVIEW_REPORTS.AGENT_CONVERSATIONS.HEADER')">
+      <metric-card
+        :header="this.$t('OVERVIEW_REPORTS.AGENT_CONVERSATIONS.HEADER')"
+      >
         <agent-table
           :agents="agents"
           :agent-metrics="agentConversationMetric"
@@ -70,10 +74,10 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import AgentTable from './components/overview/AgentTable.vue';
-import MetricCard from './components/overview/MetricCard.vue';
+import AgentTable from './components/overview/AgentTable';
+import MetricCard from './components/overview/MetricCard';
 import { OVERVIEW_METRICS } from './constants';
-import ReportHeatmap from './components/Heatmap.vue';
+import ReportHeatmap from './components/Heatmap';
 
 import endOfDay from 'date-fns/endOfDay';
 import getUnixTime from 'date-fns/getUnixTime';

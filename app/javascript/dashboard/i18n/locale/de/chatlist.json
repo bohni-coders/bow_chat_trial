@@ -35,34 +35,18 @@
         "TEXT": "Alle"
       }
     },
-    "VIEW_FILTER": "Anzeigen",
-    "SORT_TOOLTIP_LABEL": "Konversationen sortieren",
+    "VIEW_FILTER": "Aussicht",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "Status",
-      "ORDER_BY": "Sortieren nach"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Erstellt",
-        "OLDEST": "Erstellt am:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Letzte Aktivität:",
-        "ACTIVE": "Letzte Aktivität"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Letzte Aktivität"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
         "TEXT": "Erstellt am"
-      },
-      "sort_on_priority": {
-        "TEXT": "Priorität"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Ausstehende Antwort"
       }
     },
     "ATTACHMENTS": {
@@ -86,20 +70,20 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Konversationen sortieren",
+      "TITLE": "Sort conversation",
       "DROPDOWN_TITLE": "Sortieren nach",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Letzte Aktivität am",
-          "LABEL": "Letzte Aktivität"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
           "NAME": "Erstellt am",
           "LABEL": "Erstellt am"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Letzte Benutzernachricht am",
-          "LABEL": "Letzte Nachricht"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },

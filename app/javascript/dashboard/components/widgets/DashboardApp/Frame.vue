@@ -12,7 +12,7 @@
       />
       <iframe
         v-if="configItem.type === 'frame' && configItem.url"
-        :id="getFrameId(index)"
+        :id="`dashboard-app--frame-${index}`"
         :src="configItem.url"
         @load="() => onIframeLoad(index)"
       />
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import LoadingState from 'dashboard/components/widgets/LoadingState.vue';
+import LoadingState from 'dashboard/components/widgets/LoadingState';
 export default {
   components: {
     LoadingState,
@@ -38,10 +38,6 @@ export default {
     isVisible: {
       type: Boolean,
       default: false,
-    },
-    position: {
-      type: Number,
-      required: true,
     },
   },
   data() {
@@ -86,14 +82,10 @@ export default {
     };
   },
   methods: {
-    getFrameId(index) {
-      return `dashboard-app--frame-${this.position}-${index}`;
-    },
     onIframeLoad(index) {
-      // A possible alternative is to use ref instead of document.getElementById
-      // However, when ref is used together with v-for, the ref you get will be
-      // an array containing the child components mirroring the data source.
-      const frameElement = document.getElementById(this.getFrameId(index));
+      const frameElement = document.getElementById(
+        `dashboard-app--frame-${index}`
+      );
       const eventData = { event: 'appContext', data: this.dashboardAppContext };
       frameElement.contentWindow.postMessage(JSON.stringify(eventData), '*');
       this.iframeLoading = false;

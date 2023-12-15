@@ -76,8 +76,8 @@
         },
         "AGENT_AVAILABILITY": {
           "LABEL": "Beschikbaarheid",
-          "PLACEHOLDER": "Selecteer een beschikbaarheidsstatus",
-          "ERROR": "Beschikbaarheid is vereist"
+          "PLACEHOLDER": "Please select an availability status",
+          "ERROR": "Availability is required"
         },
         "SUBMIT": "Bewerk medewerker"
       },
@@ -111,7 +111,7 @@
         "PLACEHOLDER": {
           "AGENT": "Zoek agenten",
           "TEAM": "Teams zoeken",
-          "INPUT": "Zoeken naar agents"
+          "INPUT": "Search for agents"
         }
       }
     }

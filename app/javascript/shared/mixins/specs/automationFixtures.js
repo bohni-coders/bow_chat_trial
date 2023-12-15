@@ -390,7 +390,6 @@ export const inboxes = [
     working_hours_enabled: false,
     enable_email_collect: true,
     csat_survey_enabled: true,
-    sender_name_type: 0,
     enable_auto_assignment: true,
     out_of_office_message:
       'We are unavailable at the moment. Leave a message we will respond once we are back.',
@@ -462,7 +461,7 @@ export const inboxes = [
     timezone: 'America/Los_Angeles',
     callback_webhook_url: null,
     allow_messages_after_resolved: true,
-    widget_color: '#1f93ff',
+    widget_color: '#1DC775',
     website_url: 'https://acme.inc',
     hmac_mandatory: false,
     welcome_title: '',

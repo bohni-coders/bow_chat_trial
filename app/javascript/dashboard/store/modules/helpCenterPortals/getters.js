@@ -6,14 +6,12 @@ export const getters = {
   },
 
   isFetchingPortals: state => state.uiFlags.isFetching,
-  portalBySlug:
-    (...getterArguments) =>
-    portalId => {
-      const [state] = getterArguments;
-      const portal = state.portals.byId[portalId];
+  portalBySlug: (...getterArguments) => portalId => {
+    const [state] = getterArguments;
+    const portal = state.portals.byId[portalId];
 
-      return portal;
-    },
+    return portal;
+  },
   allPortals: (...getterArguments) => {
     const [state, _getters] = getterArguments;
     const portals = state.portals.allIds.map(id => {

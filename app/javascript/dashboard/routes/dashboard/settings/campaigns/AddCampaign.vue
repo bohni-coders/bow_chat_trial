@@ -1,11 +1,11 @@
 <template>
-  <div class="h-auto overflow-auto flex flex-col">
+  <div class="column content-box">
     <woot-modal-header
       :header-title="$t('CAMPAIGN.ADD.TITLE')"
       :header-content="$t('CAMPAIGN.ADD.DESC')"
     />
-    <form class="flex flex-col w-full" @submit.prevent="addCampaign">
-      <div class="w-full">
+    <form v-if="!isWhatsapp" class="row" @submit.prevent="addCampaign">
+      <div class="medium-12 columns">
         <woot-input
           v-model="title"
           :label="$t('CAMPAIGN.ADD.FORM.TITLE.LABEL')"
@@ -16,23 +16,19 @@
           @blur="$v.title.$touch"
         />
 
-        <div v-if="isOngoingType" class="editor-wrap">
-          <label>
-            {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.LABEL') }}
-          </label>
-          <div>
-            <woot-message-editor
-              v-model="message"
-              class="message-editor"
-              :class="{ editor_warning: $v.message.$error }"
-              :placeholder="$t('CAMPAIGN.ADD.FORM.MESSAGE.PLACEHOLDER')"
-              @blur="$v.message.$touch"
-            />
-            <span v-if="$v.message.$error" class="editor-warning__message">
-              {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.ERROR') }}
-            </span>
-          </div>
-        </div>
+        <label v-if="isOngoingType" class="editor-wrap">
+          {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.LABEL') }}
+          <woot-message-editor
+            v-model="message"
+            class="message-editor"
+            :class="{ editor_warning: $v.message.$error }"
+            :placeholder="$t('CAMPAIGN.ADD.FORM.MESSAGE.PLACEHOLDER')"
+            @blur="$v.message.$touch"
+          />
+          <span v-if="$v.message.$error" class="editor-warning__message">
+            {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.ERROR') }}
+          </span>
+        </label>
 
         <label v-else :class="{ error: $v.message.$error }">
           {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.LABEL') }}
@@ -43,11 +39,46 @@
             :placeholder="$t('CAMPAIGN.ADD.FORM.MESSAGE.PLACEHOLDER')"
             @blur="$v.message.$touch"
           />
+          <div
+            v-if="hasAttachments"
+            class="attachment-preview-box"
+            @paste="onPaste"
+          >
+            <attachment-preview
+              :attachments="attachedFiles"
+              :remove-attachment="removeAttachment"
+            />
+          </div>
+          <file-upload
+            ref="upload"
+            v-tooltip.top-end="$t('CONVERSATION.REPLYBOX.TIP_ATTACH_ICON')"
+            :size="4096 * 4096"
+            :accept="allowedFileTypes"
+            :multiple="true"
+            :drop="true"
+            :drop-directory="false"
+            :data="{
+              direct_upload_url: '/rails/active_storage/direct_uploads',
+              direct_upload: true,
+            }"
+            @input-file="onFileUpload"
+          >
+            <woot-button
+              class-names="button--upload"
+              :title="$t('CONVERSATION.REPLYBOX.TIP_ATTACH_ICON')"
+              icon="attach"
+              emoji="📎"
+              color-scheme="secondary"
+              variant="smooth"
+              size="small"
+            />
+          </file-upload>
+
           <span v-if="$v.message.$error" class="message">
             {{ $t('CAMPAIGN.ADD.FORM.MESSAGE.ERROR') }}
           </span>
         </label>
-
+        <!-- --------------------------------------------------------------------------------------------------------------------------- -->
         <label :class="{ error: $v.selectedInbox.$error }">
           {{ $t('CAMPAIGN.ADD.FORM.INBOX.LABEL') }}
           <select v-model="selectedInbox" @change="onChangeInbox($event)">
@@ -162,7 +193,7 @@
         </label>
       </div>
 
-      <div class="flex flex-row justify-end gap-2 py-2 px-0 w-full">
+      <div class="modal-footer">
         <woot-button :is-loading="uiFlags.isCreating">
           {{ $t('CAMPAIGN.ADD.CREATE_BUTTON_TEXT') }}
         </woot-button>
@@ -171,23 +202,43 @@
         </woot-button>
       </div>
     </form>
+    <whatsapp-campaign-form v-if="isWhatsapp" />
   </div>
 </template>
 
 <script>
+import { DirectUpload } from 'activestorage';
 import { mapGetters } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import alertMixin from 'shared/mixins/alertMixin';
-import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor.vue';
+import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor';
 import campaignMixin from 'shared/mixins/campaignMixin';
 import WootDateTimePicker from 'dashboard/components/ui/DateTimePicker.vue';
 import { URLPattern } from 'urlpattern-polyfill';
 import { CAMPAIGNS_EVENTS } from '../../../../helper/AnalyticsHelper/events';
+import WhatsappCampaignForm from './WhatsappCampaignForm.vue';
+import ReplyBox from 'dashboard/components/widgets/conversation/ReplyBox.vue';
+import ReplyBottomPanel from 'dashboard/components/widgets/WootWriter/ReplyBottomPanel.vue';
+import AttachmentPreview from 'dashboard/components/widgets/AttachmentsPreview';
+import {
+  ALLOWED_FILE_TYPES,
+  ALLOWED_FILE_TYPES_FOR_TWILIO_WHATSAPP,
+  MAXIMUM_FILE_UPLOAD_SIZE,
+  MAXIMUM_FILE_UPLOAD_SIZE_TWILIO_SMS_CHANNEL,
+  AUDIO_FORMATS,
+} from 'shared/constants/messages';
+import { checkFileSizeLimit } from 'shared/helpers/FileHelper';
+import FileUpload from 'vue-upload-component';
 
 export default {
   components: {
     WootDateTimePicker,
     WootMessageEditor,
+    WhatsappCampaignForm,
+    ReplyBox,
+    ReplyBottomPanel,
+    FileUpload,
+    AttachmentPreview,
   },
 
   mixins: [alertMixin, campaignMixin],
@@ -205,6 +256,8 @@ export default {
       scheduledAt: null,
       selectedAudience: [],
       senderList: [],
+      selectedContact: [],
+      attachedFiles: [],
     };
   },
 
@@ -251,6 +304,13 @@ export default {
         },
       };
     }
+
+    if (this.isWhatsapp) {
+      return {
+        ...commonValidations,
+      };
+    }
+
     return {
       ...commonValidations,
       selectedAudience: {
@@ -264,12 +324,20 @@ export default {
     ...mapGetters({
       uiFlags: 'campaigns/getUIFlags',
       audienceList: 'labels/getLabels',
+      globalConfig: 'globalConfig/get',
+      currentUser: 'getCurrentUser'
     }),
     inboxes() {
-      if (this.isOngoingType) {
+      if (this.isOngoingType)
         return this.$store.getters['inboxes/getWebsiteInboxes'];
-      }
-      return this.$store.getters['inboxes/getSMSInboxes'];
+
+      if (this.isOnOffType)
+        return this.$store.getters['inboxes/getOnOffInboxes'];
+
+      if (this.isWhatsapp)
+        return this.$store.getters['inboxes/getWhatsAppInboxes'];
+
+      return this.$store.getters['inboxes/getInboxes'];
     },
     sendersAndBotList() {
       return [
@@ -280,11 +348,18 @@ export default {
         ...this.senderList,
       ];
     },
+    allowedFileTypes() {
+      return ALLOWED_FILE_TYPES;
+    },
   },
   mounted() {
+    document.addEventListener('paste', this.onPaste);
     this.$track(CAMPAIGNS_EVENTS.OPEN_NEW_CAMPAIGN_MODAL, {
       type: this.campaignType,
     });
+  },
+  destroyed() {
+    document.removeEventListener('paste', this.onPaste);
   },
   methods: {
     onClose() {
@@ -335,6 +410,7 @@ export default {
         campaignDetails = {
           title: this.title,
           message: this.message,
+          attachments: this.attachedFiles, // -----------------------------------------
           inbox_id: this.selectedInbox,
           scheduled_at: this.scheduledAt,
           audience,
@@ -345,6 +421,7 @@ export default {
     async addCampaign() {
       this.$v.$touch();
       if (this.$v.$invalid) {
+        bus.$emit('newToastMessage', this.$v);
         return;
       }
       try {
@@ -364,21 +441,115 @@ export default {
         this.showAlert(errorMessage);
       }
     },
+    hasAttachments() {
+      return this.attachedFiles.length;
+    },
+    onFileUpload(file) {
+      this.onDirectFileUpload(file);
+
+      // if (this.globalConfig.directUploadsEnabled) { // ---------------------------------------
+      //   this.onDirectFileUpload(file);
+      // } else {
+      //   this.onIndirectFileUpload(file);
+      // }
+    },
+    onDirectFileUpload(file) {
+      const MAXIMUM_SUPPORTED_FILE_UPLOAD_SIZE = MAXIMUM_FILE_UPLOAD_SIZE;
+
+      if (!file) {
+        return;
+      }
+      if (checkFileSizeLimit(file, MAXIMUM_SUPPORTED_FILE_UPLOAD_SIZE)) {
+        const upload = new DirectUpload(
+          file.file,
+          `/direct-upload`,
+          {
+            directUploadWillCreateBlobWithXHR: xhr => {
+              xhr.setRequestHeader(
+                'api_access_token',
+                this.currentUser.access_token
+              );
+            },
+          }
+        );
+
+        upload.create((error, blob) => {
+          if (error) {
+            bus.$emit('newToastMessage', error);
+          } else {
+            this.attachFile({ file, blob });
+          }
+        });
+      } else {
+        bus.$emit(
+          'newToastMessage',
+          this.$t('CONVERSATION.FILE_SIZE_LIMIT', {
+            MAXIMUM_SUPPORTED_FILE_UPLOAD_SIZE,
+          })
+        );
+      }
+    },
+    onIndirectFileUpload(file) {
+      bus.$emit('newToastMessage', "indirect uploading...")
+
+      const MAXIMUM_SUPPORTED_FILE_UPLOAD_SIZE = MAXIMUM_FILE_UPLOAD_SIZE;
+      if (!file) {
+        return;
+      }
+      if (checkFileSizeLimit(file, MAXIMUM_SUPPORTED_FILE_UPLOAD_SIZE)) {
+        this.attachFile({ file });
+      } else {
+        this.showAlert(
+          this.$t('CONVERSATION.FILE_SIZE_LIMIT', {
+            MAXIMUM_SUPPORTED_FILE_UPLOAD_SIZE,
+          })
+        );
+      }
+    },
+    attachFile({ blob, file }) {
+      bus.$emit('newToastMessage', 'success...')
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file.file);
+      reader.onloadend = () => {
+        this.attachedFiles.push({
+          resource: blob || file,
+          thumb: reader.result,
+          blobSignedId: blob ? blob.signed_id : undefined,
+        });
+      };
+    },
+    removeAttachment(itemIndex) {
+      this.attachedFiles = this.attachedFiles.filter(
+        (item, index) => itemIndex !== index
+      );
+    },
+    onPaste(e) {
+      const data = e.clipboardData.files;
+      if (data.length !== 0) {
+        this.$refs.messageInput.$el.blur();
+      }
+      if (!data.length || !data[0]) {
+        return;
+      }
+      data.forEach(file => {
+        const { name, type, size } = file;
+        this.onFileUpload({ name, type, size, file: file });
+      });
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 ::v-deep .ProseMirror-woot-style {
-  height: 5rem;
+  height: 8rem;
 }
 
-.message-editor {
-  @apply px-3;
+.contact--form {
+  padding: var(--space-normal) var(--space-large) var(--space-large);
 
-  ::v-deep {
-    .ProseMirror-menubar {
-      @apply rounded-tl-[4px];
-    }
+  .columns {
+    padding: 0 var(--space-smaller);
   }
 }
 </style>

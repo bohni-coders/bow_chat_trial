@@ -47,49 +47,6 @@ describe('#getters', () => {
         },
       ]);
     });
-    it('order conversations based on last activity with ascending order', () => {
-      const state = {
-        allConversations: [
-          {
-            id: 1,
-            messages: [
-              {
-                content: 'test1',
-              },
-            ],
-            created_at: 2466424490,
-            last_activity_at: 2466424490,
-          },
-          {
-            id: 2,
-            messages: [{ content: 'test2' }],
-            created_at: 1466424480,
-            last_activity_at: 1466424480,
-          },
-        ],
-        chatSortFilter: 'latest_last',
-      };
-
-      expect(getters.getAllConversations(state)).toEqual([
-        {
-          id: 2,
-          messages: [{ content: 'test2' }],
-          created_at: 1466424480,
-          last_activity_at: 1466424480,
-        },
-        {
-          id: 1,
-          messages: [
-            {
-              content: 'test1',
-            },
-          ],
-          created_at: 2466424490,
-          last_activity_at: 2466424490,
-        },
-      ]);
-    });
-
     it('order conversations based on created at', () => {
       const state = {
         allConversations: [
@@ -110,7 +67,7 @@ describe('#getters', () => {
             last_activity_at: 1466424480,
           },
         ],
-        chatSortFilter: 'created_at_last',
+        chatSortFilter: 'sort_on_created_at',
       };
 
       expect(getters.getAllConversations(state)).toEqual([
@@ -132,50 +89,6 @@ describe('#getters', () => {
         },
       ]);
     });
-
-    it('order conversations based on created at with descending order', () => {
-      const state = {
-        allConversations: [
-          {
-            id: 1,
-            messages: [
-              {
-                content: 'test1',
-              },
-            ],
-            created_at: 1683645801, // Tuesday, 9 May 2023
-            last_activity_at: 2466424490,
-          },
-          {
-            id: 2,
-            messages: [{ content: 'test2' }],
-            created_at: 1652109801, // Monday, 9 May 2022
-            last_activity_at: 1466424480,
-          },
-        ],
-        chatSortFilter: 'created_at_first',
-      };
-
-      expect(getters.getAllConversations(state)).toEqual([
-        {
-          id: 1,
-          messages: [
-            {
-              content: 'test1',
-            },
-          ],
-          created_at: 1683645801,
-          last_activity_at: 2466424490,
-        },
-        {
-          id: 2,
-          messages: [{ content: 'test2' }],
-          created_at: 1652109801,
-          last_activity_at: 1466424480,
-        },
-      ]);
-    });
-
     it('order conversations based on default order', () => {
       const state = {
         allConversations: [
@@ -246,7 +159,7 @@ describe('#getters', () => {
             last_activity_at: 1466421280,
           },
         ],
-        chatSortFilter: 'priority_first',
+        chatSortFilter: 'sort_on_priority',
       };
 
       expect(getters.getAllConversations(state)).toEqual([
@@ -274,118 +187,6 @@ describe('#getters', () => {
           priority: 'low',
           created_at: 1683645801,
           last_activity_at: 2466424490,
-        },
-      ]);
-    });
-
-    it('order conversations based on  with descending order', () => {
-      const state = {
-        allConversations: [
-          {
-            id: 1,
-            messages: [
-              {
-                content: 'test1',
-              },
-            ],
-            priority: 'low',
-            created_at: 1683645801,
-            last_activity_at: 2466424490,
-          },
-          {
-            id: 2,
-            messages: [{ content: 'test2' }],
-            priority: 'urgent',
-            created_at: 1652109801,
-            last_activity_at: 1466424480,
-          },
-          {
-            id: 3,
-            messages: [{ content: 'test3' }],
-            priority: 'medium',
-            created_at: 1652109801,
-            last_activity_at: 1466421280,
-          },
-        ],
-        chatSortFilter: 'priority_last',
-      };
-
-      expect(getters.getAllConversations(state)).toEqual([
-        {
-          id: 1,
-          messages: [
-            {
-              content: 'test1',
-            },
-          ],
-          priority: 'low',
-          created_at: 1683645801,
-          last_activity_at: 2466424490,
-        },
-        {
-          id: 3,
-          messages: [{ content: 'test3' }],
-          priority: 'medium',
-          created_at: 1652109801,
-          last_activity_at: 1466421280,
-        },
-        {
-          id: 2,
-          messages: [{ content: 'test2' }],
-          priority: 'urgent',
-          created_at: 1652109801,
-          last_activity_at: 1466424480,
-        },
-      ]);
-    });
-
-    it('order conversations based on waiting_since', () => {
-      const state = {
-        allConversations: [
-          {
-            id: 3,
-            created_at: 1683645800,
-            waiting_since: 0,
-          },
-          {
-            id: 4,
-            created_at: 1683645799,
-            waiting_since: 0,
-          },
-          {
-            id: 1,
-            created_at: 1683645801,
-            waiting_since: 1683645802,
-          },
-          {
-            id: 2,
-            created_at: 1683645803,
-            waiting_since: 1683645800,
-          },
-        ],
-        chatSortFilter: 'waiting_since_last',
-      };
-
-      expect(getters.getAllConversations(state)).toEqual([
-        {
-          id: 2,
-          created_at: 1683645803,
-          waiting_since: 1683645800,
-        },
-        {
-          id: 1,
-          created_at: 1683645801,
-          waiting_since: 1683645802,
-        },
-        {
-          id: 4,
-          created_at: 1683645799,
-          waiting_since: 0,
-        },
-        {
-          id: 3,
-          created_at: 1683645800,
-          waiting_since: 0,
         },
       ]);
     });

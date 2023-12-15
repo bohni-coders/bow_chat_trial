@@ -1,14 +1,14 @@
 <template>
-  <div class="wizard-body w-[75%] flex-shrink-0 flex-grow-0 max-w-[75%]">
-    <form class="mx-0 flex flex-wrap" @submit.prevent="addAgents()">
-      <div class="w-full">
+  <div class="wizard-body columns content-box small-9">
+    <form class="row" @submit.prevent="addAgents()">
+      <div class="medium-12 columns">
         <page-header
           :header-title="$t('INBOX_MGMT.ADD.AGENTS.TITLE')"
           :header-content="$t('INBOX_MGMT.ADD.AGENTS.DESC')"
         />
       </div>
-      <div class="w-[60%]">
-        <div class="w-full">
+      <div class="medium-7 columns">
+        <div class="medium-12 columns">
           <label :class="{ error: $v.selectedAgents.$error }">
             {{ $t('INBOX_MGMT.ADD.AGENTS.TITLE') }}
             <multiselect
@@ -31,7 +31,7 @@
             </span>
           </label>
         </div>
-        <div class="w-full">
+        <div class="medium-12 columns">
           <woot-submit-button
             :button-text="$t('INBOX_MGMT.AGENTS.BUTTON_TEXT')"
             :loading="isCreating"
@@ -48,7 +48,7 @@ import { mapGetters } from 'vuex';
 
 import InboxMembersAPI from '../../../../api/inboxMembers';
 import router from '../../../index';
-import PageHeader from '../SettingsSubPageHeader.vue';
+import PageHeader from '../SettingsSubPageHeader';
 
 export default {
   components: {
@@ -87,12 +87,16 @@ export default {
       const selectedAgents = this.selectedAgents.map(x => x.id);
 
       try {
-        await InboxMembersAPI.update({ inboxId, agentList: selectedAgents });
+        const qrData = await InboxMembersAPI.update({
+          inboxId,
+          agentList: selectedAgents,
+        });
         router.replace({
           name: 'settings_inbox_finish',
           params: {
             page: 'new',
             inbox_id: this.$route.params.inbox_id,
+            qr_data: qrData,
           },
         });
       } catch (error) {

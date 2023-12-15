@@ -8,9 +8,11 @@ describe('AddReminder', () => {
     wrapper = shallowMount(AddReminder, {
       mocks: {
         $t: x => x,
-        $store: { getters: {}, state: {} },
+        $store: {
+          getters: {},
+          state: {},
+        },
       },
-      stubs: { WootButton: { template: '<button />' } },
     });
   });
 

@@ -1,10 +1,9 @@
 {
   "LOGIN": {
-    "TITLE": "Login to Chatwoot",
+    "TITLE": "Login to Boni Chat",
     "EMAIL": {
       "LABEL": "อีเมล์",
-      "PLACEHOLDER": "example@companyname.com",
-      "ERROR": "กรุณากรอกที่อยู่อีเมล์ให้ถูกต้อง"
+      "PLACEHOLDER": "example@companyname.com"
     },
     "PASSWORD": {
       "LABEL": "หรัสผ่าน",

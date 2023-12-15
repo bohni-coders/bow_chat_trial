@@ -8,7 +8,6 @@
       id="chat-input"
       ref="chatInput"
       v-model="userInput"
-      :rows="1"
       :aria-label="$t('CHAT_PLACEHOLDER')"
       :placeholder="$t('CHAT_PLACEHOLDER')"
       class="form-input user-message-input is-focused"
@@ -26,7 +25,7 @@
       />
       <button
         v-if="hasEmojiPickerEnabled"
-        class="flex items-center justify-center icon-button"
+        class="icon-button flex justify-center items-center"
         aria-label="Emoji picker"
         @click="toggleEmojiPicker"
       >
@@ -55,7 +54,7 @@ import ChatAttachmentButton from 'widget/components/ChatAttachment.vue';
 import ChatSendButton from 'widget/components/ChatSendButton.vue';
 import configMixin from '../mixins/configMixin';
 import FluentIcon from 'shared/components/FluentIcon/Index.vue';
-import ResizableTextArea from 'shared/components/ResizableTextArea.vue';
+import ResizableTextArea from 'shared/components/ResizableTextArea';
 import darkModeMixin from 'widget/mixins/darkModeMixin.js';
 
 const EmojiInput = () => import('shared/components/emoji/EmojiInput');
@@ -186,14 +185,12 @@ export default {
   border-radius: 7px;
 
   &.is-focused {
-    box-shadow:
-      0 0 0 1px $color-woot,
-      0 0 2px 3px $color-primary-light;
+    box-shadow: 0 0 0 1px $color-woot, 0 0 2px 3px $color-primary-light;
   }
 }
 
 .emoji-dialog {
-  right: 20px;
+  right: 0;
   top: -302px;
   max-width: 100%;
 

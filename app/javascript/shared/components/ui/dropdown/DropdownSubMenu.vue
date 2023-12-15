@@ -7,7 +7,7 @@
   </li>
 </template>
 <script>
-import WootDropdownHeader from 'shared/components/ui/dropdown/DropdownHeader.vue';
+import WootDropdownHeader from 'shared/components/ui/dropdown/DropdownHeader';
 
 export default {
   name: 'WootDropdownMenu',

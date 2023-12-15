@@ -1,11 +1,6 @@
 class Conversations::FilterService < FilterService
   ATTRIBUTE_MODEL = 'conversation_attribute'.freeze
 
-  def initialize(params, user, filter_account = nil)
-    @account = filter_account || Current.account
-    super(params, user)
-  end
-
   def perform
     @conversations = conversation_query_builder
     mine_count, unassigned_count, all_count, = set_count_for_all_conversations
@@ -46,7 +41,7 @@ class Conversations::FilterService < FilterService
       " (conversations.#{attribute_key})::#{current_filter['data_type']} #{filter_operator_value}#{current_filter['data_type']} #{query_operator} "
     when 'standard'
       if attribute_key == 'labels'
-        " #{tag_filter_query('Conversation', 'conversations', query_hash, current_index)} "
+        " tags.name #{filter_operator_value} #{query_operator} "
       else
         " conversations.#{attribute_key} #{filter_operator_value} #{query_operator} "
       end
@@ -54,9 +49,7 @@ class Conversations::FilterService < FilterService
   end
 
   def base_relation
-    @account.conversations.includes(
-      :taggings, :inbox, { assignee: { avatar_attachment: [:blob] } }, { contact: { avatar_attachment: [:blob] } }, :team, :messages, :contact_inbox
-    )
+    Current.account.conversations.left_outer_joins(:labels)
   end
 
   def current_page
@@ -64,6 +57,10 @@ class Conversations::FilterService < FilterService
   end
 
   def conversations
-    @conversations.sort_on_last_activity_at.page(current_page)
+    @conversations = @conversations.includes(
+      :taggings, :inbox, { assignee: { avatar_attachment: [:blob] } }, { contact: { avatar_attachment: [:blob] } }, :team, :messages, :contact_inbox
+    )
+
+    @conversations.latest.page(current_page)
   end
 end

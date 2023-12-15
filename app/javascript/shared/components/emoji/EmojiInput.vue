@@ -1,27 +1,14 @@
 <template>
-  <div
-    role="dialog"
-    class="emoji-dialog bg-white shadow-lg dark:bg-slate-900 rounded-md border border-solid border-slate-75 dark:border-slate-800/50 box-content h-[300px] absolute right-0 -top-[95px] w-80 z-20"
-  >
-    <div class="flex flex-col">
-      <div class="emoji-search--wrap flex gap-2">
+  <div role="dialog" class="emoji-dialog">
+    <div class="emoji-list--wrap">
+      <div class="emoji-search--wrap">
         <input
           ref="searchbar"
           v-model="search"
           type="text"
-          class="emoji-search--input focus:box-shadow-blue dark:focus:box-shadow-dark"
+          class="emoji-search--input"
           :placeholder="$t('EMOJI.PLACEHOLDER')"
         />
-        <woot-button
-          v-if="showRemoveButton"
-          size="small"
-          variant="smooth"
-          class="dark:!bg-slate-800 dark:!hover:bg-slate-700"
-          color-scheme="secondary"
-          @click="onClick('')"
-        >
-          {{ $t('EMOJI.REMOVE') }}
-        </woot-button>
       </div>
       <div v-if="hasNoSearch" ref="emojiItem" class="emoji-item">
         <h5 class="emoji-category--title">
@@ -72,11 +59,7 @@
               :class="{ active: selectedKey === 'Search' }"
               @click="changeCategory('Search')"
             >
-              <fluent-icon
-                icon="search"
-                size="16"
-                class="text-slate-700 dark:text-slate-100"
-              />
+              <fluent-icon icon="search" size="16" />
             </button>
           </li>
           <li
@@ -108,10 +91,6 @@ export default {
     onClick: {
       type: Function,
       default: () => {},
-    },
-    showRemoveButton: {
-      type: Boolean,
-      default: false,
     },
   },
   data() {
@@ -179,99 +158,168 @@ export default {
   },
 };
 </script>
-<style scoped>
-@tailwind components;
-@layer components {
-  .box-shadow-blue {
-    box-shadow:
-      0 0 0 1px #1f93ff,
-      0 0 1px 2px #c7e3ff;
-  }
-
-  .box-shadow-dark {
-    box-shadow:
-      0 0 0 1px #212222,
-      0 0 1px 2px #4c5155;
-  }
-}
-</style>
 <style lang="scss">
+/**
+ * All the units used below are pixels due to variable name conflict in widget and dashboard
+ **/
+@import '~dashboard/assets/scss/variables';
 @import '~dashboard/assets/scss/mixins';
 
+$space-smaller: 4px;
+$space-small: 8px;
+$space-slab: 12px;
+$space-normal: 16px;
+$space-two: 20px;
+$space-medium: 24px;
+$space-large: 28px;
+$space-larger: 32px;
+
+$font-size-tiny: 12px;
+$font-size-small: 14px;
+$font-size-default: 16px;
+$font-size-medium: 18px;
+
+$color-bg: #ebf0f5;
+
+$border-radius-normal: 5px;
+
 .emoji-dialog {
+  @include elegant-card;
+  background: $color-white;
+  border-radius: $space-small;
+  box-sizing: content-box;
+  height: 300px;
+  position: absolute;
+  right: 0;
+  top: -95px;
+  width: 320px;
+  z-index: 1;
+
   &::before {
-    $space-slab: 12px;
-
-    @media (prefers-color-scheme: dark) {
-      $color-bg-dark: #26292b;
-      @include arrow(bottom, $color-bg-dark, $space-slab);
-    }
-    @media (prefers-color-scheme: light) {
-      $color-bg: #ebf0f5;
-      @include arrow(bottom, $color-bg, $space-slab);
-    }
-
-    @apply -bottom-3 absolute right-5;
+    @include arrow(bottom, $color-bg, $space-slab);
+    bottom: -$space-slab;
+    position: absolute;
+    right: $space-two;
   }
+}
+
+.emoji-list--wrap {
+  display: flex;
+  flex-direction: column;
 }
 
 .emoji--item {
-  @apply bg-transparent border-0 rounded cursor-pointer text-lg h-6 m-0 py-0 px-1 hover:bg-slate-75 dark:hover:bg-slate-800;
+  background: transparent;
+  border: 0;
+  border-radius: $space-smaller;
+  cursor: pointer;
+  font-size: $font-size-medium;
+  height: $space-medium;
+  margin: 0;
+  padding: 0 $space-smaller;
+
+  &:hover {
+    background: var(--s-75);
+  }
 }
 
 .emoji--row {
-  @apply box-border p-1;
+  box-sizing: border-box;
+  padding: $space-smaller;
 
   .emoji--item {
-    @apply h-[26px] w-[26px] leading-normal m-1;
+    height: 26px;
+    line-height: 1.5;
+    margin: $space-smaller;
+    width: 26px;
   }
 }
 
 .emoji-search--wrap {
-  @apply m-2 sticky top-2;
+  margin: $space-small;
+  position: sticky;
+  top: $space-small;
 
   .emoji-search--input {
-    @apply text-sm focus-visible:border-transparent text-slate-800 dark:text-slate-100 h-8 m-0 p-2 w-full rounded-md bg-slate-50 dark:bg-slate-800 border border-solid border-transparent dark:border-slate-800/50;
+    background-color: $color-bg;
+    border: 1px solid transparent;
+    border-radius: $border-radius-normal;
+    font-size: $font-size-small;
+    height: $space-larger;
+    margin: 0;
+    padding: $space-small;
+    width: 100%;
+
+    &:focus {
+      box-shadow: 0 0 0 1px $color-woot, 0 0 2px 3px $color-primary-light;
+    }
   }
 }
 
 .empty-message {
-  @apply items-center flex flex-col h-[212px] justify-center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 212px;
+  justify-content: center;
 
   .emoji-icon {
-    @apply text-slate-200 dark:text-slate-200 mb-2;
+    color: var(--s-200);
+    margin-bottom: $space-small;
   }
   .empty-message--text {
-    @apply text-slate-200 dark:text-slate-200 text-sm font-medium;
+    color: var(--s-200);
+    font-size: $font-size-small;
+    font-weight: 500;
   }
 }
 
 .emoji-item {
-  @apply h-[212px] overflow-y-auto;
+  height: 212px;
+  overflow-y: auto;
 }
 
 .emoji-category--title {
-  @apply text-slate-800 text-sm dark:text-slate-100 font-medium leading-normal m-0 py-1 px-2 capitalize;
+  color: $color-heading;
+  font-size: $font-size-small;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  padding: $space-smaller $space-small;
+  text-transform: capitalize;
 }
 
 .emoji-dialog--footer {
-  @apply relative w-[322px] -left-px rtl:left-[unset] rtl:-right-px bottom-0 py-0 rounded-b-md border-b border-solid border-slate-75 dark:border-slate-800/50 px-1 bg-slate-75 dark:bg-slate-800;
+  background-color: $color-bg;
+  bottom: 0;
+  padding: 0 $space-smaller;
+  position: sticky;
 
   ul {
-    @apply flex relative left-[2px] rtl:left-[unset] rtl:right-[2px] list-none m-0 overflow-auto py-1 px-0;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    overflow: auto;
+    padding: $space-smaller 0;
 
     > li {
-      @apply items-center cursor-pointer flex justify-center p-1;
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      padding: $space-smaller;
     }
 
     li .active {
-      @apply bg-white dark:bg-slate-900;
+      background: $color-white;
     }
     .emoji--item {
-      @apply items-center flex text-sm;
+      align-items: center;
+      display: flex;
+      font-size: $font-size-small;
 
       &:hover {
-        @apply bg-slate-75 dark:bg-slate-900;
+        background: $color-bg;
       }
     }
   }

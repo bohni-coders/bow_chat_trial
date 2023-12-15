@@ -76,8 +76,8 @@
         },
         "AGENT_AVAILABILITY": {
           "LABEL": "Disponibilidad",
-          "PLACEHOLDER": "Por favor, seleccione un estado de disponibilidad",
-          "ERROR": "La disponibilidad es necesaria"
+          "PLACEHOLDER": "Please select an availability status",
+          "ERROR": "Availability is required"
         },
         "SUBMIT": "Editar agente"
       },
@@ -106,12 +106,12 @@
       "SEARCH": {
         "NO_RESULTS": {
           "AGENT": "No se encontraron agentes",
-          "TEAM": "No se encontraron equipos"
+          "TEAM": "No se encontro equipo"
         },
         "PLACEHOLDER": {
           "AGENT": "Buscar agentes",
           "TEAM": "Buscar equipos",
-          "INPUT": "Búsqueda por agentes"
+          "INPUT": "Search for agents"
         }
       }
     }

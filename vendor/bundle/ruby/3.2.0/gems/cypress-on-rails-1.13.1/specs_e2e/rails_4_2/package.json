@@ -1,0 +1,10 @@
+{
+  "name": "rails_4_2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.0.2",
+    "cypress-on-rails": "file:../../plugin"
+  }
+}

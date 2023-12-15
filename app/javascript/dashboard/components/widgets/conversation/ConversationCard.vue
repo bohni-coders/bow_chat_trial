@@ -1,8 +1,8 @@
 <template>
   <div
-    class="relative flex items-start flex-grow-0 flex-shrink-0 w-auto max-w-full px-4 py-0 border-t-0 border-b-0 border-l-2 border-r-0 border-transparent border-solid cursor-pointer conversation hover:bg-slate-25 dark:hover:bg-slate-800 group"
+    class="conversation"
     :class="{
-      'active bg-slate-25 dark:bg-slate-800 border-woot-500': isActiveChat,
+      active: isActiveChat,
       'unread-chat': hasUnread,
       'has-inbox-name': showInboxName,
       'conversation-selected': selected,
@@ -30,61 +30,72 @@
       :status="currentContact.availability_status"
       size="40px"
     />
-    <div
-      class="px-0 py-3 border-b group-hover:border-transparent border-slate-50 dark:border-slate-800/75 columns"
-    >
-      <div class="flex justify-between">
+    <div class="conversation--details columns">
+      <div class="conversation--metadata">
         <inbox-name v-if="showInboxName" :inbox="inbox" />
-        <div class="flex gap-2 ml-2 rtl:mr-2 rtl:ml-0">
+        <div class="conversation-metadata-attributes">
           <span
             v-if="showAssignee && assignee.name"
-            class="text-slate-500 dark:text-slate-400 text-xs font-medium leading-3 py-0.5 px-0 inline-flex text-ellipsis overflow-hidden whitespace-nowrap"
+            class="label assignee-label text-truncate"
           >
-            <fluent-icon
-              icon="person"
-              size="12"
-              class="text-slate-500 dark:text-slate-400"
-            />
+            <fluent-icon icon="person" size="12" />
             {{ assignee.name }}
           </span>
           <priority-mark :priority="chat.priority" />
         </div>
       </div>
-      <h4
-        class="conversation--user text-sm my-0 mx-2 capitalize pt-0.5 text-ellipsis overflow-hidden whitespace-nowrap w-[60%] text-slate-900 dark:text-slate-100"
-      >
+      <h4 class="conversation--user">
         {{ currentContact.name }}
       </h4>
-      <message-preview
-        v-if="lastMessageInChat"
-        :message="lastMessageInChat"
-        class="conversation--message my-0 mx-2 leading-6 h-6 max-w-[96%] w-[16.875rem] text-sm text-slate-700 dark:text-slate-200"
-      />
-      <p
-        v-else
-        class="conversation--message text-slate-700 dark:text-slate-200 text-sm my-0 mx-2 leading-6 h-6 max-w-[96%] w-[16.875rem] overflow-hidden text-ellipsis whitespace-nowrap"
-      >
+      <p v-if="lastMessageInChat" class="conversation--message">
         <fluent-icon
+          v-if="isMessagePrivate"
           size="16"
-          class="-mt-0.5 align-middle inline-block text-slate-600 dark:text-slate-300"
+          class="message--attachment-icon last-message-icon"
+          icon="lock-closed"
+        />
+        <fluent-icon
+          v-else-if="messageByAgent"
+          size="16"
+          class="message--attachment-icon last-message-icon"
+          icon="arrow-reply"
+        />
+        <fluent-icon
+          v-else-if="isMessageAnActivity"
+          size="16"
+          class="message--attachment-icon last-message-icon"
           icon="info"
         />
-        <span>
-          {{ $t(`CHAT_LIST.NO_MESSAGES`) }}
+        <span v-if="lastMessageInChat.content">
+          {{ parsedLastMessage }}
+        </span>
+        <span v-else-if="lastMessageInChat.attachments">
+          <fluent-icon
+            v-if="attachmentIcon"
+            size="16"
+            class="message--attachment-icon"
+            :icon="attachmentIcon"
+          />
+          {{ this.$t(`${attachmentMessageContent}`) }}
+        </span>
+        <span v-else>
+          {{ $t('CHAT_LIST.NO_CONTENT') }}
         </span>
       </p>
-      <div class="absolute flex flex-col conversation--meta right-4 top-4">
-        <span class="ml-auto font-normal leading-4 text-black-600 text-xxs">
+      <p v-else class="conversation--message">
+        <fluent-icon size="16" class="message--attachment-icon" icon="info" />
+        <span>
+          {{ this.$t(`CHAT_LIST.NO_MESSAGES`) }}
+        </span>
+      </p>
+      <div class="conversation--meta">
+        <span class="timestamp">
           <time-ago
             :last-activity-timestamp="chat.timestamp"
             :created-at-timestamp="chat.created_at"
           />
         </span>
-        <span
-          class="unread shadow-lg rounded-full hidden text-xxs font-semibold h-4 leading-4 ml-auto mt-1 min-w-[1rem] px-1 py-0 text-center text-white bg-green-400"
-        >
-          {{ unreadCount > 9 ? '9+' : unreadCount }}
-        </span>
+        <span class="unread">{{ unreadCount > 9 ? '9+' : unreadCount }}</span>
       </div>
       <card-labels :conversation-id="chat.id" />
     </div>
@@ -112,19 +123,28 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import Thumbnail from '../Thumbnail.vue';
-import MessagePreview from './MessagePreview.vue';
+import { MESSAGE_TYPE } from 'widget/helpers/constants';
+import messageFormatterMixin from 'shared/mixins/messageFormatterMixin';
+import Thumbnail from '../Thumbnail';
 import conversationMixin from '../../../mixins/conversations';
 import timeMixin from '../../../mixins/time';
 import router from '../../../routes';
 import { frontendURL, conversationUrl } from '../../../helper/URLHelper';
-import InboxName from '../InboxName.vue';
+import InboxName from '../InboxName';
 import inboxMixin from 'shared/mixins/inboxMixin';
 import ConversationContextMenu from './contextMenu/Index.vue';
 import alertMixin from 'shared/mixins/alertMixin';
-import TimeAgo from 'dashboard/components/ui/TimeAgo.vue';
+import TimeAgo from 'dashboard/components/ui/TimeAgo';
 import CardLabels from './conversationCardComponents/CardLabels.vue';
 import PriorityMark from './PriorityMark.vue';
+const ATTACHMENT_ICONS = {
+  image: 'image',
+  audio: 'headphones-sound-wave',
+  video: 'video',
+  file: 'document',
+  location: 'location',
+  fallback: 'link',
+};
 
 export default {
   components: {
@@ -133,11 +153,16 @@ export default {
     Thumbnail,
     ConversationContextMenu,
     TimeAgo,
-    MessagePreview,
     PriorityMark,
   },
 
-  mixins: [inboxMixin, timeMixin, conversationMixin, alertMixin],
+  mixins: [
+    inboxMixin,
+    timeMixin,
+    conversationMixin,
+    messageFormatterMixin,
+    alertMixin,
+  ],
   props: {
     activeLabel: {
       type: String,
@@ -172,10 +197,6 @@ export default {
       default: '',
     },
     selected: {
-      type: Boolean,
-      default: false,
-    },
-    enableContextMenu: {
       type: Boolean,
       default: false,
     },
@@ -215,6 +236,20 @@ export default {
       );
     },
 
+    lastMessageFileType() {
+      const lastMessage = this.lastMessageInChat;
+      const [{ file_type: fileType } = {}] = lastMessage.attachments;
+      return fileType;
+    },
+
+    attachmentIcon() {
+      return ATTACHMENT_ICONS[this.lastMessageFileType];
+    },
+
+    attachmentMessageContent() {
+      return `CHAT_LIST.ATTACHMENTS.${this.lastMessageFileType}.CONTENT`;
+    },
+
     isActiveChat() {
       return this.currentChat.id === this.chat.id;
     },
@@ -233,6 +268,30 @@ export default {
 
     lastMessageInChat() {
       return this.lastMessage(this.chat);
+    },
+
+    messageByAgent() {
+      const lastMessage = this.lastMessageInChat;
+      const { message_type: messageType } = lastMessage;
+      return messageType === MESSAGE_TYPE.OUTGOING;
+    },
+
+    isMessageAnActivity() {
+      const lastMessage = this.lastMessageInChat;
+      const { message_type: messageType } = lastMessage;
+      return messageType === MESSAGE_TYPE.ACTIVITY;
+    },
+
+    isMessagePrivate() {
+      const lastMessage = this.lastMessageInChat;
+      const { private: isPrivate } = lastMessage;
+      return isPrivate;
+    },
+
+    parsedLastMessage() {
+      const { content_attributes: contentAttributes } = this.lastMessageInChat;
+      const { email: { subject } = {} } = contentAttributes || {};
+      return this.getPlainText(subject || this.lastMessageInChat.content);
     },
 
     inbox() {
@@ -293,7 +352,6 @@ export default {
       this.$emit(action, this.chat.id, this.inbox.id);
     },
     openContextMenu(e) {
-      if (!this.enableContextMenu) return;
       e.preventDefault();
       this.$emit('context-menu-toggle', true);
       this.contextMenu.x = e.pageX || e.clientX;
@@ -340,51 +398,94 @@ export default {
 </script>
 <style lang="scss" scoped>
 .conversation {
-  &.unread-chat {
-    .unread {
-      @apply block;
-    }
-    .conversation--message {
-      @apply font-semibold;
-    }
-    .conversation--user {
-      @apply font-semibold;
-    }
-  }
+  align-items: flex-start;
 
-  &.compact {
-    @apply pl-0;
-    .conversation--details {
-      @apply rounded-sm ml-0 pl-5 pr-2;
-    }
+  &:hover {
+    background: var(--color-background-light);
   }
 
   &::v-deep .user-thumbnail-box {
-    @apply mt-4;
+    margin-top: var(--space-normal);
   }
+}
 
-  &.conversation-selected {
-    @apply bg-slate-25 dark:bg-slate-800;
+.conversation-selected {
+  background: var(--color-background-light);
+}
+
+.has-inbox-name {
+  &::v-deep .user-thumbnail-box {
+    margin-top: var(--space-large);
   }
-
-  &.has-inbox-name {
-    &::v-deep .user-thumbnail-box {
-      @apply mt-8;
-    }
-    .checkbox-wrapper {
-      @apply mt-8;
-    }
-    .conversation--meta {
-      @apply mt-4;
-    }
-  }
-
   .checkbox-wrapper {
-    @apply h-10 w-10 flex items-center justify-center rounded-full cursor-pointer mt-4 hover:bg-woot-100 dark:hover:bg-woot-800;
+    margin-top: var(--space-large);
+  }
+  .conversation--meta {
+    margin-top: var(--space-normal);
+  }
+}
 
-    input[type='checkbox'] {
-      @apply m-0 cursor-pointer;
-    }
+.conversation--details {
+  .conversation--user {
+    padding-top: var(--space-micro);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 60%;
+  }
+}
+
+.last-message-icon {
+  color: var(--s-600);
+}
+
+.conversation--metadata {
+  display: flex;
+  justify-content: space-between;
+
+  .label {
+    background: none;
+    color: var(--s-500);
+    font-size: var(--font-size-mini);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--space-slab);
+    padding: var(--space-micro) 0 var(--space-micro) 0;
+  }
+
+  .conversation-metadata-attributes {
+    display: flex;
+    gap: var(--space-small);
+    margin-left: var(--space-small);
+  }
+
+  .assignee-label {
+    display: inline-flex;
+    max-width: 50%;
+  }
+}
+
+.message--attachment-icon {
+  margin-top: var(--space-minus-micro);
+  vertical-align: middle;
+}
+
+.checkbox-wrapper {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  margin-top: var(--space-normal);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--w-100);
+  }
+
+  input[type='checkbox'] {
+    margin: var(--space-zero);
+    cursor: pointer;
   }
 }
 </style>

@@ -1,6 +1,5 @@
 import * as MutationHelpers from 'shared/helpers/vuex/mutationHelpers';
 import types from '../mutation-types';
-import { uploadFile } from 'dashboard/helper/uploadHelper';
 import AutomationAPI from '../../api/automation';
 
 export const state = {
@@ -78,8 +77,12 @@ export const actions = {
     }
   },
   uploadAttachment: async (_, file) => {
-    const { blobId } = await uploadFile(file);
-    return blobId;
+    try {
+      const { data } = await AutomationAPI.attachment(file);
+      return data.blob_id;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 };
 

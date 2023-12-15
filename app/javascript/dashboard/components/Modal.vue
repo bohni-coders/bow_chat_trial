@@ -4,19 +4,14 @@
       v-if="show"
       :class="modalClassName"
       transition="modal"
-      @mousedown="handleMouseDown"
+      @click="onBackDropClick"
     >
-      <div
-        :class="modalContainerClassName"
-        @mouse.stop
-        @mousedown="event => event.stopPropagation()"
-      >
+      <div :class="modalContainerClassName" @click.stop>
         <woot-button
-          v-if="showCloseButton"
           color-scheme="secondary"
           icon="dismiss"
           variant="clear"
-          class="absolute ltr:right-2 rtl:left-2 top-2 z-10"
+          class="modal--close"
           @click="close"
         />
         <slot />
@@ -33,10 +28,6 @@ export default {
       default: true,
     },
     show: Boolean,
-    showCloseButton: {
-      type: Boolean,
-      default: true,
-    },
     onClose: {
       type: Function,
       required: true,
@@ -54,15 +45,9 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      mousedDownOnBackdrop: false,
-    };
-  },
   computed: {
     modalContainerClassName() {
-      let className =
-        'modal-container bg-white dark:bg-slate-800 skip-context-menu';
+      let className = 'modal-container skip-context-menu';
       if (this.fullWidth) {
         return `${className} modal-container--full-width`;
       }
@@ -75,9 +60,9 @@ export default {
         'right-aligned': 'right-aligned',
       };
 
-      return `modal-mask skip-context-menu ${
-        modalClassNameMap[this.modalType] || ''
-      }`;
+      return `modal-mask skip-context-menu ${modalClassNameMap[
+        this.modalType
+      ] || ''}`;
     },
   },
   mounted() {
@@ -86,22 +71,13 @@ export default {
         this.onClose();
       }
     });
-
-    document.body.addEventListener('mouseup', this.onMouseUp);
-  },
-  beforeDestroy() {
-    document.body.removeEventListener('mouseup', this.onMouseUp);
   },
   methods: {
-    handleMouseDown() {
-      this.mousedDownOnBackdrop = true;
-    },
     close() {
       this.onClose();
     },
-    onMouseUp() {
-      if (this.mousedDownOnBackdrop) {
-        this.mousedDownOnBackdrop = false;
+    onBackDropClick() {
+      if (this.closeOnBackdropClick) {
         this.onClose();
       }
     },
@@ -125,7 +101,7 @@ export default {
   .modal-container {
     border-radius: 0;
     height: 100%;
-    width: 30rem;
+    width: 48rem;
   }
 }
 .modal-big {

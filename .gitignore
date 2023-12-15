@@ -30,6 +30,11 @@ master.key
 # Ignore env files
 .env
 
+
+vendor\bundle
+
+
+
 public/uploads
 public/packs*
 
@@ -74,5 +79,3 @@ yalc.lock
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-/storybook-static

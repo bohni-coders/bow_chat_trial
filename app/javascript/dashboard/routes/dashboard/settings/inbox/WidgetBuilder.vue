@@ -1,7 +1,7 @@
 <template>
   <div class="settings--content">
     <div class="widget-builder-container">
-      <div class="settings-container w-100 lg:w-[40%]">
+      <div class="settings-container">
         <div class="settings-content">
           <form @submit.prevent="updateWidget">
             <woot-avatar-uploader
@@ -123,7 +123,7 @@
           </form>
         </div>
       </div>
-      <div class="widget-container w-100 lg:w-[60%]">
+      <div class="widget-container">
         <input-radio-group
           name="widget-view-options"
           :items="getWidgetViewOptions"
@@ -154,8 +154,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Widget from 'dashboard/modules/widget-preview/components/Widget.vue';
-import InputRadioGroup from './components/InputRadioGroup.vue';
+import Widget from 'dashboard/modules/widget-preview/components/Widget';
+import InputRadioGroup from './components/InputRadioGroup';
 import alertMixin from 'shared/mixins/alertMixin';
 import { required } from 'vuelidate/lib/validators';
 import { LOCAL_STORAGE_KEYS } from 'dashboard/constants/localStorage';
@@ -176,7 +176,7 @@ export default {
   data() {
     return {
       isWidgetPreview: true,
-      color: '#1f93ff',
+      color: '#1DC775',
       websiteName: '',
       welcomeHeading: '',
       welcomeTagline: '',
@@ -428,6 +428,11 @@ export default {
 }
 
 .settings-container {
+  width: 40%;
+  @include breakpoint(900px down) {
+    width: 100%;
+  }
+
   .settings-content {
     padding: var(--space-normal) var(--space-zero);
     overflow-y: scroll;
@@ -440,22 +445,30 @@ export default {
 }
 
 .widget-container {
+  width: 60%;
+
+  @include breakpoint(900px down) {
+    width: 100%;
+  }
+
   .widget-preview {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    min-height: 40.625rem;
+    min-height: 65rem;
     margin: var(--space-zero) var(--space-two) var(--space-two) var(--space-two);
     padding: var(--space-one) var(--space-one) var(--space-one) var(--space-one);
-    @apply bg-slate-50 dark:bg-slate-700;
+    background: var(--s-50);
 
     @include breakpoint(500px down) {
       background: none;
     }
   }
   .widget-script {
-    @apply mx-5 p-2.5 bg-slate-50 dark:bg-slate-700;
+    margin: 0 var(--space-two);
+    padding: var(--space-one);
+    background: var(--s-50);
   }
 }
 </style>

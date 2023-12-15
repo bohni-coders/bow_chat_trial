@@ -22,12 +22,10 @@
 
 class Channel::TwilioSms < ApplicationRecord
   include Channelable
-  include Rails.application.routes.url_helpers
 
   self.table_name = 'channel_twilio_sms'
 
   validates :account_sid, presence: true
-  # The same parameter is used to store api_key_secret if api_key authentication is opted
   validates :auth_token, presence: true
 
   # Must have _one_ of messaging_service_sid _or_ phone_number, and messaging_service_sid is preferred
@@ -48,18 +46,13 @@ class Channel::TwilioSms < ApplicationRecord
   def send_message(to:, body:, media_url: nil)
     params = send_message_from.merge(to: to, body: body)
     params[:media_url] = media_url if media_url.present?
-    params[:status_callback] = twilio_delivery_status_index_url
     client.messages.create(**params)
   end
 
   private
 
   def client
-    if api_key_sid.present?
-      Twilio::REST::Client.new(api_key_sid, auth_token, account_sid)
-    else
-      Twilio::REST::Client.new(account_sid, auth_token)
-    end
+    ::Twilio::REST::Client.new(account_sid, auth_token)
   end
 
   def send_message_from

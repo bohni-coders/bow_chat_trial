@@ -1,5 +1,3 @@
-# rubocop:disable Layout/LineLength
-
 # == Schema Information
 #
 # Table name: contacts
@@ -27,8 +25,6 @@
 #  uniq_email_per_account_contact                        (email,account_id) UNIQUE
 #  uniq_identifier_per_account_contact                   (identifier,account_id) UNIQUE
 #
-
-# rubocop:enable Layout/LineLength
 
 class Contact < ApplicationRecord
   include Avatarable
@@ -59,14 +55,6 @@ class Contact < ApplicationRecord
     order(
       Arel::Nodes::SqlLiteral.new(
         sanitize_sql_for_order("\"contacts\".\"last_activity_at\" #{direction}
-          NULLS LAST")
-      )
-    )
-  }
-  scope :order_on_created_at, lambda { |direction|
-    order(
-      Arel::Nodes::SqlLiteral.new(
-        sanitize_sql_for_order("\"contacts\".\"created_at\" #{direction}
           NULLS LAST")
       )
     )

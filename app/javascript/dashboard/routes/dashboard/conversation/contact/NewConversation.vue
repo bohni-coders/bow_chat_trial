@@ -1,7 +1,6 @@
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <woot-modal :show.sync="show" :on-close="onCancel">
-    <div class="h-auto overflow-auto flex flex-col">
+    <div class="column content-box">
       <woot-modal-header
         :header-title="$t('NEW_CONVERSATION.TITLE')"
         :header-content="$t('NEW_CONVERSATION.DESC')"
@@ -17,7 +16,7 @@
 </template>
 
 <script>
-import ConversationForm from './ConversationForm.vue';
+import ConversationForm from './ConversationForm';
 
 export default {
   components: {
@@ -49,11 +48,11 @@ export default {
     onSuccess() {
       this.$emit('cancel');
     },
-    async onSubmit(params, isFromWhatsApp) {
-      const data = await this.$store.dispatch('contactConversations/create', {
-        params,
-        isFromWhatsApp,
-      });
+    async onSubmit(contactItem) {
+      const data = await this.$store.dispatch(
+        'contactConversations/create',
+        contactItem
+      );
       return data;
     },
   },

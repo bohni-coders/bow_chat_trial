@@ -1,5 +1,4 @@
 import { mapGetters } from 'vuex';
-
 export const DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER = [
   { name: 'conversation_actions' },
   { name: 'macros' },
@@ -13,9 +12,6 @@ export const DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER = [
   { name: 'contact_labels' },
   { name: 'previous_conversation' },
 ];
-
-const slugifyChannel = name =>
-  name.toLowerCase().replace(' ', '_').replace('-', '_').replace('::', '_');
 
 export const isEditorHotKeyEnabled = (uiSettings, key) => {
   const {
@@ -67,19 +63,8 @@ export default {
       return !!isOpen;
     },
     toggleSidebarUIState(key) {
+      // changes here ----------------------
       this.updateUISettings({ [key]: !this.isContactSidebarItemOpen(key) });
-    },
-    setSignatureFlagForInbox(channelType, value) {
-      channelType = slugifyChannel(channelType);
-      this.updateUISettings({
-        [`${channelType}_signature_enabled`]: value,
-      });
-    },
-    fetchSignatureFlagFromUiSettings(channelType) {
-      if (!channelType) return false;
-
-      channelType = slugifyChannel(channelType);
-      return this.uiSettings[`${channelType}_signature_enabled`];
     },
   },
 };

@@ -1,6 +1,5 @@
-<!-- eslint-disable vue/v-slot-style -->
 <template>
-  <div class="bg-white dark:bg-slate-900">
+  <div>
     <div class="multiselect-wrap--small">
       <contact-details-item
         compact

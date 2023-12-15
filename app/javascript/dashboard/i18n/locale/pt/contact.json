@@ -33,8 +33,7 @@
       "LABEL_SELECT": {
         "TITLE": "Adicionar Etiquetas",
         "PLACEHOLDER": "Procurar Etiquetas",
-        "NO_RESULT": "Nenhuma Etiqueta encontrada",
-        "CREATE_LABEL": "Criar nova etiqueta"
+        "NO_RESULT": "Nenhuma Etiqueta encontrada"
       }
     },
     "MERGE_CONTACT": "Unir contacto",
@@ -71,14 +70,7 @@
       "SUBMIT": "Importar",
       "CANCEL": "cancelar"
     },
-    "SUCCESS_MESSAGE": "Será notificado via e-mail quando a importação estiver completa.",
-    "ERROR_MESSAGE": "Ocorreu um erro, por favor tente novamente"
-  },
-  "EXPORT_CONTACTS": {
-    "BUTTON_LABEL": "Exportar",
-    "TITLE": "Exportar contactos",
-    "DESC": "Exportar contactos para um ficheiro CSV.",
-    "SUCCESS_MESSAGE": "Export is in progress, You will be notified via email when export file is ready to dowanlod.",
+    "SUCCESS_MESSAGE": "Contactos guardados com sucesso",
     "ERROR_MESSAGE": "Ocorreu um erro, por favor tente novamente"
   },
   "DELETE_NOTE": {
@@ -130,7 +122,7 @@
         "LABEL": "Número de Telefone",
         "HELP": "O número de telefone deve ter o formato E.164, por exemplo: +1415555555 [+][código do país][código de área] [número de telefone local]",
         "ERROR": "O número de telefone deve estar vazio ou no formato E.164",
-        "DIAL_CODE_ERROR": "Por favor, selecione um código de discagem da lista",
+        "DIAL_CODE_ERROR": "Please select a dial code from the list",
         "DUPLICATE": "Este número está a ser usado por outro contacto."
       },
       "LOCATION": {
@@ -142,15 +134,15 @@
         "LABEL": "Nome da empresa"
       },
       "COUNTRY": {
-        "PLACEHOLDER": "Insira o nome do país",
+        "PLACEHOLDER": "Enter the country name",
         "LABEL": "Nome do País",
         "SELECT_PLACEHOLDER": "Selecionar",
         "REMOVE": "Excluir",
-        "SELECT_COUNTRY": "Selecione o país"
+        "SELECT_COUNTRY": "Select Country"
       },
       "CITY": {
-        "PLACEHOLDER": "Escreva o nome da cidade",
-        "LABEL": "Cidade"
+        "PLACEHOLDER": "Enter the city name",
+        "LABEL": "City Name"
       },
       "SOCIAL_PROFILES": {
         "FACEBOOK": {
@@ -191,7 +183,7 @@
       },
       "INBOX": {
         "LABEL": "Caixa de Entrada",
-        "PLACEHOLDER": "Selecionar caixa de entrada",
+        "PLACEHOLDER": "Choose source inbox",
         "ERROR": "Selecione uma caixa de entrada"
       },
       "SUBJECT": {
@@ -203,10 +195,6 @@
         "LABEL": "Messagem",
         "PLACEHOLDER": "Escreva aqui a sua mensagem",
         "ERROR": "A mensagem não pode estar vazia"
-      },
-      "ATTACHMENTS": {
-        "SELECT": "Selecionar arquivos",
-        "HELP_TEXT": "Arraste e solte arquivos aqui ou escolha arquivos para anexar"
       },
       "SUBMIT": "Enviar mensagem",
       "CANCEL": "Cancelar",
@@ -223,7 +211,6 @@
     "FILTER_CONTACTS": "Filtro",
     "FILTER_CONTACTS_SAVE": "Guardar filtro",
     "FILTER_CONTACTS_DELETE": "Apagar filtro",
-    "FILTER_CONTACTS_EDIT": "Editar segmento",
     "LIST": {
       "LOADING_MESSAGE": "A carregar contactos...",
       "404": "Nenhum contacto corresponde à sua pesquisa 🔍",
@@ -347,17 +334,17 @@
     "DESCRIPTION": "Unir contatos para combinar dois perfis em um, incluindo todos os atributos e conversas. Em caso de conflito, os atributos do contacto Principal terão prioridade.",
     "PRIMARY": {
       "TITLE": "Contato principal",
-      "HELP_LABEL": "Para ser apagado"
+      "HELP_LABEL": "Para ser mantido"
     },
-    "PARENT": {
+    "CHILD": {
       "TITLE": "Contato para juntar",
       "PLACEHOLDER": "Pesquisar por um contacto",
-      "HELP_LABEL": "Para ser mantido"
+      "HELP_LABEL": "Para ser apagado"
     },
     "SUMMARY": {
       "TITLE": "Sumário",
-      "DELETE_WARNING": "Contacto de <strong>%{primaryContactName}</strong> será apagado.",
-      "ATTRIBUTE_WARNING": "Detalhes do contato do <strong>%{primaryContactName}</strong> serão copiados para <strong>%{parentContactName}</strong>."
+      "DELETE_WARNING": "Contacto de <strong>%{childContactName}</strong> será apagado.",
+      "ATTRIBUTE_WARNING": "Detalhes do contato do <strong>%{childContactName}</strong> serão copiados para <strong>%{primaryContactName}</strong>."
     },
     "SEARCH": {
       "ERROR": "MENSSAGEM_ERRO"

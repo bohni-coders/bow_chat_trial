@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Spinner from 'shared/components/Spinner.vue';
+import Spinner from 'shared/components/Spinner';
 
 export default {
   components: {

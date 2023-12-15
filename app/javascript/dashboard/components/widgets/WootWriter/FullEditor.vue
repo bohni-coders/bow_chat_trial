@@ -16,7 +16,7 @@
 <script>
 import {
   fullSchema,
-  buildEditor,
+  wootArticleWriterSetup,
   EditorView,
   ArticleMarkdownSerializer,
   ArticleMarkdownTransformer,
@@ -32,20 +32,16 @@ const MAXIMUM_FILE_UPLOAD_SIZE = 4; // in MB
 const createState = (
   content,
   placeholder,
-  // eslint-disable-next-line default-param-last
   plugins = [],
-  // eslint-disable-next-line default-param-last
-  methods = {},
-  enabledMenuOptions
+  onImageUpload = () => {}
 ) => {
   return EditorState.create({
     doc: new ArticleMarkdownTransformer(fullSchema).parse(content),
-    plugins: buildEditor({
+    plugins: wootArticleWriterSetup({
       schema: fullSchema,
       placeholder,
-      methods,
       plugins,
-      enabledMenuOptions,
+      onImageUpload,
     }),
   });
 };
@@ -56,7 +52,6 @@ export default {
     value: { type: String, default: '' },
     editorId: { type: String, default: '' },
     placeholder: { type: String, default: '' },
-    enabledMenuOptions: { type: Array, default: () => [] },
   },
   data() {
     return {
@@ -88,8 +83,7 @@ export default {
       this.value,
       this.placeholder,
       this.plugins,
-      { onImageUpload: this.openFileBrowser },
-      this.enabledMenuOptions
+      this.openFileBrowser
     );
   },
   mounted() {
@@ -158,8 +152,7 @@ export default {
         this.value,
         this.placeholder,
         this.plugins,
-        { onImageUpload: this.openFileBrowser },
-        this.enabledMenuOptions
+        this.openFileBrowser
       );
       this.editorView.updateState(this.state);
       this.focusEditorInputField();
@@ -237,8 +230,8 @@ export default {
 }
 
 .ProseMirror-woot-style {
-  min-height: 5rem;
-  max-height: 7.5rem;
+  min-height: 8rem;
+  max-height: 12rem;
   overflow: auto;
 }
 
@@ -248,6 +241,6 @@ export default {
   box-shadow: var(--shadow-large);
   border-radius: var(--border-radius-normal);
   border: 1px solid var(--color-border);
-  min-width: 25rem;
+  min-width: 40rem;
 }
 </style>

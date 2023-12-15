@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: yarn start:dev
+    environment:
+      - POSTGRES_DATABASE=chatwoot_production
+      - POSTGRES_HOST=13.232.248.232
+      - POSTGRES_USERNAME=chatwoot
+      - POSTGRES_PASSWORD=hpG3scd2sUi3MFH
+      - REDIS_URL=redis://redis:6379
+      - FRONTEND_URL=http://0.0.0.0:3000
+      - RAILS_ENV=development
+      - NODE_ENV=development
+    depends_on:
+      - redis
+    ports:
+      - "3000:3000"
+      - "3035:3035"
+  redis:
+    image: redis:alpine
+    restart: always
+    volumes:
+      - redis:/data/redis
+    ports:
+      - '6379:6379'
+volumes:
+  redis:

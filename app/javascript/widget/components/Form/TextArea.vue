@@ -1,10 +1,6 @@
 <template>
   <label class="block">
-    <div
-      v-if="label"
-      class="mb-2 text-xs leading-3 font-medium"
-      :class="labelClass"
-    >
+    <div v-if="label" class="mb-2 text-xs font-medium" :class="labelClass">
       {{ label }}
     </div>
     <textarea
@@ -14,7 +10,7 @@
       :value="value"
       @change="onChange"
     />
-    <div v-if="error" class="text-red-400 mt-2 text-xs leading-3 font-medium">
+    <div v-if="error" class="text-red-400 mt-2 text-xs font-medium">
       {{ error }}
     </div>
   </label>

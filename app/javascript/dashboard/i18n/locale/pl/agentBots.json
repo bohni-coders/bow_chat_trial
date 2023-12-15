@@ -1,73 +1,73 @@
 {
   "AGENT_BOTS": {
-    "HEADER": "Boty",
-    "LOADING_EDITOR": "Ładowanie Edytora...",
-    "HEADER_BTN_TXT": "Dodaj Konfigurację Bota",
-    "SIDEBAR_TXT": "<p><b>Boty Agentów</b> <p>Boty agentów pozwalają na automatyzację rozmów</p>",
+    "HEADER": "Bots",
+    "LOADING_EDITOR": "Loading Editor...",
+    "HEADER_BTN_TXT": "Add Bot Configuration",
+    "SIDEBAR_TXT": "<p><b>Agent Bots</b> <p>Agent bots allows you to automate the conversations</p>",
     "CSML_BOT_EDITOR": {
       "NAME": {
-        "LABEL": "Nazwa Bota",
-        "PLACEHOLDER": "Nadaj swojemu botowi nazwę",
-        "ERROR": "Nazwa bota jest wymagana"
+        "LABEL": "Bot Name",
+        "PLACEHOLDER": "Give your bot a name",
+        "ERROR": "Bot name is required"
       },
       "DESCRIPTION": {
-        "LABEL": "Opis Bota",
-        "PLACEHOLDER": "Co robi ten bot?"
+        "LABEL": "Bot Description",
+        "PLACEHOLDER": "What does this bot do?"
       },
       "BOT_CONFIG": {
-        "ERROR": "Proszę wprowadzić konfigurację bota CSML powyżej",
-        "API_ERROR": "Twoja konfiguracja CSML jest nieprawidłowa, proszę ją poprawić i spróbować ponownie."
+        "ERROR": "Please enter your CSML bot configuration above",
+        "API_ERROR": "Your CSML configuration is invalid, please fix it and try again."
       },
-      "SUBMIT": "Sprawdź i zapisz"
+      "SUBMIT": "Validate and save"
     },
     "BOT_CONFIGURATION": {
-      "TITLE": "Wybierz bota agenta",
-      "DESC": "Możesz ustawić bota agenta z listy na tej skrzynce odbiorczej. Bot może początkowo prowadzić rozmowę i przekazać ją agentowi w razie potrzeby.",
+      "TITLE": "Select an agent bot",
+      "DESC": "You can set an agent bot from the list to this inbox. The bot can initially handle the conversation and transfer it to an agent when needed.",
       "SUBMIT": "Aktualizuj",
-      "DISCONNECT": "Odłącz Bota",
-      "SUCCESS_MESSAGE": "Pomyślnie zaktualizowano bota agenta",
-      "DISCONNECTED_SUCCESS_MESSAGE": "Pomyślnie odłączono bota agenta",
-      "ERROR_MESSAGE": "Nie udało się zaktualizować bota agenta, spróbuj ponownie później",
-      "DISCONNECTED_ERROR_MESSAGE": "Nie udało się odłączyć bota agenta, spróbuj ponownie później",
-      "SELECT_PLACEHOLDER": "Wybierz Bota"
+      "DISCONNECT": "Disconnect Bot",
+      "SUCCESS_MESSAGE": "Successfully updated the agent bot",
+      "DISCONNECTED_SUCCESS_MESSAGE": "Successfully disconnected the agent bot",
+      "ERROR_MESSAGE": "Could not update the agent bot, please try again later",
+      "DISCONNECTED_ERROR_MESSAGE": "Could not disconnect the agent bot, please try again later",
+      "SELECT_PLACEHOLDER": "Select Bot"
     },
     "ADD": {
-      "TITLE": "Konfiguruj nowego bota",
+      "TITLE": "Configure new bot",
       "CANCEL_BUTTON_TEXT": "Anuluj",
       "API": {
-        "SUCCESS_MESSAGE": "Pomyślnie dodano bota",
-        "ERROR_MESSAGE": "Nie udało się dodać bota, spróbuj ponownie później"
+        "SUCCESS_MESSAGE": "Bot added successfully",
+        "ERROR_MESSAGE": "Could not add bot, Please try again later"
       }
     },
     "LIST": {
-      "404": "Nie znaleziono botów, możesz stworzyć bota, klikając przycisk 'Konfiguruj nowego bota' ↗",
-      "LOADING": "Pobieranie Botów...",
-      "TYPE": "Typ Bota"
+      "404": "No Bots found, you can create a bot by clicking the 'Configure new bot' Button ↗",
+      "LOADING": "Fetching Bots...",
+      "TYPE": "Bot Type"
     },
     "DELETE": {
       "BUTTON_TEXT": "Usuń",
-      "TITLE": "Usuń Bota",
+      "TITLE": "Delete Bot",
       "SUBMIT": "Usuń",
       "CANCEL_BUTTON_TEXT": "Anuluj",
-      "DESCRIPTION": "Czy na pewno chcesz usunąć tego bota? Ta akcja jest nieodwracalna",
+      "DESCRIPTION": "Are you sure you want to delete this bot? This action is irreversible",
       "API": {
-        "SUCCESS_MESSAGE": "Pomyślnie usunięto bota",
-        "ERROR_MESSAGE": "Nie udało się usunąć bota, spróbuj ponownie później"
+        "SUCCESS_MESSAGE": "Bot deleted successfully",
+        "ERROR_MESSAGE": "Could not able to delete bot, Please try again later"
       }
     },
     "EDIT": {
       "BUTTON_TEXT": "Edytuj",
-      "LOADING": "Pobieranie Botów...",
-      "TITLE": "Edytuj Bota",
+      "LOADING": "Fetching Bots...",
+      "TITLE": "Edit Bot",
       "CANCEL_BUTTON_TEXT": "Anuluj",
       "API": {
-        "SUCCESS_MESSAGE": "Pomyślnie zaktualizowano bota",
-        "ERROR_MESSAGE": "Nie udało się zaktualizować bota, spróbuj ponownie później"
+        "SUCCESS_MESSAGE": "Bot updated successfully",
+        "ERROR_MESSAGE": "Could not update bot, Please try again later"
       }
     },
     "TYPES": {
-      "WEBHOOK": "Webhook Bota",
-      "CSML": "Bot CSML"
+      "WEBHOOK": "Webhook Bot",
+      "CSML": "CSML Bot"
     }
   }
 }

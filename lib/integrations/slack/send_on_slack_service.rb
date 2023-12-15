@@ -14,12 +14,6 @@ class Integrations::Slack::SendOnSlackService < Base::SendOnChannelService
     perform_reply
   end
 
-  def link_unfurl(event)
-    slack_client.chat_unfurl(
-      event
-    )
-  end
-
   private
 
   def valid_channel_for_slack?
@@ -44,17 +38,13 @@ class Integrations::Slack::SendOnSlackService < Base::SendOnChannelService
 
   def message_content
     private_indicator = message.private? ? 'private: ' : ''
-    sanitized_content = ActionView::Base.full_sanitizer.sanitize(format_message_content)
+    sanitized_content = ActionView::Base.full_sanitizer.sanitize(message_text)
 
     if conversation.identifier.present?
       "#{private_indicator}#{sanitized_content}"
     else
       "#{formatted_inbox_name}#{formatted_conversation_link}#{email_subject_line}\n#{sanitized_content}"
     end
-  end
-
-  def format_message_content
-    message.message_type == 'activity' ? "_#{message_text}_" : message_text
   end
 
   def message_text
@@ -83,24 +73,17 @@ class Integrations::Slack::SendOnSlackService < Base::SendOnChannelService
   end
 
   def avatar_url(sender)
-    sender_type = sender_type(sender).downcase
-    blob_key = sender&.avatar&.attached? ? sender.avatar.blob.key : nil
-    generate_url(sender_type, blob_key)
-  end
-
-  def generate_url(sender_type, blob_key)
-    base_url = ENV.fetch('FRONTEND_URL', nil)
-    "#{base_url}/slack_uploads?blob_key=#{blob_key}&sender_type=#{sender_type}"
+    sender_type = sender.instance_of?(Contact) ? 'contact' : 'user'
+    "#{ENV.fetch('FRONTEND_URL', nil)}/integrations/slack/#{sender_type}.png"
   end
 
   def send_message
     post_message if message_content.present?
     upload_file if message.attachments.any?
-  rescue Slack::Web::Api::Errors::AccountInactive, Slack::Web::Api::Errors::MissingScope, Slack::Web::Api::Errors::InvalidAuth,
-         Slack::Web::Api::Errors::ChannelNotFound => e
+  rescue Slack::Web::Api::Errors::AccountInactive => e
     Rails.logger.error e
-    hook.prompt_reauthorization!
-    hook.disable
+    hook.authorization_error!
+    hook.disable if hook.enabled?
   end
 
   def post_message
@@ -141,19 +124,11 @@ class Integrations::Slack::SendOnSlackService < Base::SendOnChannelService
   end
 
   def sender_type(sender)
-    if sender.instance_of?(Contact)
-      'Contact'
-    elsif message.message_type == 'template' && sender.nil?
-      'Bot'
-    elsif message.message_type == 'activity' && sender.nil?
-      'System'
-    else
-      'Agent'
-    end
+    sender.instance_of?(Contact) ? 'Contact' : 'Agent'
   end
 
   def update_reference_id
-    return unless should_update_reference_id?
+    return if conversation.identifier
 
     conversation.update!(identifier: @slack_message['ts'])
   end
@@ -170,13 +145,5 @@ class Integrations::Slack::SendOnSlackService < Base::SendOnChannelService
 
   def link_to_conversation
     "<#{ENV.fetch('FRONTEND_URL', nil)}/app/accounts/#{conversation.account_id}/conversations/#{conversation.display_id}|Click here>"
-  end
-
-  # Determines whether the conversation identifier should be updated with the ts value.
-  # The identifier should be updated in the following cases:
-  # - If the conversation identifier is blank, it means a new conversation is being created.
-  # - If the thread_ts is blank, it means that the conversation was previously connected in a different channel.
-  def should_update_reference_id?
-    conversation.identifier.blank? || @slack_message['message']['thread_ts'].blank?
   end
 end

@@ -1,10 +1,10 @@
 <template>
-  <div class="wizard-body w-[75%] flex-shrink-0 flex-grow-0 max-w-[75%]">
+  <div class="wizard-body small-9 columns">
     <page-header
       :header-title="$t('TEAMS_SETTINGS.CREATE_FLOW.CREATE.TITLE')"
       :header-content="$t('TEAMS_SETTINGS.CREATE_FLOW.CREATE.DESC')"
     />
-    <div class="flex flex-wrap">
+    <div class="row channels">
       <team-form
         :on-submit="createTeam"
         :submit-in-progress="false"
@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import TeamForm from '../TeamForm.vue';
+import TeamForm from '../TeamForm';
 import router from '../../../../index';
-import PageHeader from '../../SettingsSubPageHeader.vue';
+import PageHeader from '../../SettingsSubPageHeader';
 import alertMixin from 'shared/mixins/alertMixin';
 
 export default {

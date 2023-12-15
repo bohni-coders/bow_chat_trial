@@ -36,33 +36,17 @@
       }
     },
     "VIEW_FILTER": "Bekijken",
-    "SORT_TOOLTIP_LABEL": "Sorteer gesprekken",
+    "SORT_TOOLTIP_LABEL": "Sort conversations",
     "CHAT_SORT": {
       "STATUS": "Status",
-      "ORDER_BY": "Sorteren op"
-    },
-    "CHAT_TIME_STAMP": {
-      "CREATED": {
-        "LATEST": "Aangemaakt op",
-        "OLDEST": "Aangemaakt op:"
-      },
-      "LAST_ACTIVITY": {
-        "NOT_ACTIVE": "Laatste Activiteit:",
-        "ACTIVE": "Laatste Activiteit"
-      }
+      "ORDER_BY": "Order by"
     },
     "CHAT_SORT_FILTER_ITEMS": {
       "latest": {
-        "TEXT": "Laatste Activiteit"
+        "TEXT": "Last activity"
       },
       "sort_on_created_at": {
-        "TEXT": "Aangemaakt op"
-      },
-      "sort_on_priority": {
-        "TEXT": "Prioriteit"
-      },
-      "sort_on_waiting_since": {
-        "TEXT": "Wachtend op antwoord"
+        "TEXT": "Created at"
       }
     },
     "ATTACHMENTS": {
@@ -86,20 +70,20 @@
       }
     },
     "CHAT_SORT_BY_FILTER": {
-      "TITLE": "Gesprek sorteren",
-      "DROPDOWN_TITLE": "Sorteren op",
+      "TITLE": "Sort conversation",
+      "DROPDOWN_TITLE": "Sort by",
       "ITEMS": {
         "LATEST": {
-          "NAME": "Laatste activiteit om",
-          "LABEL": "Laatste Activiteit"
+          "NAME": "Last activity at",
+          "LABEL": "Last activity"
         },
         "CREATED_AT": {
-          "NAME": "Aangemaakt op",
-          "LABEL": "Aangemaakt op"
+          "NAME": "Created at",
+          "LABEL": "Created at"
         },
         "LAST_USER_MESSAGE_AT": {
-          "NAME": "Laatste bericht van gebruiker op",
-          "LABEL": "Laatste bericht"
+          "NAME": "Last user message at",
+          "LABEL": "Last message"
         }
       }
     },

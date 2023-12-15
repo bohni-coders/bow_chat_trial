@@ -16,7 +16,10 @@ localVue.use(VTooltip);
 localVue.component('fluent-icon', FluentIcon);
 localVue.component('woot-button', Button);
 
-const i18nConfig = new VueI18n({ locale: 'en', messages: i18n });
+const i18nConfig = new VueI18n({
+  locale: 'en',
+  messages: i18n,
+});
 
 describe('MoveActions', () => {
   let currentChat = { id: 8, muted: false };
@@ -44,22 +47,25 @@ describe('MoveActions', () => {
     unmuteConversation = jest.fn(() => Promise.resolve());
 
     modules = {
-      conversations: { actions: { muteConversation, unmuteConversation } },
+      conversations: {
+        actions: {
+          muteConversation,
+          unmuteConversation,
+        },
+      },
     };
 
-    getters = { getSelectedChat: () => currentChat };
+    getters = {
+      getSelectedChat: () => currentChat,
+    };
 
-    store = new Vuex.Store({ state, modules, getters });
-
-    moreActions = mount(MoreActions, {
-      store,
-      localVue,
-      i18n: i18nConfig,
-      stubs: {
-        WootModal: { template: '<div><slot/> </div>' },
-        WootModalHeader: { template: '<div><slot/> </div>' },
-      },
+    store = new Vuex.Store({
+      state,
+      modules,
+      getters,
     });
+
+    moreActions = mount(MoreActions, { store, localVue, i18n: i18nConfig });
   });
 
   describe('muting discussion', () => {

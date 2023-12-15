@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountUser do
+RSpec.describe User do
   include ActiveJob::TestHelper
 
   let!(:account_user) { create(:account_user) }

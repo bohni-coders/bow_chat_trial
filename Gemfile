@@ -4,7 +4,7 @@ ruby '3.2.2'
 
 ##-- base gems for rails --##
 gem 'rack-cors', require: 'rack/cors'
-gem 'rails', '~> 7.0.8.0'
+gem 'rails', '~> 7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
@@ -15,7 +15,7 @@ gem 'browser'
 gem 'hashie'
 gem 'jbuilder'
 gem 'kaminari'
-gem 'responders', '>= 3.1.1'
+gem 'responders'
 gem 'rest-client'
 gem 'telephone_number'
 gem 'time_diff'
@@ -34,7 +34,7 @@ gem 'commonmarker'
 # Validate Data against JSON Schema
 gem 'json_schemer'
 # Rack middleware for blocking & throttling abusive requests
-gem 'rack-attack', '>= 6.7.0'
+gem 'rack-attack'
 # a utility tool for streaming, flexible and safe downloading of remote files
 gem 'down'
 # authentication type to fetch and send mail over oauth2.0
@@ -67,16 +67,15 @@ gem 'webpacker'
 gem 'barnes'
 
 ##--- gems for authentication & authorization ---##
-gem 'devise', '>= 4.9.3'
+gem 'devise'
 gem 'devise-secure_password', git: 'https://github.com/chatwoot/devise-secure_password', branch: 'chatwoot'
 gem 'devise_token_auth'
 # authorization
 gem 'jwt'
 gem 'pundit'
 # super admin
-gem 'administrate', '>= 0.19.0'
-gem 'administrate-field-active_storage', '>= 1.0.0'
-gem 'administrate-field-belongs_to_search'
+gem 'administrate'
+gem 'administrate-field-active_storage'
 
 ##--- gems for pubsub service ---##
 # https://karolgalanciak.com/blog/2019/11/30/from-activerecord-callbacks-to-publish-slash-subscribe-pattern-and-event-driven-design/
@@ -92,7 +91,7 @@ gem 'twitty', '~> 0.1.5'
 # facebook client
 gem 'koala'
 # slack client
-gem 'slack-ruby-client', '~> 2.2.0'
+gem 'slack-ruby-client', '~> 2.0.0'
 # for dialogflow integrations
 gem 'google-cloud-dialogflow-v2'
 gem 'grpc'
@@ -107,16 +106,16 @@ gem 'google-cloud-translate-v3'
 gem 'ddtrace', require: false
 gem 'elastic-apm', require: false
 gem 'newrelic_rpm', require: false
-gem 'newrelic-sidekiq-metrics', '>= 1.6.2', require: false
+gem 'newrelic-sidekiq-metrics', require: false
 gem 'scout_apm', require: false
-gem 'sentry-rails', '>= 5.14.0', require: false
+gem 'sentry-rails', require: false
 gem 'sentry-ruby', require: false
-gem 'sentry-sidekiq', '>= 5.14.0', require: false
+gem 'sentry-sidekiq', require: false
 
 ##-- background job processing --##
-gem 'sidekiq', '>= 7.1.3'
+gem 'sidekiq'
 # We want cron jobs
-gem 'sidekiq-cron', '>= 1.12.0'
+gem 'sidekiq-cron'
 
 ##-- Push notification service --##
 gem 'fcm'
@@ -154,27 +153,17 @@ gem 'stripe'
 gem 'faker'
 
 # Include logrange conditionally in intializer using env variable
-gem 'lograge', '~> 0.14.0', require: false
+gem 'lograge', '~> 0.12.0', require: false
 
 # worked with microsoft refresh token
 gem 'omniauth-oauth2'
 
-gem 'audited', '~> 5.4', '>= 5.4.1'
+gem 'audited', '~> 5.3'
 
 # need for google auth
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
-
-## Gems for reponse bot
-# adds cosine similarity to postgres using vector extension
-gem 'neighbor'
-gem 'pgvector'
-# Convert Website HTML to Markdown
-gem 'reverse_markdown'
-
-# Sentiment analysis
-gem 'informers'
 
 ### Gems required only in specific deployment environments ###
 ##############################################################
@@ -189,7 +178,7 @@ group :development do
   gem 'bullet'
   gem 'letter_opener'
   gem 'scss_lint', require: false
-  gem 'web-console', '>= 4.2.1'
+  gem 'web-console'
 
   # used in swagger build
   gem 'json_refs'
@@ -198,10 +187,8 @@ group :development do
   gem 'squasher'
 
   # profiling
-  gem 'rack-mini-profiler', '>= 3.2.0', require: false
+  gem 'rack-mini-profiler', require: false
   gem 'stackprof'
-  # Should install the associated chrome extension to view query logs
-  gem 'meta_request'
 end
 
 group :test do
@@ -223,8 +210,7 @@ group :development, :test do
   gem 'bundle-audit', require: false
   gem 'byebug', platform: :mri
   gem 'climate_control'
-  gem 'debug', '~> 1.8'
-  gem 'factory_bot_rails', '>= 6.4.2'
+  gem 'factory_bot_rails'
   gem 'listen'
   gem 'mock_redis'
   gem 'pry-rails'
@@ -240,3 +226,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen'
 end
+
+gem 'httparty'
+
+gem 'railties', '7.0.5'
